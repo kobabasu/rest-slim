@@ -23,6 +23,8 @@
   "dependencies": {
   },
   "devDependencies": {
+    "babel-core": "*",
+    "babel-preset-es2015": "*",
     "frisby": "*"
   },
 
