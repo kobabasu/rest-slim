@@ -3,12 +3,16 @@ bower.json.tmp
 bower.json-e
 package.json-e
 npm-debug-log
+.sass-cache
 composer.phar
 composer.lock
 
 node_modules
 vendor
 
-note.md
+js/*
+dist/*
+css/*
+docs/*
 
 !.gitkeep
