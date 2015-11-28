@@ -15,4 +15,7 @@ dist/*
 css/*
 docs/*
 
+spec/js/*
+spec/dist/*
+
 !.gitkeep
