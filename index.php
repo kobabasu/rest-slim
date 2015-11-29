@@ -5,6 +5,15 @@ ini_set('display_errors', 1);
 require_once(__DIR__ . '/vendor/autoload.php');
 /*}}}*/
 
+// lib /*{{{*/
+require_once(__DIR__ . '/SplClassLoader.php');
+$loader = new \SplClassLoader('Lib', __DIR__ );
+$loader->register();
+// import lib demonstration
+// should be displayed 'Lib\Hello\Hello'
+// $Hello = new Lib\Hello\Hello();
+/*}}}*/
+
 // server environment /*{{{*/
 $ips = array(
   // '10.0.2.15', // local
