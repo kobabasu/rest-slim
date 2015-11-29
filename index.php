@@ -1,5 +1,5 @@
 <?php
-namespace Api;
+ini_set('display_errors', 1);
 
 // composer /*{{{*/
 require_once(__DIR__ . '/vendor/autoload.php');
