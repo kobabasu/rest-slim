@@ -21,6 +21,7 @@ $ips = array(
 );
 
 if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
+  ini_set('display_errors', 0);
   $_ENV['SLIM_MODE'] = 'production';
 }
 /*}}}*/
