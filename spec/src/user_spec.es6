@@ -9,6 +9,5 @@ const ID         = 12
 
 frisby.create('INDEX')
   .get('http://' + HOST)
-  .expectHeaderContains('content-type', 'text/html')
   .expectStatus(200)
   .toss();
