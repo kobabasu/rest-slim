@@ -2,6 +2,10 @@
 $app->group('/users', function() use ($app) {
 
   $app->get('(/:id)', function($id = null) use ($app) {
-    echo 'users get' . $id;
+
+    $sql = 'select * from `users`';
+
+    $db = new Lib\Db\Get;
+    print_r($db->exec($sql));
   });
 });
