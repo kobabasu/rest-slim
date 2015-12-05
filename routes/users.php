@@ -1,11 +1,28 @@
 <?php
 $app->group('/users', function() use ($app) {
 
-  $app->get('(/:id)', function($id = null) use ($app) {
+  $app->GET('(/:id)', function($id = null) use ($app) {
 
-    $sql = 'select * from `users`';
+    $sql = 'SELECT * FROM `users`';
 
     $db = new Lib\Db\Get;
-    print_r($db->exec($sql));
+    $rows = $db->exec($sql);
+    print_r($rows);
+  });
+
+  $app->POST('/', function() use ($app) {
+
+    echo 'test';
+    $sql = 'INSERT INTO `users` (
+      `name`, `email`
+    ) VALUES ( ?, ? );';
+
+    $params = array(
+      'hanako',
+      'hanako@example.com'
+    );
+
+    $db = new Lib\Db\Post;
+    $db->exec($sql, $params);
   });
 });
