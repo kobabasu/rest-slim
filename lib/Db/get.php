@@ -11,10 +11,7 @@ class Get {
     try {
       $stmt = $this->_dbh->prepare($sql);
       $stmt->execute($values);
-
-      while ($rows = $stmt->FETCH(\PDO::FETCH_ASSOC)) {
-        return $rows;
-      }
+      return $stmt->FETCHALL(\PDO::FETCH_CLASS);
 
       $this->_dbh = null;
     } catch (PDOException $e) {
