@@ -12,7 +12,6 @@ $app->group('/users', function() use ($app) {
 
   $app->POST('/', function() use ($app) {
 
-    echo 'test';
     $sql = 'INSERT INTO `users` (
       `name`, `email`
     ) VALUES ( ?, ? );';
