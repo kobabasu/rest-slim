@@ -29,7 +29,7 @@ class Connect {
     }
   }
 
-  private function __clone() {
+  final function __clone() {
   }
 
   public function getConnection() {
