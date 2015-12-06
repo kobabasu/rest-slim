@@ -1,8 +1,8 @@
 <?php
 ini_set('display_errors', 1);
 const DB_HOST = '0.0.0.0';
-const DB_USERNAME = 'root';
-const DB_PASSWORD = 'root012';
+const DB_USERNAME = 'api';
+const DB_PASSWORD = 'api012';
 const DB_NAME = 'api';
 
 // composer /*{{{*/
