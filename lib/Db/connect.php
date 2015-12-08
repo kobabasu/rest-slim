@@ -2,6 +2,9 @@
 namespace Lib\Db;
 
 class Connect {
+
+  private $_debug = false;
+
   private $_host = DB_HOST;
   private $_username = DB_USERNAME;
   private $_password = DB_PASSWORD;
@@ -18,15 +21,24 @@ class Connect {
     return self::$_instance;
   }
 
-  private function __construct() {
+  private function __construct($debugMode = false) {
+    $this->_debug = DEBUG;
+
     try {
       $this->_connection = new \PDO(
         "mysql:host=$this->_host;dbname=$this->_database",
         $this->_username,
         $this->_password
       );
+
+      if ($this->_debug) {
+        $this->_connection->setAttribute(
+          \PDO::ATTR_ERRMODE,
+          \PDO::ERRMODE_EXCEPTION
+        );
+      }
     } catch (PDOException $e) {
-      echo $e->getMessage();
+      if ($this->_debug) echo $e->getMessage();
     }
   }
 

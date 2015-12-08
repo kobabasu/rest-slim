@@ -1,5 +1,7 @@
 <?php
 ini_set('display_errors', 1);
+const DEBUG = true;
+
 const DB_HOST = '0.0.0.0';
 const DB_USERNAME = 'api';
 const DB_PASSWORD = 'api012';

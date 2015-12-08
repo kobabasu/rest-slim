@@ -9,7 +9,7 @@ class Post extends Db {
       return $stmt->execute($values);
 
     } catch (PDOException $e) {
-      echo $e->getMessage();
+      $this->_debug($e->getMessage());
     }
   }
 }
