@@ -2,7 +2,7 @@
 namespace lib\Db;
 
 class Put extends Db {
-  public function execute($sql, $array = array()) {
+  public function execute($sql, $values = array()) {
     try {
     } catch (PDOException $e) {
       $this->debug($e->getMessage());

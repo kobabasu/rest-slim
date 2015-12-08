@@ -10,8 +10,8 @@ $app->group('/users', function() use ($app) {
 
     if ($id) {
       $sql = 'SELECT * FROM `users` WHERE `id` = ?;';
-      $params = $id;
-      $row = $db->execute($sql, $params);
+      $values = $id;
+      $row = $db->execute($sql, $values);
       print_r($row);
     } else {
       $sql = 'SELECT * FROM `users`;';
@@ -33,12 +33,12 @@ $app->group('/users', function() use ($app) {
       `name`, `email`
     ) VALUES ( ?, ? );';
 
-    $params = array(
+    $values = array(
       'hanako',
       'hanako@example.com'
     );
 
-    $db->execute($sql, $params);
+    $db->execute($sql, $values);
 
     $db->close();
   });
