@@ -1,6 +1,10 @@
 <?php
 $app->group('/users', function() use ($app) {
 
+
+  /*
+   * GET
+   */
   $app->GET('(/:id)', function($id = null) use ($app) {
     $db = new Lib\Db\Get();
 
@@ -11,6 +15,10 @@ $app->group('/users', function() use ($app) {
     $db->close();
   });
 
+
+  /*
+   * POST
+   */
   $app->POST('/', function() use ($app) {
     $db = new Lib\Db\Post;
 
