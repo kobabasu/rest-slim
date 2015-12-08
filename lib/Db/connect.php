@@ -21,7 +21,7 @@ class Connect {
     return self::$_instance;
   }
 
-  private function __construct($debugMode = false) {
+  private function __construct() {
     $this->_debug = DEBUG;
 
     try {
