@@ -5,7 +5,7 @@ $app->group('/users', function() use ($app) {
     $db = new Lib\Db\Get();
 
     $sql = 'SELECT * FROM `users`';
-    $rows = $db->exec($sql);
+    $rows = $db->execute($sql);
     print_r($rows);
 
     $db->close();
@@ -23,7 +23,7 @@ $app->group('/users', function() use ($app) {
       'hanako@example.com'
     );
 
-    $db->exec($sql, $params);
+    $db->execute($sql, $params);
 
     $db->close();
   });

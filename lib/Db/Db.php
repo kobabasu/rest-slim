@@ -16,5 +16,5 @@ abstract class Db {
     $this->_dbh = null;
   }
 
-  abstract public function exec($sql, $values);
+  abstract public function execute($sql, $values);
 }

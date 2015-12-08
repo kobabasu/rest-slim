@@ -2,7 +2,7 @@
 namespace Lib\Db;
 
 class Post extends Db {
-  public function exec($sql, $values = array()) {
+  public function execute($sql, $values = array()) {
     try {
       $stmt = $this->_dbh->prepare($sql);
 
