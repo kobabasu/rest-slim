@@ -11,13 +11,13 @@ $app->group('/users', function() use ($app) {
     if ($id) {
       $sql = 'SELECT * FROM `users` WHERE `id` = ?;';
       $values = $id;
-      $row = $db->execute($sql, $values);
-      print_r($row);
+      $res = $db->execute($sql, $values);
     } else {
       $sql = 'SELECT * FROM `users`;';
-      $rows = $db->execute($sql);
-      print_r($rows);
+      $res = $db->execute($sql);
     }
+
+    print_r($res);
 
     $db->close();
   });
