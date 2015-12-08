@@ -9,7 +9,6 @@ class Get extends Db {
 
       return $stmt->FETCHALL(\PDO::FETCH_CLASS);
 
-      $this->_dbh = null;
     } catch (PDOException $e) {
       echo $e->getMessage();
     }
