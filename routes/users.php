@@ -29,16 +29,20 @@ $app->group('/users', function() use ($app) {
   $app->POST('/', function() use ($app) {
     $db = new Lib\Db\Post;
 
+    $data = json_decode($app->request->getBody(), true);
+
     $sql = 'INSERT INTO `users` (
       `name`, `email`
     ) VALUES ( ?, ? );';
 
     $values = array(
-      'hanako',
-      'hanako@example.com'
+      $data['name'],
+      $data['email']
     );
 
-    $db->execute($sql, $values);
+    $res = $db->execute($sql, $values);
+
+    print_r($res);
 
     $db->close();
   });
