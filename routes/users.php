@@ -5,7 +5,7 @@ $app->group('/users', function() use ($app) {
   /*
    * GET
    */
-  $app->GET('(/:id)', function($id = null) use ($app) {
+  $app->GET('/(:id)', function($id = null) use ($app) {
     $db = new Lib\Db\Get();
 
     if ($id) {
