@@ -1,8 +1,4 @@
 <?php
-const DB_HOST = '0.0.0.0';
-const DB_USERNAME = 'api';
-const DB_PASSWORD = 'api012';
-const DB_NAME = 'api';
 
 // server environment and DEBUG /*{{{*/
 $ips = array(
@@ -31,6 +27,10 @@ $loader->register();
 // import lib demonstration
 // should be displayed 'Lib\Hello\Hello'
 // $Hello = new Lib\Hello\Hello();
+/*}}}*/
+
+// import DB CONST /*{{{*/
+require_once(__DIR__ . '/config/db.php');
 /*}}}*/
 
 
