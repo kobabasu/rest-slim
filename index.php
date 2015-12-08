@@ -1,11 +1,24 @@
 <?php
-ini_set('display_errors', 1);
-const DEBUG = true;
-
 const DB_HOST = '0.0.0.0';
 const DB_USERNAME = 'api';
 const DB_PASSWORD = 'api012';
 const DB_NAME = 'api';
+
+// server environment and DEBUG /*{{{*/
+$ips = array(
+  // '10.0.2.15', // local
+  '150.60.6.11'
+);
+
+if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
+  define('DEBUG', false);
+  $_ENV['SLIM_MODE'] = 'production';
+} else {
+  define('DEBUG', true);
+  $_ENV['SLIM_MODE'] = 'environment';
+}
+ini_set('display_errors', DEBUG);
+/*}}}*/
 
 // composer /*{{{*/
 require_once(__DIR__ . '/vendor/autoload.php');
@@ -18,18 +31,6 @@ $loader->register();
 // import lib demonstration
 // should be displayed 'Lib\Hello\Hello'
 // $Hello = new Lib\Hello\Hello();
-/*}}}*/
-
-// server environment /*{{{*/
-$ips = array(
-  // '10.0.2.15', // local
-  '150.60.6.11'
-);
-
-if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
-  ini_set('display_errors', 0);
-  $_ENV['SLIM_MODE'] = 'production';
-}
 /*}}}*/
 
 
