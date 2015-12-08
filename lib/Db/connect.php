@@ -5,40 +5,40 @@ class Connect {
 
   private $_debug = false;
 
-  private $_host = DB_HOST;
-  private $_username = DB_USERNAME;
-  private $_password = DB_PASSWORD;
-  private $_database = DB_NAME;
+  private $host = DB_HOST;
+  private $username = DB_USERNAME;
+  private $password = DB_PASSWORD;
+  private $database = DB_NAME;
 
-  private $_connection;
-  private static $_instance;
+  private $connection;
+  private static $instance;
 
   public static function getInstance() {
-    if (!self::$_instance) {
-      self::$_instance = new self();
+    if (!self::$instance) {
+      self::$instance = new self();
     }
 
-    return self::$_instance;
+    return self::$instance;
   }
 
   private function __construct() {
-    $this->_debug = DEBUG;
+    $this->debug = DEBUG;
 
     try {
-      $this->_connection = new \PDO(
-        "mysql:host=$this->_host;dbname=$this->_database",
-        $this->_username,
-        $this->_password
+      $this->connection = new \PDO(
+        "mysql:host=$this->host;dbname=$this->database",
+        $this->username,
+        $this->password
       );
 
-      if ($this->_debug) {
-        $this->_connection->setAttribute(
+      if ($this->debug) {
+        $this->connection->setAttribute(
           \PDO::ATTR_ERRMODE,
           \PDO::ERRMODE_EXCEPTION
         );
       }
     } catch (PDOException $e) {
-      if ($this->_debug) echo $e->getMessage();
+      if ($this->debug) echo $e->getMessage();
     }
   }
 
@@ -46,6 +46,6 @@ class Connect {
   }
 
   public function getConnection() {
-    return $this->_connection;
+    return $this->connection;
   }
 }

@@ -3,24 +3,24 @@ namespace Lib\Db;
 
 abstract class Db {
 
-  protected $_debug = false;
+  protected $debug = false;
 
-  protected $_ids;
-  protected $_dbh;
+  protected $ids;
+  protected $dbh;
 
   public function __construct($ids = array()) {
-    $this->_ids = $ids;
-    $this->_debug = DEBUG;
+    $this->ids = $ids;
+    $this->debug = DEBUG;
     $db = Connect::getInstance();
-    $this->_dbh = $db->getConnection();
+    $this->dbh = $db->getConnection();
   }
 
   public function close() {
-    $this->_dbh = null;
+    $this->dbh = null;
   }
 
-  protected function _debug($e) {
-    if ($this->_debug) echo $e;
+  protected function debug($e) {
+    if ($this->debug) echo $e;
   }
 
   abstract public function execute($sql, $values);
