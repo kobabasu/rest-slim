@@ -2,12 +2,13 @@
 namespace Lib\Db;
 
 class Connect {
-  private $_connection;
-  private static $_instance;
   private $_host = DB_HOST;
   private $_username = DB_USERNAME;
   private $_password = DB_PASSWORD;
   private $_database = DB_NAME;
+
+  private $_connection;
+  private static $_instance;
 
   public static function getInstance() {
     if (!self::$_instance) {
