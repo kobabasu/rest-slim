@@ -8,9 +8,16 @@ $app->group('/users', function() use ($app) {
   $app->GET('(/:id)', function($id = null) use ($app) {
     $db = new Lib\Db\Get();
 
-    $sql = 'SELECT * FROM `users`';
-    $rows = $db->execute($sql);
-    print_r($rows);
+    if ($id) {
+      $sql = 'SELECT * FROM `users` WHERE `id` = ?;';
+      $params = array($id);
+      $row = $db->execute($sql, $params);
+      print_r($row);
+    } else {
+      $sql = 'SELECT * FROM `users`;';
+      $rows = $db->execute($sql);
+      print_r($rows);
+    }
 
     $db->close();
   });
