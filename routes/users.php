@@ -10,7 +10,7 @@ $app->group('/users', function() use ($app) {
 
     if ($id) {
       $sql = 'SELECT * FROM `users` WHERE `id` = ?;';
-      $params = array($id);
+      $params = $id;
       $row = $db->execute($sql, $params);
       print_r($row);
     } else {

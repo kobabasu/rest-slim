@@ -3,7 +3,7 @@ namespace Lib\Db;
 
 class Get extends Db {
   public function execute($sql, $values = array()) {
-    if ($values) 
+    if (!is_array($values)) $values = array($values);
 
     try {
       $stmt = $this->dbh->prepare($sql);
