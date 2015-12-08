@@ -1,16 +1,12 @@
 <?php
 namespace Lib\Db;
 
-class Get {
-  public function __construct() {
-    $db = Connect::getInstance();
-    $this->_dbh = $db->getConnection();
-  }
-
+class Get extends Db {
   public function exec($sql, $values = array()) {
     try {
       $stmt = $this->_dbh->prepare($sql);
       $stmt->execute($values);
+
       return $stmt->FETCHALL(\PDO::FETCH_CLASS);
 
       $this->_dbh = null;
