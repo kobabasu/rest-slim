@@ -41,9 +41,38 @@ $app->group('/users', function() use ($app) {
 
     $db->close();
   });
-});
 /*}}}*/
 
+// PUT /*{{{*/
+  $app->PUT('/:id', function($id) use ($app) {
+
+    $data = json_decode($app->request->getBody(), true);
+
+    $fields = null;
+    $values = array();
+    foreach($data as $key => $val) {
+      $fields .= $key . '=?,';
+      $values[] = $val;
+    }
+
+    $sql  = 'UPDATE `users` SET ';
+    $sql .= substr($fields, 0, -1);
+    $sql .= ' WHERE `id` = ' . $id . ';';
+
+    $db = new Lib\Db\put();
+    if ($db->execute($sql, $values)) {
+      $sql = 'SELECT * FROM `users` WHERE `id` = ' . $id;
+    }
+    $db->close();
+
+    $db = new Lib\Db\Get();
+    $res = $db->execute($sql);
+    $db->close();
+
+    var_dump($res);
+  });
+/*}}}*/
+});
 
 /*
 vim:ma:et:nu:ff=unix:fenc=utf-8:ft=php:ts=2:sts=0:sw=2:tw=60:fdm=marker:
