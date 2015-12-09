@@ -1,10 +1,7 @@
 <?php
 $app->group('/users', function() use ($app) {
 
-
-  /*
-   * GET
-   */
+// GET /*{{{*/
   $app->GET('/(:id)', function($id = null) use ($app) {
     $db = new Lib\Db\Get();
 
@@ -21,11 +18,9 @@ $app->group('/users', function() use ($app) {
 
     $db->close();
   });
+/*}}}*/
 
-
-  /*
-   * POST
-   */
+// POST /*{{{*/
   $app->POST('/', function() use ($app) {
     $db = new Lib\Db\Post;
 
@@ -47,3 +42,9 @@ $app->group('/users', function() use ($app) {
     $db->close();
   });
 });
+/*}}}*/
+
+
+/*
+vim:ma:et:nu:ff=unix:fenc=utf-8:ft=php:ts=2:sts=0:sw=2:tw=60:fdm=marker:
+ */
