@@ -65,12 +65,20 @@ $app->group('/users', function() use ($app) {
     var_dump($res);
 
     $db->close();
+  });
+/*}}}*/
 
-    $db = new Lib\Db\Get();
+// DELETE /*{{{*/
+  $app->DELETE('/:id', function($id) use ($app) {
+    $db = new Lib\Db\put();
+
+    $sql = 'DELETE FROM `users` WHERE `id` = ' . $id;
+
     $res = $db->execute($sql);
-    $db->close();
 
     var_dump($res);
+    
+    $db->close();
   });
 /*}}}*/
 });
