@@ -37,7 +37,7 @@ $app->group('/users', function() use ($app) {
 
     $res = $db->execute($sql, $values);
 
-    print_r($res);
+    var_dump($db->getLastInsertId());
 
     $db->close();
   });
