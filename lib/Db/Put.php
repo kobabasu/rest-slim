@@ -8,7 +8,9 @@ class Put extends Db {
     try {
       $stmt = $this->dbh->prepare($sql);
 
-      return $stmt->execute($values);
+      $stmt->execute($values);
+
+      return $stmt->rowCount();
 
     } catch (PDOException $e) {
       $this->debug($e->getMessage());

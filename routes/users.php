@@ -45,6 +45,7 @@ $app->group('/users', function() use ($app) {
 
 // PUT /*{{{*/
   $app->PUT('/:id', function($id) use ($app) {
+    $db = new Lib\Db\put();
 
     $data = json_decode($app->request->getBody(), true);
 
@@ -59,10 +60,10 @@ $app->group('/users', function() use ($app) {
     $sql .= substr($fields, 0, -1);
     $sql .= ' WHERE `id` = ' . $id . ';';
 
-    $db = new Lib\Db\put();
-    if ($db->execute($sql, $values)) {
-      $sql = 'SELECT * FROM `users` WHERE `id` = ' . $id;
-    }
+    $res = $db->execute($sql, $values);
+
+    var_dump($res);
+
     $db->close();
 
     $db = new Lib\Db\Get();
