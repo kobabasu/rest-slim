@@ -5,11 +5,9 @@ abstract class Db {
 
   protected $debug = false;
 
-  protected $ids;
   protected $dbh;
 
-  public function __construct($ids = array()) {
-    $this->ids = $ids;
+  public function __construct() {
     $this->debug = DEBUG;
     $db = Connect::getInstance();
     $this->dbh = $db->getConnection();
