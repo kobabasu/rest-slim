@@ -70,7 +70,7 @@ $app->group('/users', function() use ($app) {
 
 // DELETE /*{{{*/
   $app->DELETE('/:id', function($id) use ($app) {
-    $db = new Lib\Db\put();
+    $db = new Lib\Db\Delete;
 
     $sql = 'DELETE FROM `users` WHERE `id` = ' . $id;
 
