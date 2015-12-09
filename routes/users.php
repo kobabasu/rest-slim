@@ -1,19 +1,20 @@
 <?php
-const MODEL = 'users';
+$app->model = 'users';
 
-$app->group('/' . MODEL, function() use ($app) {
+$app->group('/' . $app->model, function() use ($app) {
 
 // GET /*{{{*/
   $app->GET('/(:id)', function($id = null) use ($app) {
     $db = new Lib\Db\Get();
 
     if ($id) {
-      $sql = 'SELECT * FROM ' . MODEL . ' WHERE `id` = ?;';
+      $sql  = 'SELECT * FROM ' . $app->model;
+      $sql .= ' WHERE `id` = ?;';
       $values = $id;
       $res = $db->execute($sql, $values);
     } else {
-      $sql = 'SELECT * FROM ' . MODEL . ';';
-      $res = $db->execute($sql);
+      $sql  = 'SELECT * FROM ' . $app->model . ';';
+      $res  = $db->execute($sql);
     }
 
     var_dump($res);
@@ -28,7 +29,7 @@ $app->group('/' . MODEL, function() use ($app) {
 
     $data = json_decode($app->request->getBody(), true);
 
-    $sql = 'INSERT INTO ' . MODEL . ' (
+    $sql = 'INSERT INTO ' . $app->model . ' (
       `name`, `email`
     ) VALUES ( ?, ? );';
 
@@ -58,7 +59,7 @@ $app->group('/' . MODEL, function() use ($app) {
       $values[] = $val;
     }
 
-    $sql  = 'UPDATE ' . MODEL . ' SET ';
+    $sql  = 'UPDATE ' . $app->model . ' SET ';
     $sql .= substr($fields, 0, -1);
     $sql .= ' WHERE `id` = ' . $id . ';';
 
@@ -74,7 +75,8 @@ $app->group('/' . MODEL, function() use ($app) {
   $app->DELETE('/:id', function($id) use ($app) {
     $db = new Lib\Db\Delete;
 
-    $sql = 'DELETE FROM ' . MODEL . ' WHERE `id` = ' . $id;
+    $sql  = 'DELETE FROM ' . $app->model;
+    $sql .= ' WHERE `id` = ' . $id;
 
     $res = $db->execute($sql);
 
