@@ -14,7 +14,7 @@ $app->group('/users', function() use ($app) {
       $res = $db->execute($sql);
     }
 
-    print_r($res);
+    var_dump($res);
 
     $db->close();
   });
