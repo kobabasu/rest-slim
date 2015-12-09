@@ -81,6 +81,7 @@ $app->group('/users', function() use ($app) {
     $db->close();
   });
 /*}}}*/
+
 });
 
 /*
