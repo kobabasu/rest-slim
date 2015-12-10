@@ -43,7 +43,8 @@ $app->response->headers->set(
 
 $app->response->headers->set(
   'Content-Type', 'application/json;charset=utf-8'
-);/*}}}*/
+);
+/*}}}*/
 
 // Slim Extend /*{{{*/
 $app->Render = new Lib\Slim\Render($app);
@@ -71,6 +72,7 @@ $app->configureMode('development', function() use ($app) {
     'msg' => 'development mode',
     'log.enable' => false,
     'debug' => true,
+
     'smtp' => array(
       'host' => '127.0.0.1',
       'port' => 1025,
