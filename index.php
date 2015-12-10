@@ -38,6 +38,15 @@ if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
 ini_set('display_errors', DEBUG);
 /*}}}*/
 
+// Slim Setting/*{{{*/
+$app->response->headers->set(
+  'Access-Control-Allow-Origin', '*'
+);
+
+$app->response->headers->set(
+  'Content-Type', 'application/json;charset=utf-8'
+);/*}}}*/
+
 // Slim Extend /*{{{*/
 $app->render = new Lib\Slim\Render($app);
 /*}}}*/
