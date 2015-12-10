@@ -1,5 +1,21 @@
 <?php
 
+// server environment and DEBUG /*{{{*/
+$ips = array(
+  // '10.0.2.15', // local
+  '150.60.6.11'
+);
+
+if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
+  define('DEBUG', false);
+  $_ENV['SLIM_MODE'] = 'production';
+} else {
+  define('DEBUG', true);
+  $_ENV['SLIM_MODE'] = 'environment';
+}
+ini_set('display_errors', DEBUG);
+/*}}}*/
+
 // composer /*{{{*/
 require_once(__DIR__ . '/vendor/autoload.php');
 /*}}}*/
@@ -19,24 +35,6 @@ require_once(__DIR__ . '/config/db.php');
 
 
 $app = new \Slim\Slim();
-
-// server environment and DEBUG /*{{{*/
-$ips = array(
-  // '10.0.2.15', // local
-  '150.60.6.11'
-);
-
-if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
-  $app->config('debug', false);
-  define('DEBUG', false);
-  $_ENV['SLIM_MODE'] = 'production';
-} else {
-  $app->config('debug', true);
-  define('DEBUG', true);
-  $_ENV['SLIM_MODE'] = 'environment';
-}
-ini_set('display_errors', DEBUG);
-/*}}}*/
 
 // Slim Setting/*{{{*/
 $app->response->headers->set(
