@@ -1,5 +1,20 @@
 <?php
-ini_set('display_errors', 1);
+
+// server environment and DEBUG /*{{{*/
+$ips = array(
+  // '10.0.2.15', // local
+  '150.60.6.11'
+);
+
+if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
+  define('DEBUG', false);
+  $_ENV['SLIM_MODE'] = 'production';
+} else {
+  define('DEBUG', true);
+  $_ENV['SLIM_MODE'] = 'environment';
+}
+ini_set('display_errors', DEBUG);
+/*}}}*/
 
 // composer /*{{{*/
 require_once(__DIR__ . '/vendor/autoload.php');
@@ -14,20 +29,25 @@ $loader->register();
 // $Hello = new Lib\Hello\Hello();
 /*}}}*/
 
-// server environment /*{{{*/
-$ips = array(
-  // '10.0.2.15', // local
-  '150.60.6.11'
-);
-
-if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
-  ini_set('display_errors', 0);
-  $_ENV['SLIM_MODE'] = 'production';
-}
+// import DB CONST /*{{{*/
+require_once(__DIR__ . '/config/db.php');
 /*}}}*/
 
 
 $app = new \Slim\Slim();
+
+// Slim Setting/*{{{*/
+$app->response->headers->set(
+  'Access-Control-Allow-Origin', '*'
+);
+
+$app->response->headers->set(
+  'Content-Type', 'application/json;charset=utf-8'
+);/*}}}*/
+
+// Slim Extend /*{{{*/
+$app->Render = new Lib\Slim\Render($app);
+/*}}}*/
 
 // production settings /*{{{*/
 $app->configureMode('production', function() use ($app) {
