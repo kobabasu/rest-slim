@@ -11,7 +11,7 @@ if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
   $_ENV['SLIM_MODE'] = 'production';
 } else {
   define('DEBUG', true);
-  $_ENV['SLIM_MODE'] = 'environment';
+  $_ENV['SLIM_MODE'] = 'development';
 }
 ini_set('display_errors', DEBUG);
 /*}}}*/
