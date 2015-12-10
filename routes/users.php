@@ -17,7 +17,10 @@ $app->group('/' . $app->model, function() use ($app) {
       $res  = $db->execute($sql);
     }
 
-    $app->Render->json($res);
+    //$app->Render->json($res);
+
+    $mail = new Lib\SwiftMailer\Mailer($app);
+    $mail->send();
 
     $db->close();
   });
