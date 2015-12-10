@@ -83,6 +83,16 @@ $app->configureMode('development', function() use ($app) {
 });
 /*}}}*/
 
+// SwiftMailer /*{{{*/
+$app->config(array(
+  'mail' => array(
+    'subject' => 'default subject',
+    'from'    => 'admin@example.com',
+    'body'    => 'default body'
+  )
+));
+/*}}}*/
+
 // routes /*{{{*/
 $routeFiles = (array) glob('routes/*.php');
 foreach ($routeFiles as $routeFile) {
