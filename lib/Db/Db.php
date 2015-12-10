@@ -8,7 +8,7 @@ abstract class Db {
   protected $dbh;
 
   public function __construct() {
-    $this->debug = DEBUG;
+    if (defined('DEBUG')) $this->debug = DEBUG;
     $db = Connect::getInstance();
     $this->dbh = $db->getConnection();
   }
