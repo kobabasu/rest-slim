@@ -17,7 +17,7 @@ $app->group('/' . $app->model, function() use ($app) {
       $res  = $db->execute($sql);
     }
 
-    $app->render->json($res);
+    $app->Render->json($res);
 
     $db->close();
   });
@@ -40,7 +40,7 @@ $app->group('/' . $app->model, function() use ($app) {
 
     $res = $db->execute($sql, $values);
 
-    $app->render->json($db->getLastInsertId());
+    $app->Render->json($db->getLastInsertId());
 
     $db->close();
   });
@@ -65,7 +65,7 @@ $app->group('/' . $app->model, function() use ($app) {
 
     $res = $db->execute($sql, $values);
 
-    $app->render->json($res);
+    $app->Render->json($res);
 
     $db->close();
   });
@@ -80,7 +80,7 @@ $app->group('/' . $app->model, function() use ($app) {
 
     $res = $db->execute($sql);
 
-    $app->render->json($res);
+    $app->Render->json($res);
     
     $db->close();
   });

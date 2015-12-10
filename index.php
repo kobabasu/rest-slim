@@ -46,7 +46,7 @@ $app->response->headers->set(
 );/*}}}*/
 
 // Slim Extend /*{{{*/
-$app->render = new Lib\Slim\Render($app);
+$app->Render = new Lib\Slim\Render($app);
 /*}}}*/
 
 // production settings /*{{{*/
