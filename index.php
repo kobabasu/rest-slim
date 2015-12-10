@@ -36,6 +36,10 @@ require_once(__DIR__ . '/config/db.php');
 
 $app = new \Slim\Slim();
 
+// Slim Extend /*{{{*/
+$app->render = new Lib\Slim\Render($app);
+/*}}}*/
+
 // production settings /*{{{*/
 $app->configureMode('production', function() use ($app) {
   $app->config(array(

@@ -17,7 +17,7 @@ $app->group('/' . $app->model, function() use ($app) {
       $res  = $db->execute($sql);
     }
 
-    var_dump($res);
+    $app->render->json($res);
 
     $db->close();
   });
