@@ -20,6 +20,7 @@ $app->group('/' . $app->model, function() use ($app) {
     //$app->Render->json($res);
 
     $mail = new Lib\SwiftMailer\Mailer($app);
+    $mail->setSubject('custom subject');
     $mail->send();
 
     $db->close();

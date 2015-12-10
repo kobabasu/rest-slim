@@ -15,6 +15,15 @@ class Mailer {
   public function __construct($app) {
     $this->app = $app;
     $this->transport = $this->getTransport();
+    $this->setDefault();
+  }
+
+  private function setDefault() {
+    $config = $this->app->config('mail');
+    
+    $this->subject = $config['subject'];
+    $this->from    = $config['from'];
+    $this->body    = $config['body'];
   }
 
   private function getTransport() {
@@ -33,15 +42,16 @@ class Mailer {
     return $transport;
   }
 
-  public function setSubject() {
+  public function setSubject($subject) {
+    $this->subject = $subject;
   }
 
   public function send() {
     $message = \Swift_Message::newInstance()
-      ->setSubject('test')
+      ->setSubject($this->subject)
       ->setTo('taro@example.com')
-      ->setFrom('send@example.com')
-      ->setBody('test');
+      ->setFrom($this->from)
+      ->setBody($this->body);
 
     $mailer = \Swift_Mailer::newInstance($this->transport);
     $mailer->send($message);
