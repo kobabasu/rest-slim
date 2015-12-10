@@ -54,7 +54,13 @@ $app->configureMode('production', function() use ($app) {
   $app->config(array(
     'msg' => 'production mode',
     'log.enable' => true,
-    'debug' => false
+    'debug' => false,
+    'smtp' => array(
+      'host' => '127.0.0.1',
+      'port' => 1025,
+      'user' => null,
+      'pass' => null
+    )
   ));
 });
 /*}}}*/
@@ -64,7 +70,13 @@ $app->configureMode('development', function() use ($app) {
   $app->config(array(
     'msg' => 'development mode',
     'log.enable' => false,
-    'debug' => true
+    'debug' => true,
+    'smtp' => array(
+      'host' => '127.0.0.1',
+      'port' => 1025,
+      'user' => null,
+      'pass' => null
+    )
   ));
 });
 /*}}}*/
