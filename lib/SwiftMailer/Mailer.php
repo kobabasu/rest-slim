@@ -46,6 +46,14 @@ class Mailer {
     $this->subject = $subject;
   }
 
+  public function setFrom($from) {
+    $this->from = $from;
+  }
+
+  public function setBody($body) {
+    $this->body = $body;
+  }
+
   public function send() {
     $message = \Swift_Message::newInstance()
       ->setSubject($this->subject)
