@@ -54,10 +54,10 @@ class Mailer {
     $this->body = $body;
   }
 
-  public function send() {
+  public function send($to) {
     $message = \Swift_Message::newInstance()
       ->setSubject($this->subject)
-      ->setTo('taro@example.com')
+      ->setTo($to)
       ->setFrom($this->from)
       ->setBody($this->body);
 

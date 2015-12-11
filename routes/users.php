@@ -21,7 +21,7 @@ $app->group('/' . $app->model, function() use ($app) {
 
     $mail = new Lib\SwiftMailer\Mailer($app);
     $mail->setSubject('custom subject');
-    $mail->send();
+    $mail->send('taro@example.com');
 
     $db->close();
   });
