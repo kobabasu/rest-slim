@@ -46,11 +46,8 @@ $app->group('/' . $app->model, function() use ($app) {
     $mail->setSubject('日本語サブジェクト');
     $mail->setTemplate('default.twig', $data);
 
-    for ($i = 0; $i < 9; $i++) {
-      $mail->send($data['email']);
-    }
-
-    var_dump($mail->getLog());
+    $mail->send($data['email']);
+    $mail->saveLog();
 
     $db->close();
   });

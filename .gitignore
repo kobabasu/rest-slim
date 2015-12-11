@@ -10,6 +10,7 @@ composer.lock
 node_modules
 vendor
 cache
+logs
 
 js/*
 dist/*

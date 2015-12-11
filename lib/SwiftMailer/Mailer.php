@@ -3,6 +3,8 @@ namespace Lib\SwiftMailer;
 
 class Mailer {
 
+  const LOG_DIR = 'logs';
+
   private $app;
   private $charset;
   private $transport;
@@ -108,8 +110,19 @@ class Mailer {
     $this->logger = $logger;
   }
 
-  public function getLog() {
-    return $this->logger->dump();
+  public function saveLog() {
+    $date = date('ymd');
+    $file = self::LOG_DIR . '/' . 'mail.' . $date . '.log';
+
+    $current = '';
+    if (file_exists($file)) {
+      $current .= file_get_contents($file);
+    }
+
+    $log = $this->logger->dump();
+    $current .= $log;
+
+    file_put_contents($file, $current, FILE_APPEND);
   }
 
   public function send($to) {
