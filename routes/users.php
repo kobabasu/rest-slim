@@ -50,6 +50,8 @@ $app->group('/' . $app->model, function() use ($app) {
       $mail->send($data['email']);
     }
 
+    var_dump($mail->getLog());
+
     $db->close();
   });
 /*}}}*/

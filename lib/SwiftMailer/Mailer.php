@@ -7,6 +7,7 @@ class Mailer {
   private $charset;
   private $transport;
   private $mailer;
+  private $logger;
 
   private $subject;
   private $from;
@@ -24,6 +25,7 @@ class Mailer {
     $this->transport = $this->getTransport();
     $this->setMailer();
     $this->setAntiFlood();
+    $this->setLog();
   }
 
   private function initSwift() {
@@ -86,15 +88,28 @@ class Mailer {
     );
   }
 
-  public function setMailer() {
+  private function setMailer() {
     $mailer = \Swift_Mailer::newInstance($this->transport);
     $this->mailer = $mailer;
   }
 
-  public function setAntiFlood() {
+  private function setAntiFlood() {
     $this->mailer->registerPlugin(
       new \Swift_Plugins_AntiFloodPlugin(100, 30)
     );
+  }
+
+  private function setLog() {
+    $logger = new \Swift_Plugins_Loggers_ArrayLogger();
+    $this->mailer->registerPlugin(
+      new \Swift_Plugins_LoggerPlugin($logger)
+    );
+
+    $this->logger = $logger;
+  }
+
+  public function getLog() {
+    return $this->logger->dump();
   }
 
   public function send($to) {
