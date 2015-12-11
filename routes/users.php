@@ -45,7 +45,10 @@ $app->group('/' . $app->model, function() use ($app) {
     $mail = new Lib\SwiftMailer\Mailer($app);
     $mail->setSubject('日本語サブジェクト');
     $mail->setTemplate('default.twig', $data);
-    $mail->send($data['email']);
+
+    for ($i = 0; $i < 9; $i++) {
+      $mail->send($data['email']);
+    }
 
     $db->close();
   });

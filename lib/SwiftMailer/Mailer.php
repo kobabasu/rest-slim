@@ -4,10 +4,9 @@ namespace Lib\SwiftMailer;
 class Mailer {
 
   private $app;
-  private $mailer;
-  private $transport;
-  private $message;
   private $charset;
+  private $transport;
+  private $mailer;
 
   private $subject;
   private $from;
@@ -23,6 +22,8 @@ class Mailer {
     $this->initSwift();
     $this->initTwig();
     $this->transport = $this->getTransport();
+    $this->setMailer();
+    $this->setAntiFlood();
   }
 
   private function initSwift() {
@@ -85,10 +86,21 @@ class Mailer {
     );
   }
 
+  public function setMailer() {
+    $mailer = \Swift_Mailer::newInstance($this->transport);
+    $this->mailer = $mailer;
+  }
+
+  public function setAntiFlood() {
+    $this->mailer->registerPlugin(
+      new \Swift_Plugins_AntiFloodPlugin(100, 30)
+    );
+  }
+
   public function send($to) {
     $message = \Swift_Message::newInstance()
-      ->setSubject($this->subject)
       ->setTo($to)
+      ->setSubject($this->subject)
       ->setFrom($this->from)
       ->setBody($this->body);
 
@@ -99,7 +111,6 @@ class Mailer {
       );
     }
 
-    $mailer = \Swift_Mailer::newInstance($this->transport);
-    $mailer->send($message);
+    $this->mailer->send($message);
   }
 }
