@@ -11,7 +11,7 @@ if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
   $_ENV['SLIM_MODE'] = 'production';
 } else {
   define('DEBUG', true);
-  $_ENV['SLIM_MODE'] = 'environment';
+  $_ENV['SLIM_MODE'] = 'development';
 }
 ini_set('display_errors', DEBUG);
 /*}}}*/
@@ -43,7 +43,8 @@ $app->response->headers->set(
 
 $app->response->headers->set(
   'Content-Type', 'application/json;charset=utf-8'
-);/*}}}*/
+);
+/*}}}*/
 
 // Slim Extend /*{{{*/
 $app->Render = new Lib\Slim\Render($app);
@@ -54,7 +55,13 @@ $app->configureMode('production', function() use ($app) {
   $app->config(array(
     'msg' => 'production mode',
     'log.enable' => true,
-    'debug' => false
+    'debug' => false,
+    'smtp' => array(
+      'host' => '127.0.0.1',
+      'port' => 1025,
+      'user' => null,
+      'pass' => null
+    )
   ));
 });
 /*}}}*/
@@ -64,9 +71,26 @@ $app->configureMode('development', function() use ($app) {
   $app->config(array(
     'msg' => 'development mode',
     'log.enable' => false,
-    'debug' => true
+    'debug' => true,
+
+    'smtp' => array(
+      'host' => '127.0.0.1',
+      'port' => 1025,
+      'user' => null,
+      'pass' => null
+    )
   ));
 });
+/*}}}*/
+
+// SwiftMailer /*{{{*/
+$app->config(array(
+  'mail' => array(
+    'subject' => 'default subject',
+    'from'    => 'admin@example.com',
+    'body'    => 'default body'
+  )
+));
 /*}}}*/
 
 // routes /*{{{*/

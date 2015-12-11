@@ -42,6 +42,13 @@ $app->group('/' . $app->model, function() use ($app) {
 
     $app->Render->json($db->getLastInsertId());
 
+    $mail = new Lib\SwiftMailer\Mailer($app);
+    $mail->setSubject('日本語サブジェクト');
+    $mail->setTemplate('default.twig', $data);
+
+    $mail->send($data['email']);
+    $mail->saveLog();
+
     $db->close();
   });
 /*}}}*/
@@ -87,6 +94,7 @@ $app->group('/' . $app->model, function() use ($app) {
 /*}}}*/
 
 });
+
 
 /*
 vim:ma:et:nu:ff=unix:fenc=utf-8:ft=php:ts=2:sts=0:sw=2:tw=60:fdm=marker:
