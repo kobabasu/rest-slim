@@ -4,6 +4,8 @@ namespace Lib\SwiftMailer;
 class Mailer {
 
   const LOG_DIR = 'logs';
+  const INTERVAL_COUNT = 100;
+  const INTERVAL_TIME = 30;
 
   private $app;
   private $charset;
@@ -97,7 +99,10 @@ class Mailer {
 
   private function setAntiFlood() {
     $this->mailer->registerPlugin(
-      new \Swift_Plugins_AntiFloodPlugin(100, 30)
+      new \Swift_Plugins_AntiFloodPlugin(
+        self::INTERVAL_COUNT,
+        self::INTERVAL_TIME 
+      )
     );
   }
 
