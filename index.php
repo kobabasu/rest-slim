@@ -1,5 +1,4 @@
 <?php
-
 // server environment and DEBUG /*{{{*/
 $ips = array(
   // '10.0.2.15', // local
@@ -16,38 +15,12 @@ if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
 ini_set('display_errors', DEBUG);
 /*}}}*/
 
-// composer /*{{{*/
-require_once(__DIR__ . '/vendor/autoload.php');
-/*}}}*/
-
-// lib /*{{{*/
-require_once(__DIR__ . '/SplClassLoader.php');
-$loader = new \SplClassLoader('Lib', __DIR__ );
-$loader->register();
-// import lib demonstration
-// should be displayed 'Lib\Hello\Hello'
-// $Hello = new Lib\Hello\Hello();
-/*}}}*/
+require './bootstrap.php';
+$container = createContainer();
+$app = $container['app'];
 
 // import DB CONST /*{{{*/
 require_once(__DIR__ . '/config/db.php');
-/*}}}*/
-
-
-$app = new \Slim\Slim();
-
-// Slim Setting/*{{{*/
-$app->response->headers->set(
-  'Access-Control-Allow-Origin', '*'
-);
-
-$app->response->headers->set(
-  'Content-Type', 'application/json;charset=utf-8'
-);
-/*}}}*/
-
-// Slim Extend /*{{{*/
-$app->Render = new Lib\Slim\Render($app);
 /*}}}*/
 
 // production settings /*{{{*/
