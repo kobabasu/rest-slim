@@ -11,5 +11,8 @@
     "phpunit/phpunit-skeleton-generator": "*"
   },
 
+  "scripts": {
+    "test": "phpunit",
+    "skel": "phpunit-skelgen"
   }
 }
