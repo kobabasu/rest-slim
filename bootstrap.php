@@ -31,38 +31,38 @@ function createContainer() {
   $app->Render = new Lib\Slim\Render($app);
   /*}}}*/
 
-// production settings /*{{{*/
-$app->configureMode('production', function() use ($app) {
-  $app->config(array(
-    'msg' => 'production mode',
-    'log.enable' => true,
-    'debug' => false,
-    'smtp' => array(
-      'host' => '127.0.0.1',
-      'port' => 1025,
-      'user' => null,
-      'pass' => null
-    )
-  ));
-});
-/*}}}*/
+  // production settings /*{{{*/
+  $app->configureMode('production', function() use ($app) {
+    $app->config(array(
+      'msg' => 'production mode',
+      'log.enable' => true,
+      'debug' => false,
+      'smtp' => array(
+        'host' => '127.0.0.1',
+        'port' => 1025,
+        'user' => null,
+        'pass' => null
+      )
+    ));
+  });
+  /*}}}*/
 
-// development settings /*{{{*/
-$app->configureMode('development', function() use ($app) {
-  $app->config(array(
-    'msg' => 'development mode',
-    'log.enable' => false,
-    'debug' => true,
+  // development settings /*{{{*/
+  $app->configureMode('development', function() use ($app) {
+    $app->config(array(
+      'msg' => 'development mode',
+      'log.enable' => false,
+      'debug' => true,
 
-    'smtp' => array(
-      'host' => '127.0.0.1',
-      'port' => 1025,
-      'user' => null,
-      'pass' => null
-    )
-  ));
-});
-/*}}}*/
+      'smtp' => array(
+        'host' => '127.0.0.1',
+        'port' => 1025,
+        'user' => null,
+        'pass' => null
+      )
+    ));
+  });
+  /*}}}*/
 
   $container['app'] = $app;
 

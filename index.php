@@ -16,44 +16,29 @@ ini_set('display_errors', DEBUG);
 /*}}}*/
 
 require './bootstrap.php';
-$container = createContainer();
-$app = $container['app'];
+$c = createContainer();
+$app = $c['app'];
+
+$c['hello'] = function($c) {
+  $hello = new Lib\Hello\Hello('konan');
+  return $hello;
+};
+
+$c['service'] = function($c) {
+  $service = new Lib\Sample\Service;
+  return $service;
+};
+
+$c['client'] = function($c) {
+  $client = new Lib\Sample\Client($c['service']);
+  return $client;
+};
+
+$client = $c['client'];
+$client->say('nyanyanya koko');
 
 // import DB CONST /*{{{*/
 require_once(__DIR__ . '/config/db.php');
-/*}}}*/
-
-// production settings /*{{{*/
-$app->configureMode('production', function() use ($app) {
-  $app->config(array(
-    'msg' => 'production mode',
-    'log.enable' => true,
-    'debug' => false,
-    'smtp' => array(
-      'host' => '127.0.0.1',
-      'port' => 1025,
-      'user' => null,
-      'pass' => null
-    )
-  ));
-});
-/*}}}*/
-
-// development settings /*{{{*/
-$app->configureMode('development', function() use ($app) {
-  $app->config(array(
-    'msg' => 'development mode',
-    'log.enable' => false,
-    'debug' => true,
-
-    'smtp' => array(
-      'host' => '127.0.0.1',
-      'port' => 1025,
-      'user' => null,
-      'pass' => null
-    )
-  ));
-});
 /*}}}*/
 
 // SwiftMailer /*{{{*/
