@@ -3,6 +3,7 @@
     "slim/slim": "2.x",
     "swiftmailer/swiftmailer": "@stable",
     "phpunit/phpunit": "4.x",
+    "pimple/pimple": "*",
     "twig/twig": "@stable"
   }
 }
