@@ -1,15 +1,12 @@
 <?php
 namespace Lib\Hello;
 
-class Hello implements HelloInterface {
+class Hello {
 
-  private $word;
-
-  public function __construct($word) {
-    $this->word = $word;
+  public function __construct() {
   }
 
   public function say() {
-    echo 'say: ' . $this->word . PHP_EOL;
+    return 'Hello';
   }
 }
