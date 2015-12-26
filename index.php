@@ -1,5 +1,4 @@
 <?php
-
 // server environment and DEBUG /*{{{*/
 $ips = array(
   // '10.0.2.15', // local
@@ -16,71 +15,30 @@ if (in_array($_SERVER['SERVER_ADDR'], $ips)) {
 ini_set('display_errors', DEBUG);
 /*}}}*/
 
-// composer /*{{{*/
-require_once(__DIR__ . '/vendor/autoload.php');
-/*}}}*/
+require './bootstrap.php';
+$c = createContainer();
+$app = $c['app'];
 
-// lib /*{{{*/
-require_once(__DIR__ . '/SplClassLoader.php');
-$loader = new \SplClassLoader('Lib', __DIR__ );
-$loader->register();
-// import lib demonstration
-// should be displayed 'Lib\Hello\Hello'
-// $Hello = new Lib\Hello\Hello();
-/*}}}*/
+$c['hello'] = function($c) {
+  $hello = new Lib\Hello\Hello('konan');
+  return $hello;
+};
+
+$c['service'] = function($c) {
+  $service = new Lib\Sample\Service;
+  return $service;
+};
+
+$c['client'] = function($c) {
+  $client = new Lib\Sample\Client($c['service']);
+  return $client;
+};
+
+$client = $c['client'];
+$client->say('nyanyanya koko');
 
 // import DB CONST /*{{{*/
 require_once(__DIR__ . '/config/db.php');
-/*}}}*/
-
-
-$app = new \Slim\Slim();
-
-// Slim Setting/*{{{*/
-$app->response->headers->set(
-  'Access-Control-Allow-Origin', '*'
-);
-
-$app->response->headers->set(
-  'Content-Type', 'application/json;charset=utf-8'
-);
-/*}}}*/
-
-// Slim Extend /*{{{*/
-$app->Render = new Lib\Slim\Render($app);
-/*}}}*/
-
-// production settings /*{{{*/
-$app->configureMode('production', function() use ($app) {
-  $app->config(array(
-    'msg' => 'production mode',
-    'log.enable' => true,
-    'debug' => false,
-    'smtp' => array(
-      'host' => '127.0.0.1',
-      'port' => 1025,
-      'user' => null,
-      'pass' => null
-    )
-  ));
-});
-/*}}}*/
-
-// development settings /*{{{*/
-$app->configureMode('development', function() use ($app) {
-  $app->config(array(
-    'msg' => 'development mode',
-    'log.enable' => false,
-    'debug' => true,
-
-    'smtp' => array(
-      'host' => '127.0.0.1',
-      'port' => 1025,
-      'user' => null,
-      'pass' => null
-    )
-  ));
-});
 /*}}}*/
 
 // SwiftMailer /*{{{*/
