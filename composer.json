@@ -8,11 +8,13 @@
 
   "require-dev": {
     "phpunit/phpunit": "4.x",
-    "phpunit/phpunit-skeleton-generator": "*"
+    "phpunit/phpunit-skeleton-generator": "*",
+    "phpdocumentor/phpdocumentor": "*"
   },
 
   "scripts": {
     "test": "phpunit",
-    "skel": "phpunit-skelgen"
+    "skel": "phpunit-skelgen",
+    "doc": "phpdoc"
   }
 }
