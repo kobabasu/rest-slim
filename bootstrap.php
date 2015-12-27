@@ -3,15 +3,6 @@
 require_once(__DIR__ . '/vendor/autoload.php');
 /*}}}*/
 
-// lib /*{{{*/
-require_once(__DIR__ . '/SplClassLoader.php');
-$loader = new \SplClassLoader('Lib', __DIR__ );
-$loader->register();
-// import lib demonstration
-// should be displayed 'Lib\Hello\Hello'
-// $Hello = new Lib\Hello\Hello();
-/*}}}*/
-
 function createContainer() {
   $container = new \Pimple\Container();
 
