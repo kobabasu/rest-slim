@@ -1,6 +1,8 @@
 <?php
 /**
- * Helloクラスのファイル
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
  */
 
 namespace Lib\Hello;
@@ -20,7 +22,6 @@ class Hello
     /**
      * 'Hello'を返す
      *
-     * @access public
      * @return String 'Hello'という文字列を返す
      */
     public function say()

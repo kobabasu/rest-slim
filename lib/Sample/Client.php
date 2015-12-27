@@ -7,7 +7,7 @@
 
 namespace Lib\Sample;
 
-use Lib\Sample\ServiceIF;
+use Lib\Sample\ServiceInterface as ServiceIF;
 
 /**
  * 注入される側のクラス
@@ -20,14 +20,12 @@ class Client
      * 注入したオブジェクト
      *
      * @var Object $service
-     * @access pirvate
      */
     private $service;
 
     /**
      * 引数でインスタンスを注入
      *
-     * @access public
      * @param ServiceIF $service
      * @return void
      */
@@ -39,7 +37,6 @@ class Client
     /**
      * 注入されたオブジェクトのsayメソッドに引数を渡す
      *
-     * @access public
      * @param String $word
      * @return String
      */

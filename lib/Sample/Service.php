@@ -7,13 +7,11 @@
 
 namespace Lib\Sample;
 
-use Lib\Sample\ServiceIF;
-use Lib\Sample\ServiceSkel;
+use Lib\Sample\ServiceInterface as ServiceIF;
+use Lib\Sample\ServiceSkelton as ServiceSkel;
 
 /**
  * 注入する側のクラス
- *
- * @package Sample
  */
 class Service extends ServiceSkel implements ServiceIF
 {
