@@ -18,11 +18,11 @@ abstract class ServiceSkelton
     /**
      * 雛形自体が出力
      *
-     * @return void
+     * @return String
      */
     public function __construct()
     {
-        echo 'loading... service skel' . PHP_EOL;
+        return 'loading... service skel' . PHP_EOL;
     }
 
     /**

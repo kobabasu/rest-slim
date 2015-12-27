@@ -9,6 +9,8 @@ namespace Lib\Hello;
 
 /**
  * 一番単純なクラスのサンプル
+ *
+ * @package Hello
  */
 class Hello
 {

@@ -11,12 +11,17 @@ use Lib\Sample\ServiceInterface as ServiceIF;
 use Lib\Sample\ServiceSkelton as ServiceSkel;
 
 /**
- * 注入する側のクラス
+ * Lib\Sample\ServiceInterfaceのテスト
+ *
+ * @package Sample
  */
 class Service extends ServiceSkel implements ServiceIF
 {
     /**
      * {@inheritdoc}
+     *
+     * @param String $word
+     * @return String
      */
     public function say($word)
     {
