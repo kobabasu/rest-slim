@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
-  bootstrap="./bootstrap.php"
+  bootstrap="./tests/bootstrap.php"
   processIsolation="false"
   >
   <testsuites>
     <testsuite>
       <directory>./tests/</directory>
+      <directory>./tests/lib/</directory>
     </testsuite>
   </testsuites>
 </phpunit>

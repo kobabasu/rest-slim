@@ -16,6 +16,6 @@
 
   <files>
     <directory>./lib/Sample</directory>
-    <directory>./tests</directory>
+    <directory>./tests/**/*Test.php</directory>
   </files>
 </phpdoc>
