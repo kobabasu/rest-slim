@@ -17,7 +17,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $service = $this->getMock('LIb\Sample\ServiceIF', array('say'));
+        $service = $this->getMock(
+            'Lib\Sample\ServiceInterface',
+            array('say')
+        );
         $service->expects($this->any())
           ->method('say')
           ->with($this->equalTo('tes'))
@@ -40,7 +43,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testSay()
     {
-      $res = $this->object->say('tes');
-      $this->assertEquals('nayn', $res);
+        $res = $this->object->say('tes');
+        $this->assertEquals('nayn', $res);
     }
 }
