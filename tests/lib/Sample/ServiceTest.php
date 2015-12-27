@@ -8,16 +8,16 @@
 namespace Lib\Sample;
 
 /**
- * Lib\Sample\Clientのテスト
+ * Lib\Sample\Serviceのテスト
  *
  * @package Sample
  */
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ServiceTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * テスト用オブジェクト
      *
-     * @var Client
+     * @var Service
      */
     protected $object;
 
@@ -28,16 +28,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $service = $this->getMock(
-            'Lib\Sample\ServiceInterface',
-            array('say')
-        );
-        $service->expects($this->any())
-          ->method('say')
-          ->with($this->equalTo('tes'))
-          ->will($this->returnValue('nayn'));
-
-        $this->object = new Client($service);
+        $this->object = new Service;
     }
 
     /**
@@ -50,12 +41,12 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
      * 正しい文字列を返すか
      *
-     * @covers Lib\Sample\Client::say
-     * @test   testSay().
+     * @covers Lib\Sample\Service::say
+     * @test   Implement testSay().
      */
     public function testSay()
     {
         $res = $this->object->say('tes');
-        $this->assertEquals('nayn', $res);
+        $this->assertEquals('service: tes' . PHP_EOL, $res);
     }
 }

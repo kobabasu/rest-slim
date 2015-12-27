@@ -1,12 +1,16 @@
 <?php
 /**
- * Helloクラス用のテストファイル
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
  */
 
 namespace Lib\Hello;
 
 /**
  * Helloクラス用のテストファイル
+ *
+ * @package Hello
  */
 class HelloTest extends \PHPUnit_Framework_TestCase
 {
