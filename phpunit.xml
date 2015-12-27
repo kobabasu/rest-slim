@@ -6,8 +6,18 @@
   >
   <testsuites>
     <testsuite>
-      <directory>./tests/</directory>
       <directory>./tests/lib/</directory>
     </testsuite>
   </testsuites>
+
+  <filter>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">./lib/Sample</directory>
+    </whitelist>
+  </filter>
+
+  <logging>
+    <log type="coverage-html" target="./docs/reports" />
+    <log type="coverage-clover" target="./logs/coverage.xml" />
+  </logging>
 </phpunit>
