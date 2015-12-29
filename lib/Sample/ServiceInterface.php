@@ -9,6 +9,8 @@ namespace Lib\Sample;
 
 /**
  * Serviceのインターフェース
+ *
+ * @package Sample
  */
 interface ServiceInterface
 {

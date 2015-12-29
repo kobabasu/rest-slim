@@ -50,6 +50,17 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
      * 正しい文字列を返すか
      *
+     * @covers Lib\Sample\Client::__construct
+     * @test   Implement testConstruct().
+     */
+    public function testConstruct()
+    {
+        $this->assertNotNull($this->object);
+    }
+
+    /**
+     * 正しい文字列を返すか
+     *
      * @covers Lib\Sample\Client::say
      * @test   testSay().
      */
