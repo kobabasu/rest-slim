@@ -1,0 +1,10 @@
+DetectEnv
+サーバ環境がproduction modeであればtrueを返す
+現在のサーバ環境を返す
+
+複数のIPアドレスを登録可能
+IPによって判別
+apache envによって判別
+composer.jsonによって判別
+package.jsonによって判別
+強制的に指定
