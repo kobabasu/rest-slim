@@ -15,13 +15,6 @@ namespace Lib\Hello;
 class Hello
 {
     /**
-     * @ignore
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * 'Hello'を返す
      *
      * @return String 'Hello'という文字列を返す

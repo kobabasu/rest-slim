@@ -37,16 +37,6 @@ class HelloTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @ignore
-     *
-     * @covers Lib\Hello\Hello::__construct
-     * @test   testConstruct().
-     */
-    public function testConstruct()
-    {
-    }
-
-    /**
      * sayメソッドが正しい値を返すか確認
      *
      * @covers Lib\Hello\Hello::say
