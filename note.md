@@ -1,10 +1,22 @@
 DetectEnv
+提供されたipアドレスと一致すればtrueを返す
+
 サーバ環境がproduction modeであればtrueを返す
-現在のサーバ環境を返す
+
+constructorの引数はipのひとつだけ
+constructorの引数はどんな型でもよい
+constructorの引数がarrayにcastされる
+
+`REMOTE_ADDR`を取得する
+`REMOTE_ADDR`と引数を比較し一致すればtrueを返す
+`REMOTE_ADDR`と引数を比較し一致しなければfalseを返す
+getLabelメソッドでbooleanの代わりにproduction, environmentを返す
+
+
 
 複数のIPアドレスを登録可能
 IPによって判別
-apache envによって判別
+apache envによって判別 <- 無理っぽい
 composer.jsonによって判別
 package.jsonによって判別
 強制的に指定
