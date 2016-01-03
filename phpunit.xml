@@ -14,6 +14,7 @@
     <whitelist addUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">./lib/Hello</directory>
       <directory suffix=".php">./lib/Sample</directory>
+      <directory suffix=".php">./lib/Config</directory>
       <exclude>
         <directory suffix="Interface.php">./lib</directory>
         <directory suffix="Skelton.php">./lib</directory>
