@@ -1,51 +1,70 @@
 <?php
+/**
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
+ */
+
 namespace Lib\Db;
 
-class Connect {
+/**
+ * PDOのシングルトンを実現
+ *
+ * @package Db
+ */
+class Connect
+{
+    /*
+     * インスタンス
+     *
+     * @param PDO $pdo
+     * @return object
+     */
+    private static $instance;
 
-  private $_debug = false;
+    /*
+     * シングルトン
+     *
+     * @param PDO $pdo
+     * @return object
+     */
+    public static function getInstance(\PDO $pdo)
+    {
+        if (!self::$instance) {
+            self::$instance = new self($pdo);
+        }
 
-  private $host = DB_HOST;
-  private $username = DB_USERNAME;
-  private $password = DB_PASSWORD;
-  private $database = DB_NAME;
-
-  private $connection;
-  private static $instance;
-
-  public static function getInstance() {
-    if (!self::$instance) {
-      self::$instance = new self();
+        return self::$instance;
     }
 
-    return self::$instance;
-  }
-
-  private function __construct() {
-    $this->debug = DEBUG;
-
-    try {
-      $this->connection = new \PDO(
-        "mysql:host=$this->host;dbname=$this->database",
-        $this->username,
-        $this->password
-      );
-
-      if ($this->debug) {
-        $this->connection->setAttribute(
-          \PDO::ATTR_ERRMODE,
-          \PDO::ERRMODE_EXCEPTION
-        );
-      }
-    } catch (PDOException $e) {
-      if ($this->debug) echo $e->getMessage();
+    /*
+     * instanceに代入
+     *
+     * @param PDO $pdo
+     * @return vold
+     */
+    private function __construct(\PDO $pdo)
+    {
+        $this->instance = $pdo;
     }
-  }
 
-  final function __clone() {
-  }
+    /*
+     * 複製を禁止
+     *
+     * @return vold
+     */
+    final public function __clone()
+    {
+        //no op
+    }
 
-  public function getConnection() {
-    return $this->connection;
-  }
+    /*
+     * インスタンスを返す
+     *
+     * @return object
+     */
+    public function getConnection()
+    {
+        return $this->instance;
+    }
 }
