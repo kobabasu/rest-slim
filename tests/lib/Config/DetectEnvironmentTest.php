@@ -62,6 +62,17 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     /**
      * SERVER_ADDRと与えられたIPが一致すればtrueを返すか
      *
+     * @covers Lib\Config\DetectEnvironment::__construct()
+     * @test testConstruct()
+     */
+    public function testConstruct()
+    {
+        $this->assertTrue($this->object->flag);
+    }
+
+    /**
+     * SERVER_ADDRと与えられたIPが一致すればtrueを返すか
+     *
      * @covers Lib\Config\DetectEnvironment::checkIps()
      * @test testCheckIps()
      */
@@ -100,10 +111,10 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckIpHost()
     {
-        $addr = 'localhosts';
+        $addr = 'localhost';
         $res = $this->object->checkIp($addr);
 
-        $this->assertNull($res);
+        $this->assertEquals('localhost', $res);
     }
 
     /**
