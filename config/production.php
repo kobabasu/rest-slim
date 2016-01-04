@@ -1,8 +1,16 @@
 <?php
-$_ENV['SLIM_MODE']  = 'production';
-$_ENV['DEBUG_MODE'] = false;
+const ENVIRONMENT_MODE = 'production';
+const DEBUG_MODE       = false;
+
+$_ENV['SLIM_MODE']  = ENVIRONMENT_MODE;
 
 const DB_HOST       = '0.0.0.0';
-const DB_USERNAME   = 'api';
-const DB_PASSWORD   = 'api012';
+const DB_USER       = 'api';
+const DB_PASS       = 'api012';
 const DB_NAME       = 'api';
+
+const MAIL_HOST     = '127.0.0.1';
+const MAIL_PORT     = 1025;
+const MAIL_USER     = null;
+const MAIL_PASS     = null;
+const MAIL_LOGS     = true;
