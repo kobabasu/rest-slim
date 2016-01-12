@@ -20,6 +20,8 @@ class JsonEncode
      *
      * @param string $json The original JSON string
      * @return string Indented of the original JSON string.
+     * @codeCoverageIgnore
+     * @todo $result .= $indentStrがテストできない
      */
     public static function prettyPrint($json)
     {
