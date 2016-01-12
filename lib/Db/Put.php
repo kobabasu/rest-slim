@@ -1,19 +1,40 @@
 <?php
+/**
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
+ */
+
 namespace Lib\Db;
 
-class Put extends Db {
-  public function execute($sql, $values = array()) {
-    if (!is_array($values)) $values = array($values);
+/**
+ * mysqlからPUT
+ *
+ * @package Db
+ */
+class Put extends Db
+{
+    /**
+     * sqlを実行
+     *
+     * @param String $sql
+     * @param Array $values
+     */
+    public function execute($sql, $values = null)
+    {
+        try {
+            $stmt = $this->dbh->prepare($sql);
 
-    try {
-      $stmt = $this->dbh->prepare($sql);
+            $stmt->execute((Array)$values);
 
-      $stmt->execute($values);
+            $res = $stmt->rowCount();
 
-      return $stmt->rowCount();
+        } catch (PDOException $e) {
+            // @codeCoverageIgnoreStart
+            echo $this->debug($e->getMessage());
+            // @codeCoverageIgnoreEnd
+        }
 
-    } catch (PDOException $e) {
-      $this->debug($e->getMessage());
+        return $res;
     }
-  }
 }
