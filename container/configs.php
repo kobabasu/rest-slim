@@ -12,9 +12,10 @@ $c['config'] = function ($c) {
 $c['config.db'] = function ($c) {
     $config = array(
         'host' => DB_HOST,
+        'name' => DB_NAME,
         'user' => DB_USER,
         'pass' => DB_PASS,
-        'name' => DB_NAME
+        'port' => DB_PORT
     );
     return $config;
 };
