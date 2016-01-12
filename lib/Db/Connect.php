@@ -14,57 +14,82 @@ namespace Lib\Db;
  */
 class Connect
 {
-    /*
-     * インスタンス
-     *
-     * @param PDO $pdo
-     * @return object
-     */
-    private static $instance;
+    /** @var String $host ホスト名 */
+    private $host;
 
-    /*
-     * シングルトン
-     *
-     * @param PDO $pdo
-     * @return object
-     */
-    public static function getInstance(\PDO $pdo)
-    {
-        if (!self::$instance) {
-            self::$instance = new self($pdo);
-        }
+    /** @var String $name データベース名 */
+    private $name;
 
-        return self::$instance;
+    /** @var String $user ユーザ名 */
+    private $user;
+
+    /** @var String $pass パスワード */
+    private $pass;
+
+    /** @var Integer $port ポート番号 */
+    private $port;
+
+    /** @var Boolean $debug デバックの状態 */
+    private $debug;
+
+    /**
+     * 引数をプロパティに代入
+     *
+     * @param String $host
+     * @param String $name
+     * @param String $user
+     * @param String $pass
+     * @param String $port デフォルトは3306
+     * @param Boolean $debug デフォルトはfalse
+     * @return object
+     * @codeCoverageIgnore
+     */
+    public function __construct(
+        $host,
+        $name,
+        $user,
+        $pass,
+        $port = '3306',
+        $debug = false
+    ) {
+        $this->host  = $host;
+        $this->name  = $name;
+        $this->user  = $user;
+        $this->pass  = $pass;
+        $this->port  = $port;
+        $this->debug = $debug;
     }
 
-    /*
-     * instanceに代入
+    /**
+     * PDOを返す
      *
-     * @param PDO $pdo
-     * @return vold
-     */
-    private function __construct(\PDO $pdo)
-    {
-        $this->instance = $pdo;
-    }
-
-    /*
-     * 複製を禁止
-     *
-     * @return vold
-     */
-    final public function __clone()
-    {
-        //no op
-    }
-
-    /*
-     * インスタンスを返す
-     *
-     * @return object
+     * @return Object
      */
     public function getConnection()
     {
-        return $this->instance;
+        $pdo = null;
+        try {
+            $pdo = new \PDO(
+                "mysql:host={$this->host};
+                dbname={$this->name};
+                charset=utf8;
+                ",
+                $this->user,
+                $this->pass,
+                array(
+                    \PDO::ATTR_ERRMODE,
+                    \PDO::ERRMODE_EXCEPTION
+                )
+            );
+
+        } catch (\PDOException $e) {
+            // @codeCoverageIgnoreStart
+            if ($this->debug) {
+                var_dump($e->getMessage());
+            }
+            // @codeCoverageIgnoreEnd
+        }
+
+        return $pdo;
     }
 }

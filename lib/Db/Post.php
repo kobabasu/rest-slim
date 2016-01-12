@@ -1,28 +1,58 @@
 <?php
+/**
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
+ */
+
 namespace Lib\Db;
 
-class Post extends Db {
+/**
+ * mysqlからPOST
+ *
+ * @package Db
+ */
+class Post extends Db
+{
 
-  private $lastInsertId;
+    /** @var Integer $lastInsertId 最後のid */
+    private $lastInsertId;
 
-  public function execute($sql, $values = array()) {
-    if (!is_array($values)) $values = array($values);
-    
-    try {
-      $stmt = $this->dbh->prepare($sql);
+    /**
+     * sqlを実行
+     *
+     * @param String $sql
+     * @param Array $values
+     */
+    public function execute($sql, $values = null)
+    {
+        try {
+            $stmt = $this->dbh->prepare($sql);
 
-      $stmt->execute($values);
+            $stmt->execute((Array)$values);
 
-      $this->lastInsertId = $this->dbh->lastInsertId();
+            $this->lastInsertId = $this->dbh->lastInsertId();
 
-      return $stmt->rowCount();
+            $res = $stmt->rowCount();
 
-    } catch (PDOException $e) {
-      $this->debug($e->getMessage());
+        } catch (\PDOException $e) {
+            // @codeCoverageIgnoreStart
+            echo  $this->debug($e->getMessage());
+            // @codeCoverageIgnoreEnd
+        }
+
+        return $res;
     }
-  }
 
-  public function getLastInsertId() {
-    return $this->lastInsertId;
-  }
+    /**
+     * lastInsertIdを返す
+     *
+     * @param String $sql
+     * @param Array $values
+     * @return Integer
+     */
+    public function getLastInsertId()
+    {
+        return (Int)$this->lastInsertId;
+    }
 }

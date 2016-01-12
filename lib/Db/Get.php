@@ -1,18 +1,40 @@
 <?php
+/**
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
+ */
+
 namespace Lib\Db;
 
-class Get extends Db {
-  public function execute($sql, $values = array()) {
-    if (!is_array($values)) $values = array($values);
+/**
+ * mysqlからFETCHALL
+ *
+ * @package Db
+ */
+class Get extends Db
+{
+    /**
+     * sqlを実行
+     *
+     * @param String $sql
+     * @param Array $values
+     * @return Object
+     */
+    public function execute($sql, $values = null)
+    {
+        try {
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute((Array)$values);
 
-    try {
-      $stmt = $this->dbh->prepare($sql);
-      $stmt->execute($values);
+            $res =  $stmt->FETCHALL(\PDO::FETCH_CLASS);
 
-      return $stmt->FETCHALL(\PDO::FETCH_CLASS);
+        } catch (\PDOException $e) {
+            // @codeCoverageIgnoreStart
+            echo $this->debug($e->getMessage());
+            // @codeCoverageIgnoreEnd
+        }
 
-    } catch (\PDOException $e) {
-      $this->debug($e->getMessage());
+        return $res;
     }
-  }
 }
