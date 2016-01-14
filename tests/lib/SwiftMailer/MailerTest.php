@@ -5,12 +5,12 @@
  * @link https://github.com/kobabasu/rest-php.git
  */
 
-namespace Lib\Db;
+namespace Lib\SwiftMailer;
 
 /**
- * Postクラス用のテストファイル
+ * Mailerクラス用のテストファイル
  *
- * @package Db
+ * @package SwiftMailer
  */
 class MailerTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,18 +23,14 @@ class MailerTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $pdo = new \Lib\Db\Connect(
+        $swift = new \Lib\SwiftMailer\Init(
             '127.0.0.1',
-            'api',
-            'api',
-            'api012',
-            '3306',
-            true
+            '1025',
+            null,
+            null
         );
-        $dbh = $pdo->getConnection();
-        $stub = new \Lib\Db\Post($dbh, true);
 
-        $this->object = $stub;
+        $this->object = new Mailer($swift);
     }
 
     /**
@@ -45,19 +41,66 @@ class MailerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * executeが正しく返すか
+     * テンプレートを返すか
      *
-     * @covers Lib\Db\Post::execute()
-     * @test testExecuteFail()
+     * @covers Lib\SwiftMailer\Mailer::setTemplate()
+     * @test testSetTemplate()
      */
-    public function testExecuteFail()
+    public function testSetTemplate()
     {
-        try {
-            $sql = 'SELECT count(*) as `res` FROM `user`';
-            $res = $this->object->execute($sql);
-            $this->fail('fail');
-        } catch (\Exception $e) {
-            $this->assertEquals('fail', $e->getMessage());
-        }
+        $res = $this->object->setTemplate(
+            'defaultTest.twig',
+            array('name' => 'twig')
+        );
+
+        $this->assertEquals('Hello twig' . PHP_EOL, $res);
+    }
+
+    /**
+     * メッセージを返すか
+     *
+     * @covers Lib\SwiftMailer\Mailer::setMessage()
+     * @test testSetMessage()
+     */
+    public function testSetMessage()
+    {
+        $body = $this->object->setTemplate(
+            'defaultTest.twig',
+            array('name' => '太郎')
+        );
+
+        $res = $this->object->setMessage(
+            'test subject',
+            array('test@example.com' => 'テスト担当'),
+            $body
+        );
+
+        $this->assertInternalType('object', $res);
+    }
+
+    /**
+     * メッセージを返すか
+     *
+     * @covers Lib\SwiftMailer\Mailer::send()
+     * @test testSetSend()
+     */
+    public function testSend()
+    {
+        $body = $this->object->setTemplate(
+            'defaultTest.twig',
+            array('name' => '太郎')
+        );
+
+        $this->object->setMessage(
+            'タイトル',
+            array('admin@example.com' => 'テスト担当'),
+            $body
+        );
+
+        $res = $this->object->send(
+            'test@example.com'
+        );
+
+        $this->assertEquals(1, $res);
     }
 }
