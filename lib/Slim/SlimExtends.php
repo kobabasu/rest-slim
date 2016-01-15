@@ -11,7 +11,7 @@ use \Slim\Slim;
 use Lib\Legacy\JsonEncode;
 
 /**
- * Helloクラス用のテストファイル
+ * Slim拡張
  *
  * @package Slim
  */
@@ -21,8 +21,8 @@ class SlimExtends extends Slim
      * JSONで出力する
      *
      * @param Array $data
-     * @param Int $version
      * @param Boolean $debug
+     * @param Int $version
      * @return String
      */
     public function renderJSON(

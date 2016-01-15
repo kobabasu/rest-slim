@@ -8,7 +8,7 @@
 namespace Lib\Legacy;
 
 /**
- * Helloクラス用のテストファイル
+ * phpの古いバージョンで対応していない関数を補完
  *
  * @package Legacy
  */
