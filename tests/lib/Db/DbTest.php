@@ -23,11 +23,20 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $pdo = new \PDO('sqlite:memory');
+        $pdo = new Connect(
+            '127.0.0.1',
+            'api',
+            'api',
+            'api012',
+            '3306',
+            true
+        );
+
+        $res = $pdo->getConnection();
         $stub = $this->getMockFOrAbstractClass(
             '\Lib\Db\Db',
             array(
-                $pdo,
+                $res,
                 true
             )
         );
