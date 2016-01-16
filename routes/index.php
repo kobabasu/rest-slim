@@ -1,4 +1,12 @@
 <?php
-$app->get('/', function($id = null) use ($app) {
-  echo 'default' . $id;
-});
+namespace Routes;
+
+/**
+ * root
+ */
+$app->get(
+    '/(:id)',
+    function ($id = null) use ($app, $c) {
+        echo 'default id:' . $id;
+    }
+);

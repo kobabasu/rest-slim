@@ -15,7 +15,6 @@
 	</transformations>
 
   <files>
-    <directory>./lib/Hello</directory>
-    <directory>./tests</directory>
+    <directory>./lib</directory>
   </files>
 </phpdoc>

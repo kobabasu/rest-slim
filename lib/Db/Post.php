@@ -8,12 +8,16 @@
 namespace Lib\Db;
 
 /**
- * mysqlからPUT
+ * mysqlからPOST
  *
  * @package Db
  */
-class Put extends Db
+class Post extends Db
 {
+
+    /** @var Integer $lastInsertId 最後のid */
+    private $lastInsertId;
+
     /**
      * sqlを実行
      *
@@ -27,14 +31,28 @@ class Put extends Db
 
             $stmt->execute((Array)$values);
 
+            $this->lastInsertId = $this->dbh->lastInsertId();
+
             $res = $stmt->rowCount();
 
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             // @codeCoverageIgnoreStart
-            echo $this->debug($e->getMessage());
+            echo  $this->debug($e->getMessage());
             // @codeCoverageIgnoreEnd
         }
 
         return $res;
+    }
+
+    /**
+     * lastInsertIdを返す
+     *
+     * @param String $sql
+     * @param Array $values
+     * @return Integer
+     */
+    public function getLastInsertId()
+    {
+        return (Int)$this->lastInsertId;
     }
 }

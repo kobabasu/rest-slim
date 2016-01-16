@@ -1,12 +1,16 @@
 <?php
 /**
- * Helloクラス用のテストファイル
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
  */
 
 namespace Lib\Hello;
 
 /**
  * Helloクラス用のテストファイル
+ *
+ * @package Hello
  */
 class HelloTest extends \PHPUnit_Framework_TestCase
 {
@@ -35,7 +39,7 @@ class HelloTest extends \PHPUnit_Framework_TestCase
     /**
      * sayメソッドが正しい値を返すか確認
      *
-     * @covers Lib\Sample\Client::say
+     * @covers Lib\Hello\Hello::say
      * @test   testSay().
      */
     public function testSay()
