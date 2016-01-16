@@ -1,101 +1,127 @@
 <?php
-$app->model = 'users';
+namespace Routes;
 
-$app->group('/' . $app->model, function() use ($app) {
+$model = 'users';
 
-// GET /*{{{*/
-  $app->GET('/(:id)', function($id = null) use ($app) {
-    $db = new Lib\Db\Get();
+/**
+ * users
+ */
+$app->group('/'.$model, function () use ($app, $c) {
 
-    if ($id) {
-      $sql  = 'SELECT * FROM ' . $app->model;
-      $sql .= ' WHERE `id` = ?;';
-      $values = $id;
-      $res = $db->execute($sql, $values);
-    } else {
-      $sql  = 'SELECT * FROM ' . $app->model . ';';
-      $res  = $db->execute($sql);
-    }
+    /**
+     * GET
+     */
+    $app->GET(
+        '/(:id)',
+        function ($id = null) use ($app, $c) {
 
-    $app->Render->json($res);
+            $db = $c['db.get'];
 
-    $db->close();
-  });
-/*}}}*/
+            if ($id) {
+                $sql  = 'SELECT * FROM `users` ';
+                $sql .= 'WHERE `id` = ?;';
+                $res = $db->execute($sql, $id);
+            } else {
+                $sql  = 'SELECT * FROM `users`;';
+                $res  = $db->execute($sql);
+            }
 
-// POST /*{{{*/
-  $app->POST('/', function() use ($app) {
-    $db = new Lib\Db\Post;
-
-    $data = json_decode($app->request->getBody(), true);
-
-    $sql = 'INSERT INTO ' . $app->model . ' (
-      `name`, `email`
-    ) VALUES ( ?, ? );';
-
-    $values = array(
-      $data['name'],
-      $data['email']
+            $app->RenderJSON($res);
+            $db->close();
+        }
     );
 
-    $res = $db->execute($sql, $values);
+    /**
+     * POST
+     */
+    $app->POST(
+        '/',
+        function () use ($app, $c) {
 
-    $app->Render->json($db->getLastInsertId());
+            $db = $c['db.post'];
 
-    $mail = new Lib\SwiftMailer\Mailer($app);
-    $mail->setSubject('日本語サブジェクト');
-    $mail->setTemplate('default.twig', $data);
+            $data = json_decode(
+                $app->request->getBody(),
+                true
+            );
+            $values = array($data['name'], $data['email']);
 
-    $mail->send($data['email']);
-    $mail->saveLog();
+            $sql = 'INSERT INTO `users` (
+                `name`, `email`
+            ) VALUES ( ?, ? );';
 
-    $db->close();
-  });
-/*}}}*/
+            $res = $db->execute($sql, $values);
 
-// PUT /*{{{*/
-  $app->PUT('/:id', function($id) use ($app) {
-    $db = new Lib\Db\put();
+            $mailer = $c['service.mail.mailer'];
 
-    $data = json_decode($app->request->getBody(), true);
+            $body = $mailer->setTemplate(
+                'default.twig',
+                array('name' => $data['name'])
+            );
 
-    $fields = null;
-    $values = array();
-    foreach($data as $key => $val) {
-      $fields .= $key . '=?,';
-      $values[] = $val;
-    }
+            $mailer->setMessage(
+                'タイトル',
+                array('admin@example.com' => '担当'),
+                $body
+            );
 
-    $sql  = 'UPDATE ' . $app->model . ' SET ';
-    $sql .= substr($fields, 0, -1);
-    $sql .= ' WHERE `id` = ' . $id . ';';
+            $mailer->send($data['email']);
+            $c['service.mail.transport']->saveLog();
 
-    $res = $db->execute($sql, $values);
+            $app->RenderJSON($db->getLastInsertId());
+            $db->close();
+        }
+    );
 
-    $app->Render->json($res);
+    /**
+     * PUT
+     */
+    $app->PUT(
+        '/:id',
+        function ($id) use ($app, $c) {
 
-    $db->close();
-  });
-/*}}}*/
+            $db = $c['db.put'];
 
-// DELETE /*{{{*/
-  $app->DELETE('/:id', function($id) use ($app) {
-    $db = new Lib\Db\Delete;
+            $data = json_decode(
+                $app->request->getBody(),
+                true
+            );
 
-    $sql  = 'DELETE FROM ' . $app->model;
-    $sql .= ' WHERE `id` = ' . $id;
+            $fields = null;
+            $values = array();
+            foreach ($data as $key => $val) {
+                $fields .= $key . '=?,';
+                $values[] = $val;
+            }
 
-    $res = $db->execute($sql);
+            $sql  = 'UPDATE `users` SET ';
+            $sql .= substr($fields, 0, -1);
+            $sql .= ' WHERE `id` = ' . $id . ';';
 
-    $app->Render->json($res);
-    
-    $db->close();
-  });
-/*}}}*/
+            $res = $db->execute($sql, $values);
 
+            $app->RenderJSON($res);
+            $db->close();
+        }
+    );
+
+    /**
+     * DELETE
+     */
+    $app->DELETE(
+        '/:id',
+        function ($id) use ($app, $c) {
+
+            $db = $c['db.delete'];
+
+            $sql  = 'DELETE FROM `users` ';
+            $sql .= 'WHERE `id` = ' . $id;
+
+            $res = $db->execute($sql);
+
+            $app->RenderJSON($res);
+
+            $db->close();
+        }
+    );
 });
-
-
-/*
-vim:ma:et:nu:ff=unix:fenc=utf-8:ft=php:ts=2:sts=0:sw=2:tw=60:fdm=marker:
- */
