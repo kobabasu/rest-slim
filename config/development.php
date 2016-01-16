@@ -11,7 +11,6 @@ const DB_PASS       = 'api012';
 const DB_PORT       = '3306';
 
 const MAIL_HOST     = '127.0.0.1';
-const MAIL_PORT     = 1025;
+const MAIL_PORT     = '1025';
 const MAIL_USER     = null;
 const MAIL_PASS     = null;
-const MAIL_LOGS     = true;
