@@ -16,6 +16,7 @@ $c['db.connection'] = function ($c) {
         $cfg['user'],
         $cfg['pass'],
         $cfg['port'],
+        $cfg['charset'],
         $c['config']['debug_mode']
     );
 
