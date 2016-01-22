@@ -14,7 +14,8 @@ $c['config.db'] = function ($c) {
         'name' => DB_NAME,
         'user' => DB_USER,
         'pass' => DB_PASS,
-        'port' => DB_PORT
+        'port' => DB_PORT,
+        'charset' => DB_CHARSET
     );
 };
 
