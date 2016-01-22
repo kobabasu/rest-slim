@@ -12,9 +12,30 @@ namespace Lib\Db;
  *
  * @package Db
  */
-class DbTest extends \PHPUnit_Framework_TestCase
+class DbTest extends \PHPUnit_Extensions_Database_TestCase
 {
+    protected $pdo;
+    protected $db;
     protected $object;
+
+    public function getConnection()
+    {
+        $dsn = 'mysql:host=0.0.0.0;dbname=api;';
+
+        $this->pdo = new \PDO($dsn, 'api', 'api012');
+
+        return $this->createDefaultDBConnection(
+            $this->pdo,
+            $dsn
+        );
+    }
+
+    public function getDataSet()
+    {
+        return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
+            dirname(__FILE__) . '/../../fixtures/users.yml'
+        );
+    }
 
     /**
      * setUp method
@@ -23,25 +44,19 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $pdo = new Connect(
-            '127.0.0.1',
-            'api',
-            'api',
-            'api012',
-            '3306',
-            true
-        );
+        parent::setUp();
 
-        $res = $pdo->getConnection();
-        $stub = $this->getMockFOrAbstractClass(
+        $this->db = $this->getConnection();
+
+        $mock = $this->getMockForAbstractClass(
             '\Lib\Db\Db',
             array(
-                $res,
+                $this->pdo,
                 true
             )
         );
 
-        $this->object = $stub;
+        $this->object = $mock;
     }
 
     /**
@@ -59,7 +74,20 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testClose()
     {
-        $res = $this->object->close();
+        $mock = $this->getMockForAbstractClass(
+            '\Lib\Db\Db',
+            array(
+                $this->pdo,
+                true
+            )
+        );
+
+        $class = new \ReflectionClass($mock);
+        $ref = $class->getProperty('pdo');
+        $ref->setAccessible(true);
+        $this->object->close();
+        $res = $ref->getValue($this->object);
+
         $this->assertNull($res);
     }
 
@@ -67,18 +95,53 @@ class DbTest extends \PHPUnit_Framework_TestCase
      * debugがtrueであればExceptionを返すか
      *
      * @covers Lib\Db\Db::debug()
-     * @test testDebug()
+     * @test testDebugTrue()
      */
-    public function testDebug()
+    public function testDebugTrue()
     {
+        $mock = $this->getMockForAbstractClass(
+            '\Lib\Db\Db',
+            array(
+                $this->pdo,
+                true
+            )
+        );
+
         $e = 'fail';
-        $ref = new \ReflectionClass($this->object);
+        $ref = new \ReflectionClass($mock);
         $method = $ref->getMethod('debug');
         $method->setAccessible(true);
         $res = $method->invokeArgs(
-            $this->object,
-            array('fail')
+            $mock,
+            array($e)
         );
         $this->assertEquals('fail', $res);
+    }
+
+    /**
+     * debugがtrueであればExceptionを返すか
+     *
+     * @covers Lib\Db\Db::debug()
+     * @test testDebugFalse()
+     */
+    public function testDebugFalse()
+    {
+        $mock = $this->getMockForAbstractClass(
+            '\Lib\Db\Db',
+            array(
+                $this->pdo,
+                false
+            )
+        );
+
+        $e = 'fail';
+        $ref = new \ReflectionClass($mock);
+        $method = $ref->getMethod('debug');
+        $method->setAccessible(true);
+        $res = $method->invokeArgs(
+            $mock,
+            array($e)
+        );
+        $this->assertNull($res);
     }
 }
