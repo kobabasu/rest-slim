@@ -71,6 +71,13 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
+     * @ignore
+     */
+    protected function tearDown()
+    {
+    }
+
+    /**
      * DBUnit拡張でDBのモックを作成
      *
      * @return Object
@@ -83,13 +90,6 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
         );
 
         return $mock;
-    }
-
-    /**
-     * @ignore
-     */
-    protected function tearDown()
-    {
     }
 
     /**
