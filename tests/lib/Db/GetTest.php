@@ -15,16 +15,6 @@ namespace Lib\Db;
 class GetTest extends DbTest
 {
     /**
-     * setUp method
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-    }
-
-    /**
      * DBUnit拡張でDBのモックを作成
      *
      * @return Object
