@@ -93,6 +93,23 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
+     * 正常系 falseを返すか
+     *
+     * @covers Lib\Db\Db::setDebug()
+     * @test testSetDebugNormal()
+     */
+    public function testSetDebugNormal()
+    {
+        $class = new \ReflectionClass($this->object);
+        $ref = $class->getProperty('debug');
+        $ref->setAccessible(true);
+        $this->object->setDebug(true);
+        $res = $ref->getValue($this->object);
+
+        $this->assertTrue($res);
+    }
+
+    /**
      * nullを返すか
      *
      * @covers Lib\Db\Db::close()
