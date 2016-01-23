@@ -39,7 +39,7 @@ class ConnectTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * PDOを返すか
+     * コンストラクタ
      *
      * @covers Lib\Db\Connect::__construct()
      * @test testConstruct()
@@ -49,7 +49,7 @@ class ConnectTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * $this->portに正常にsetされるか
+     * 正常系 $this->portに正常にsetされるか
      *
      * @covers Lib\Db\Connect::setPort()
      * @test testSetPort()
@@ -66,7 +66,7 @@ class ConnectTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * $this->charsetに正常にsetされるか
+     * 正常系 $this->charsetに正常にsetされるか
      *
      * @covers Lib\Db\Connect::setCharset()
      * @test testSetCharset()
@@ -83,7 +83,7 @@ class ConnectTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * $this->debugに正常にsetされるか
+     * 正常系 $this->debugに正常にsetされるか
      *
      * @covers Lib\Db\Connect::setDebug()
      * @test testSetDebug()
