@@ -29,10 +29,19 @@ abstract class Db
      * @codeCoverageIgnore
      */
     public function __construct(
-        \PDO $pdo,
-        $debug = false
+        \PDO $pdo
     ) {
         $this->pdo = $pdo;
+    }
+
+    /**
+     * debugを設定
+     *
+     * @param Boolean $debug
+     * @return void
+     */
+    public function setDebug($debug)
+    {
         $this->debug = $debug;
     }
 
