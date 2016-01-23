@@ -25,7 +25,7 @@ class SlimExtends extends Slim
      * @param Int $version
      * @return String
      */
-    public function renderJSON(
+    public function renderJson(
         $data,
         $debug = false,
         $version = null
@@ -69,7 +69,7 @@ class SlimExtends extends Slim
      * @param Array $data
      * @return String
      */
-    public function renderCSV($data)
+    public function renderCsv($data)
     {
         $date = date("Ymd_His");
         $file = $this->model . '.' . $date . '.csv';
