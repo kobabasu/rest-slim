@@ -24,10 +24,10 @@ class ConnectTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->object = new \Lib\Db\Connect(
-            '0.0.0.0',
-            'api',
-            'api',
-            'api012'
+            $GLOBALS['DB_HOST'],
+            $GLOBALS['DB_NAME'],
+            $GLOBALS['DB_USER'],
+            $GLOBALS['DB_PASS']
         );
     }
 
