@@ -52,15 +52,22 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
 
         $this->db = $this->getConnection();
 
+        $this->object = $this->getObject();
+    }
+
+    /**
+     * DBUnit拡張でDBのモックを作成
+     *
+     * @return Object
+     */
+    public function getObject()
+    {
         $mock = $this->getMockForAbstractClass(
             '\Lib\Db\Db',
-            array(
-                $this->pdo,
-                true
-            )
+            array($this->pdo)
         );
 
-        $this->object = $mock;
+        return $mock;
     }
 
     /**
@@ -78,15 +85,7 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testClose()
     {
-        $mock = $this->getMockForAbstractClass(
-            '\Lib\Db\Db',
-            array(
-                $this->pdo,
-                true
-            )
-        );
-
-        $class = new \ReflectionClass($mock);
+        $class = new \ReflectionClass($this->object);
         $ref = $class->getProperty('pdo');
         $ref->setAccessible(true);
         $this->object->close();
@@ -103,20 +102,13 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testDebugTrue()
     {
-        $mock = $this->getMockForAbstractClass(
-            '\Lib\Db\Db',
-            array(
-                $this->pdo,
-                true
-            )
-        );
-
         $e = 'fail';
-        $ref = new \ReflectionClass($mock);
+        $this->object->setDebug(true);
+        $ref = new \ReflectionClass($this->object);
         $method = $ref->getMethod('debug');
         $method->setAccessible(true);
         $res = $method->invokeArgs(
-            $mock,
+            $this->object,
             array($e)
         );
         $this->assertEquals('fail', $res);
@@ -130,20 +122,13 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testDebugFalse()
     {
-        $mock = $this->getMockForAbstractClass(
-            '\Lib\Db\Db',
-            array(
-                $this->pdo,
-                false
-            )
-        );
-
         $e = 'fail';
-        $ref = new \ReflectionClass($mock);
+        $this->object->setDebug(false);
+        $ref = new \ReflectionClass($this->object);
         $method = $ref->getMethod('debug');
         $method->setAccessible(true);
         $res = $method->invokeArgs(
-            $mock,
+            $this->object,
             array($e)
         );
         $this->assertNull($res);
