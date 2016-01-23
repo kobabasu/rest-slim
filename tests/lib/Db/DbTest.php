@@ -14,10 +14,20 @@ namespace Lib\Db;
  */
 class DbTest extends \PHPUnit_Extensions_Database_TestCase
 {
+    /** @var Object $pdo PDOオブジェクト */
     protected $pdo;
+
+    /** @var Object $db getConnectionの返り値  */
     protected $db;
+
+    /** @var Object $object 対象クラス */
     protected $object;
 
+    /**
+     * getConnection method
+     *
+     * @return Object
+     */
     public function getConnection()
     {
         $dsn  = "mysql:host={$GLOBALS['DB_HOST']};";
@@ -34,6 +44,11 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
         );
     }
 
+    /**
+     * getDataSet method
+     *
+     * @return Object
+     */
     public function getDataSet()
     {
         return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
