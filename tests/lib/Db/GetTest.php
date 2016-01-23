@@ -15,18 +15,13 @@ namespace Lib\Db;
 class GetTest extends DbTest
 {
     /**
-     * DBUnit拡張でDBのモックを作成
+     * GETのインスタンスを作成
      *
      * @return Object
      */
     public function getObject()
     {
-        $mock = $this->getMockForAbstractClass(
-            '\Lib\Db\Get',
-            array($this->pdo)
-        );
-
-        return $mock;
+        return new \Lib\Db\Get($this->pdo);
     }
 
     /**

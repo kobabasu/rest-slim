@@ -12,49 +12,53 @@ namespace Lib\Db;
  *
  * @package Db
  */
-class PostTest extends \PHPUnit_Framework_TestCase
+class PostTest extends DbTest
 {
-    protected $object;
-
     /**
-     * setUp method
+     * POSTのインスタンスを作成
      *
-     * @return void
+     * @return Object
      */
-    protected function setUp()
+    public function getObject()
     {
-        $pdo = new \Lib\Db\Connect(
-            '127.0.0.1',
-            'api',
-            'api',
-            'api012',
-            '3306',
-            true
-        );
-        $dbh = $pdo->getConnection();
-        $stub = new \Lib\Db\Post($dbh, true);
-
-        $this->object = $stub;
+        return new \Lib\Db\Post($this->pdo);
     }
 
     /**
-     * @ignore
-     */
-    protected function tearDown()
-    {
-    }
-
-    /**
-     * executeが正しく返すか
+     * 正常系 executeが正しく返すか
      *
      * @covers Lib\Db\Post::execute()
-     * @test testExecuteFail()
+     * @test testExecuteNormal()
      */
-    public function testExecuteFail()
+    public function testExecuteNormal()
+    {
+        $sql = 'INSERT INTO `users` (`name`,`email`) ';
+        $sql .= 'VALUES (?,?);';
+        $values = array('maro', 'maro@example.com');
+
+        $res = $this->object->execute($sql, $values);
+
+        $this->assertEquals(
+            3,
+            $this->db->getRowCount('users')
+        );
+    }
+
+    /**
+     * 異常系エラー 間違ったsql文を挿入するとエラーを返すか
+     *
+     * @covers Lib\Db\Post::execute()
+     * @test testExecuteError()
+     */
+    public function testExecuteError()
     {
         try {
-            $sql = 'SELECT count(*) as `res` FROM `user`';
-            $res = $this->object->execute($sql);
+            $this->object->setDebug(true);
+            $sql = 'INSERT INTO `members` (`name`,`email`) ';
+            $sql .= 'VALUES (?,?);';
+            $values = array('maro', 'maro@example.com');
+
+            $res = $this->object->execute($sql, $values);
             $this->fail('fail');
         } catch (\Exception $e) {
             $this->assertEquals('fail', $e->getMessage());
@@ -62,12 +66,31 @@ class PostTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * 最後のidを返すか
+     * 異常系例外 executeが正しく返すか
+     *
+     * @covers Lib\Db\Post::execute()
+     * @test testExecuteException()
+     */
+    public function testExecuteException()
+    {
+        try {
+            $sql = 'INSERT INTO `members` (`name`,`email`) ';
+            $sql .= 'VALUES (?,?);';
+            $values = array('maro', 'maro@example.com');
+            $res = $this->object->execute($sql, $values);
+            $this->fail('fail');
+        } catch (\Exception $e) {
+            $this->assertEquals('fail', $e->getMessage());
+        }
+    }
+
+    /**
+     * 正常系 getLastInsertIdがintか
      *
      * @covers Lib\Db\Post::getLastInsertId()
-     * @test teetLastInsertId()
+     * @test testGetInsertIdNormal()
      */
-    public function testGetLastInsertId()
+    public function testGetInsertIdNormal()
     {
         $res = $this->object->getLastInsertId();
         $this->assertInternalType('int', $res);

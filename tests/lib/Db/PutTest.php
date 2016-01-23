@@ -12,49 +12,74 @@ namespace Lib\Db;
  *
  * @package Db
  */
-class PutTest extends \PHPUnit_Framework_TestCase
+class PutTest extends DbTest
 {
-    protected $object;
-
     /**
-     * setUp method
+     * PUTのインスタンスを作成
      *
-     * @return void
+     * @return Object
      */
-    protected function setUp()
+    public function getObject()
     {
-        $pdo = new \Lib\Db\Connect(
-            '127.0.0.1',
-            'api',
-            'api',
-            'api012',
-            '3306',
-            true
-        );
-        $dbh = $pdo->getConnection();
-        $stub = new \Lib\Db\Put($dbh, true);
-
-        $this->object = $stub;
+        return new \Lib\Db\Put($this->pdo);
     }
 
     /**
-     * @ignore
-     */
-    protected function tearDown()
-    {
-    }
-
-    /**
-     * executeが正しく返すか
+     * 正常系 executeが正しく返すか
      *
      * @covers Lib\Db\Put::execute()
-     * @test testExecuteFail()
+     * @test testExecuteNormal()
      */
-    public function testExecuteFail()
+    public function testExecuteNormal()
+    {
+        $sql  = 'UPDATE `users` SET `name` = ?';
+        $sql .= 'WHERE `id` = 1;';
+        $values = 'ichiro';
+        $res = $this->object->execute($sql, $values);
+        $table = $this->db->createQueryTable(
+            'users',
+            'SELECT * FROM `users`'
+        );
+
+        $this->assertEquals(
+            'ichiro',
+            $table->getValue(0, 'name')
+        );
+    }
+
+    /**
+     * 異常系エラー 間違ったsql文を挿入するとエラーを返すか
+     *
+     * @covers Lib\Db\Put::execute()
+     * @test testExecuteError()
+     */
+    public function testExecuteError()
     {
         try {
-            $sql = 'SELECT count(*) as `res` FROM `user`';
-            $res = $this->object->execute($sql);
+            $this->object->setDebug(true);
+            $sql  = 'UPDATE `members` SET `name` = ?';
+            $sql .= 'WHERE `id` = 1;';
+            $values = 'ichiro';
+            $res = $this->object->execute($sql, $values);
+            $this->fail('fail');
+        } catch (\Exception $e) {
+            $this->assertEquals('fail', $e->getMessage());
+        }
+    }
+
+    /**
+     * 異常系例外 executeが正しく返すか
+     *
+     * @covers Lib\Db\Put::execute()
+     * @test testExecuteException()
+     */
+    public function testExecuteException()
+    {
+        try {
+            $sql  = 'UPDATE `users` SET `name` = ?';
+            $sql .= 'WHERE `id` = 1;';
+            $values = 'ichiro';
+            $res = $this->object->execute($sql, $values);
             $this->fail('fail');
         } catch (\Exception $e) {
             $this->assertEquals('fail', $e->getMessage());
