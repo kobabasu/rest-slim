@@ -20,9 +20,13 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
 
     public function getConnection()
     {
-        $dsn = 'mysql:host=0.0.0.0;dbname=api;';
-
-        $this->pdo = new \PDO($dsn, 'api', 'api012');
+        $dsn  = "mysql:host={$GLOBALS['DB_HOST']};";
+        $dsn .= "dbname={$GLOBALS['DB_NAME']};";
+        $this->pdo = new \PDO(
+            $dsn,
+            $GLOBALS['DB_USER'],
+            $GLOBALS['DB_PASS']
+        );
 
         return $this->createDefaultDBConnection(
             $this->pdo,
