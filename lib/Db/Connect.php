@@ -96,17 +96,11 @@ class Connect
      */
     public function getConnection()
     {
-        $dsn   = "mysql:";
-        $dsn  .= "host={$this->host};";
-        $dsn  .= "port={$this->port};";
-        $dsn  .= "dbname={$this->name};";
-        $dsn  .= "charset={$this->charset};";
-
         try {
             $pdo = new \PDO(
-                $dsn,
-                $user,
-                $pass,
+                $this->getDsn(),
+                $this->user,
+                $this->pass,
                 array(
                     \PDO::ATTR_ERRMODE,
                     \PDO::ERRMODE_EXCEPTION
@@ -114,13 +108,29 @@ class Connect
             );
 
         } catch (\PDOException $e) {
-            // @codeCoverageIgnoreStart
-            if ($debug) {
-                var_dump($e->getMessage());
+            if ($this->debug) {
+                $pdo = $e->getMessage();
+            } else {
+                $pdo = null;
             }
-            // @codeCoverageIgnoreEnd
         }
 
-        return $this->pdo;
+        return $pdo;
+    }
+
+    /**
+     * dsnを返す
+     *
+     * @return String
+     */
+    private function getDsn()
+    {
+        $dsn   = "mysql:";
+        $dsn  .= "host={$this->host};";
+        $dsn  .= "port={$this->port};";
+        $dsn  .= "dbname={$this->name};";
+        $dsn  .= "charset={$this->charset};";
+
+        return $dsn;
     }
 }
