@@ -27,18 +27,16 @@ class Post extends Db
     public function execute($sql, $values = null)
     {
         try {
-            $stmt = $this->dbh->prepare($sql);
+            $stmt = $this->pdo->prepare($sql);
 
             $stmt->execute((Array)$values);
 
-            $this->lastInsertId = $this->dbh->lastInsertId();
+            $this->lastInsertId = $this->pdo->lastInsertId();
 
             $res = $stmt->rowCount();
 
         } catch (\PDOException $e) {
-            // @codeCoverageIgnoreStart
-            echo  $this->debug($e->getMessage());
-            // @codeCoverageIgnoreEnd
+            $res = $this->debug($e->getMessage());
         }
 
         return $res;

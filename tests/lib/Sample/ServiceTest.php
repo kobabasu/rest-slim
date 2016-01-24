@@ -14,11 +14,7 @@ namespace Lib\Sample;
  */
 class ServiceTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * テスト用オブジェクト
-     *
-     * @var Service
-     */
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**
@@ -39,12 +35,12 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * 正しい文字列を返すか
+     * 正常系 正しい文字列を返すか
      *
      * @covers Lib\Sample\Service::say
-     * @test   Implement testSay().
+     * @test   Implement testSayNormal()
      */
-    public function testSay()
+    public function testSayNormal()
     {
         $res = $this->object->say('tes');
         $this->assertEquals('service: tes' . PHP_EOL, $res);

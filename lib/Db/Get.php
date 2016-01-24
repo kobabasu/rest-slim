@@ -24,15 +24,13 @@ class Get extends Db
     public function execute($sql, $values = null)
     {
         try {
-            $stmt = $this->dbh->prepare($sql);
+            $stmt = $this->pdo->prepare($sql);
             $stmt->execute((Array)$values);
 
             $res =  $stmt->FETCHALL(\PDO::FETCH_CLASS);
 
         } catch (\PDOException $e) {
-            // @codeCoverageIgnoreStart
-            echo $this->debug($e->getMessage());
-            // @codeCoverageIgnoreEnd
+            $res =  $this->debug($e->getMessage());
         }
 
         return $res;

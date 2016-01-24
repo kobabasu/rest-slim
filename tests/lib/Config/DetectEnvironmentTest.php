@@ -14,9 +14,7 @@ namespace Lib\Config;
  */
 class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var Object object
-     */
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**
@@ -28,7 +26,6 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     {
         $_SERVER['SERVER_ADDR'] = '192.168.0.1';
 
-        //$this->object = $this->setStub();
         $this->object = new DetectEnvironment('192.168.0.1');
     }
 

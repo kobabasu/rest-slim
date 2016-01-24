@@ -7,33 +7,34 @@ use \Lib\Db\Post;
 use \Lib\Db\Put;
 use \Lib\Db\Delete;
 
-$c['db.connection'] = function ($c) {
+$c['db.pdo'] = function ($c) {
     $cfg = $c['config.db'];
 
-    $connect = new Connect(
+    $pdo = new Connect(
         $cfg['host'],
         $cfg['name'],
         $cfg['user'],
         $cfg['pass'],
         $cfg['port'],
+        $cfg['charset'],
         $c['config']['debug_mode']
     );
 
-    return $connect->getConnection();
+    return $pdo->getConnection();
 };
 
 $c['db.get'] = function ($c) {
-    return new Get($c['db.connection']);
+    return new Get($c['db.pdo']);
 };
 
 $c['db.post'] = function ($c) {
-    return new Post($c['db.connection']);
+    return new Post($c['db.pdo']);
 };
 
 $c['db.put'] = function ($c) {
-    return new Put($c['db.connection']);
+    return new Put($c['db.pdo']);
 };
 
 $c['db.delete'] = function ($c) {
-    return new Delete($c['db.connection']);
+    return new Delete($c['db.pdo']);
 };

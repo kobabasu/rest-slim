@@ -23,16 +23,14 @@ class Put extends Db
     public function execute($sql, $values = null)
     {
         try {
-            $stmt = $this->dbh->prepare($sql);
+            $stmt = $this->pdo->prepare($sql);
 
             $stmt->execute((Array)$values);
 
             $res = $stmt->rowCount();
 
-        } catch (PDOException $e) {
-            // @codeCoverageIgnoreStart
-            echo $this->debug($e->getMessage());
-            // @codeCoverageIgnoreEnd
+        } catch (\PDOException $e) {
+            $res = $this->debug($e->getMessage());
         }
 
         return $res;

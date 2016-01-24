@@ -14,6 +14,7 @@ namespace Lib\SwiftMailer;
  */
 class InitTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**
@@ -39,12 +40,12 @@ class InitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * 変更したパスを返すか[
+     * 正常系 変更したパスを返すか
      *
      * @covers Lib\SwiftMailer\Init::setPath()
-     * @test testSetPath()
+     * @test testSetPathNormal()
      */
-    public function testSetPath()
+    public function testSetPathNormal()
     {
         $this->object->setPath('dir', 'testfilename');
         $res = $this->object->getPath();
@@ -53,12 +54,12 @@ class InitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * デフォルトのpathを返すか
+     * 正常系 デフォルトのpathを返すか
      *
      * @covers Lib\SwiftMailer\Init::getPath()
-     * @test testGetPath()
+     * @test testGetPathNormal()
      */
-    public function testGetPath()
+    public function testGetPathNormal()
     {
         $res = $this->object->getPath();
         $ans = 'logs/mail/' . date('ymd') .  '.log';
@@ -66,12 +67,12 @@ class InitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * ログファイルが生成されるか
+     * 正常系 ログファイルが生成されるか
      *
      * @covers Lib\SwiftMailer\Init::saveLog()
-     * @test testSaveLog()
+     * @test testSaveLogNormal()
      */
-    public function testSaveLog()
+    public function testSaveLogNormal()
     {
         $mailer = $this->object->getMailer();
         $this->object->saveLog();

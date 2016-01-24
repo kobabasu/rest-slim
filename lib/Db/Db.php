@@ -17,34 +17,42 @@ abstract class Db
     /** @var Boolean $debug デバッグ状態 */
     protected $debug = false;
 
-    /** @var Object $dbh DBハンドラー */
-    protected $dbh;
+    /** @var Object $pdo DBハンドラー */
+    protected $pdo;
 
     /**
      * 引数を代入
      *
-     * @param Object $connection
+     * @param Object $pdo
      * @param Boolean $debug
      * @return void
      * @codeCoverageIgnore
      */
     public function __construct(
-        \PDO $connection,
-        $debug = false
+        \PDO $pdo
     ) {
-        $this->dbh = $connection;
+        $this->pdo = $pdo;
+    }
+
+    /**
+     * debugを設定
+     *
+     * @param Boolean $debug
+     * @return void
+     */
+    public function setDebug($debug)
+    {
         $this->debug = $debug;
     }
 
     /**
      * $dbhを空に
      *
-     * @return null
+     * @return void
      */
     public function close()
     {
-        $this->dbh = null;
-        return $this->dbh;
+        $this->pdo = null;
     }
 
     /**
@@ -52,13 +60,13 @@ abstract class Db
      *
      * @param String $e
      * @return void
-     * @codeCoverageIgnore
-     * @todo 閉じカッコがcoverできない
      */
     protected function debug($e)
     {
         if ($this->debug) {
             return $e;
+        } else {
+            return null;
         }
     }
 

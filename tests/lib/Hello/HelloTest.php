@@ -14,9 +14,7 @@ namespace Lib\Hello;
  */
 class HelloTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var Object object
-     */
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**
@@ -37,12 +35,12 @@ class HelloTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * sayメソッドが正しい値を返すか確認
+     * 正常系 sayメソッドが正しい値を返すか確認
      *
      * @covers Lib\Hello\Hello::say
-     * @test   testSay().
+     * @test   testSayNormal()
      */
-    public function testSay()
+    public function testSayNormal()
     {
         $res = $this->object->say();
 

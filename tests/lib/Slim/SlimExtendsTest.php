@@ -10,15 +10,13 @@ namespace Lib\Slim;
 use Lib\Legacy\JsonEncode;
 
 /**
- * Helloクラス用のテストファイル
+ * SlimExtendsクラス用のテストファイル
  *
  * @package Slim
  */
 class SlimExtendsTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var Object object
-     */
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**
@@ -39,52 +37,52 @@ class SlimExtendsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * '日本語'をjsonの'日本語'と返すか
+     * 正常系 '日本語'をjsonの'日本語'と返すか
      *
      * @covers Lib\Slim\SlimExtends::renderJSON()
-     * @test testRenderJSON()
+     * @test testRenderJsonNormal()
      */
-    public function testRenderJSON()
+    public function testRenderJsonNormal()
     {
         $data = array('a' => '日本語');
-        $res = $this->object->renderJSON($data);
+        $res = $this->object->renderJson($data);
         $this->assertEquals('{"a":"日本語"}', $res);
     }
 
     /**
-     * php5.3で'日本語'をjsonの'日本語'と返すか
+     * 正常系 php5.3で'日本語'をjsonの'日本語'と返すか
      *
      * @covers Lib\Slim\SlimExtends::renderJSON()
-     * @test testRenderJSON53()
+     * @test testRenderJson53Normal()
      */
-    public function testRenderJSON53()
+    public function testRenderJson53Normal()
     {
         $data = array('a' => '日本語');
-        $res = $this->object->renderJSON($data, false, 3);
+        $res = $this->object->renderJson($data, false, 3);
         $this->assertEquals('{"a":"日本語"}', $res);
     }
 
     /**
-     * debugがtrueでprettyPrintで返すか
+     * 正常系 debugがtrueでprettyPrintで返すか
      *
      * @covers Lib\Slim\SlimExtends::renderJSON()
-     * @test testRenderJSONDebug()
+     * @test testRenderJsonDebugNormal()
      */
-    public function testRenderJSONDebug()
+    public function testRenderJsonDebugNormal()
     {
         $data = array('a' => '日');
-        $res = $this->object->renderJSON($data, true);
+        $res = $this->object->renderJson($data, true);
         $ans = '{'.PHP_EOL.'  "a":"日"'.PHP_EOL.'}';
         $this->assertEquals($ans, $res);
     }
 
     /**
-     * php5.3でprettyPrintで返すか
+     * 正常系 php5.3でprettyPrintで返すか
      *
      * @covers Lib\Slim\SlimExtends::convertPrettyPrint()
-     * @test testConvertPrettyPrint()
+     * @test testConvertPrettyPrintNormal()
      */
-    public function testConvertPrettyPrint()
+    public function testConvertPrettyPrintNormal()
     {
         $data = json_encode(array('a' => '日'));
         $res = $this->object->convertPrettyPrint($data, 3);
@@ -96,12 +94,12 @@ class SlimExtendsTest extends \PHPUnit_Framework_TestCase
      * '日本語'をsjisの'日本語'と返すか
      *
      * @covers Lib\Slim\SlimExtends::renderCSV()
-     * @test testRenderCSV()
+     * @test testRenderCsvNormal()
      */
-    public function testRenderCSV()
+    public function testRenderCsvNormal()
     {
         $data = array('a' => '日本語');
-        $res = $this->object->renderCSV($data);
+        $res = $this->object->renderCsv($data);
         $ans = "日本語" . PHP_EOL;
         $ans = mb_convert_encoding($ans, "SJIS", "UTF-8");
         $this->assertEquals($ans, $res);

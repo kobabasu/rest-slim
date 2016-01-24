@@ -17,20 +17,23 @@ class Connect
     /** @var String $host ホスト名 */
     private $host;
 
-    /** @var String $name データベース名 */
+    /** @var String $name DB名 */
     private $name;
 
-    /** @var String $user ユーザ名 */
+    /** @var String $name ユーザ */
     private $user;
 
-    /** @var String $pass パスワード */
+    /** @var String $name パスワード */
     private $pass;
 
-    /** @var Integer $port ポート番号 */
-    private $port;
+    /** @var String $name ポート番号 デフォルト3306 */
+    private $port = '3306';
 
-    /** @var Boolean $debug デバックの状態 */
-    private $debug;
+    /** @var String $charset 文字コード デフォルトutf8 */
+    private $charset = 'utf8';
+
+    /** @var Boolean $debug デバッグ デフォルトfalse */
+    private $debug = false;
 
     /**
      * 引数をプロパティに代入
@@ -39,41 +42,63 @@ class Connect
      * @param String $name
      * @param String $user
      * @param String $pass
-     * @param String $port デフォルトは3306
-     * @param Boolean $debug デフォルトはfalse
-     * @return object
-     * @codeCoverageIgnore
+     * @return void
      */
     public function __construct(
         $host,
         $name,
         $user,
-        $pass,
-        $port = '3306',
-        $debug = false
+        $pass
     ) {
-        $this->host  = $host;
-        $this->name  = $name;
-        $this->user  = $user;
-        $this->pass  = $pass;
-        $this->port  = $port;
+        $this->host = $host;
+        $this->name = $name;
+        $this->user = $user;
+        $this->pass = $pass;
+    }
+
+    /**
+     * ポート番号を変更
+     *
+     * @param String $port
+     * @return void
+     */
+    public function setPort($port)
+    {
+        $this->port = $port;
+    }
+
+    /**
+     * 文字コードを変更
+     *
+     * @param String $charset
+     * @return void
+     */
+    public function setCharset($charset)
+    {
+        $this->charset = $charset;
+    }
+
+    /**
+     * debugの実行
+     *
+     * @param String $debug
+     * @return void
+     */
+    public function setDebug($debug)
+    {
         $this->debug = $debug;
     }
 
     /**
      * PDOを返す
      *
-     * @return Object
+     * @return object
      */
     public function getConnection()
     {
-        $pdo = null;
         try {
             $pdo = new \PDO(
-                "mysql:host={$this->host};
-                dbname={$this->name};
-                charset=utf8;
-                ",
+                $this->getDsn(),
                 $this->user,
                 $this->pass,
                 array(
@@ -83,13 +108,29 @@ class Connect
             );
 
         } catch (\PDOException $e) {
-            // @codeCoverageIgnoreStart
             if ($this->debug) {
-                var_dump($e->getMessage());
+                $pdo = $e->getMessage();
+            } else {
+                $pdo = null;
             }
-            // @codeCoverageIgnoreEnd
         }
 
         return $pdo;
+    }
+
+    /**
+     * dsnを返す
+     *
+     * @return String
+     */
+    private function getDsn()
+    {
+        $dsn   = "mysql:";
+        $dsn  .= "host={$this->host};";
+        $dsn  .= "port={$this->port};";
+        $dsn  .= "dbname={$this->name};";
+        $dsn  .= "charset={$this->charset};";
+
+        return $dsn;
     }
 }

@@ -12,48 +12,59 @@ namespace Lib\Db;
  *
  * @package Db
  */
-class GetTest extends \PHPUnit_Framework_TestCase
+class GetTest extends DbTest
 {
-    protected $object;
-
     /**
-     * setUp method
+     * GETのインスタンスを作成
      *
-     * @return void
+     * @return Object
      */
-    protected function setUp()
+    public function getObject()
     {
-        $pdo = new \Lib\Db\Connect(
-            '127.0.0.1',
-            'api',
-            'api',
-            'api012',
-            '3306',
-            true
-        );
-        $dbh = $pdo->getConnection();
-        $stub = new \Lib\Db\Get($dbh, true);
-
-        $this->object = $stub;
+        return new \Lib\Db\Get($this->pdo);
     }
 
     /**
-     * @ignore
-     */
-    protected function tearDown()
-    {
-    }
-
-    /**
-     * executeが正しく返すか
+     * 正常系 executeが正しく返すか
      *
      * @covers Lib\Db\Get::execute()
-     * @test testExecuteFail()
+     * @test testExecuteNormal()
      */
-    public function testExecuteFail()
+    public function testExecuteNormal()
+    {
+        $sql = 'SELECT count(*) as `res` FROM `users`';
+        $res = $this->object->execute($sql);
+        $this->assertEquals(2, $res[0]->res);
+    }
+
+    /**
+     * 異常系エラー 間違ったsql文を挿入するとエラーを返すか
+     *
+     * @covers Lib\Db\Get::execute()
+     * @test testExecuteError()
+     */
+    public function testExecuteError()
     {
         try {
-            $sql = 'SELECT count(*) as `res` FROM `user`';
+            $this->object->setDebug(true);
+            $sql = 'SELECT count(*) as `res` FROM `members`';
+            $res = $this->object->execute($sql);
+            $this->fail('fail');
+        } catch (\Exception $e) {
+            $this->assertEquals('fail', $e->getMessage());
+        }
+    }
+
+    /**
+     * 異常系例外 executeが正しく返すか
+     *
+     * @covers Lib\Db\Get::execute()
+     * @test testExecuteException()
+     */
+    public function testExecuteException()
+    {
+        try {
+            $sql = 'SELECT count(*) as `res` FROM `users`';
             $res = $this->object->execute($sql);
             $this->fail('fail');
         } catch (\Exception $e) {

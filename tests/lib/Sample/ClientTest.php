@@ -14,11 +14,7 @@ namespace Lib\Sample;
  */
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * テスト用オブジェクト
-     *
-     * @var Client
-     */
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**
@@ -48,23 +44,23 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * 正しい文字列を返すか
+     * 正常系 正しい文字列を返すか
      *
      * @covers Lib\Sample\Client::__construct
-     * @test   Implement testConstruct().
+     * @test   Implement testConstructNormal().
      */
-    public function testConstruct()
+    public function testConstructNormal()
     {
         $this->assertNotNull($this->object);
     }
 
     /**
-     * 正しい文字列を返すか
+     * 正常系 正しい文字列を返すか
      *
      * @covers Lib\Sample\Client::say
-     * @test   testSay().
+     * @test   testSayNormal()
      */
-    public function testSay()
+    public function testSayNormal()
     {
         $res = $this->object->say('tes');
         $this->assertEquals('nayn', $res);

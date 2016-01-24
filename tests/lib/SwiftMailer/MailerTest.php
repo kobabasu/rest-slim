@@ -14,6 +14,7 @@ namespace Lib\SwiftMailer;
  */
 class MailerTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**
@@ -41,12 +42,12 @@ class MailerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * テンプレートを返すか
+     * 正常系 テンプレートを返すか
      *
      * @covers Lib\SwiftMailer\Mailer::setTemplate()
-     * @test testSetTemplate()
+     * @test testSetTemplateNormal()
      */
-    public function testSetTemplate()
+    public function testSetTemplateNormal()
     {
         $res = $this->object->setTemplate(
             'defaultTest.twig',
@@ -57,12 +58,12 @@ class MailerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * メッセージを返すか
+     * 正常系 メッセージを返すか
      *
      * @covers Lib\SwiftMailer\Mailer::setMessage()
-     * @test testSetMessage()
+     * @test testSetMessageNormal()
      */
-    public function testSetMessage()
+    public function testSetMessageNormal()
     {
         $body = $this->object->setTemplate(
             'defaultTest.twig',
@@ -79,12 +80,12 @@ class MailerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * メッセージを返すか
+     * 正常系 メッセージを返すか
      *
      * @covers Lib\SwiftMailer\Mailer::send()
-     * @test testSetSend()
+     * @test testSetSendNormal()
      */
-    public function testSend()
+    public function testSendNormal()
     {
         $body = $this->object->setTemplate(
             'defaultTest.twig',
