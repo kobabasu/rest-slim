@@ -14,6 +14,7 @@ namespace Lib\SwiftMailer;
  */
 class MailerTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**
