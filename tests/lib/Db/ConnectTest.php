@@ -40,16 +40,6 @@ class ConnectTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * コンストラクタ
-     *
-     * @covers Lib\Db\Connect::__construct()
-     * @test testConstruct()
-     */
-    public function testConstruct()
-    {
-    }
-
-    /**
      * 正常系 $this->portに正常にsetされるか
      *
      * @covers Lib\Db\Connect::setPort()
