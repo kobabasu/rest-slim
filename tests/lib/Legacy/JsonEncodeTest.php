@@ -35,12 +35,12 @@ class JsonEncodeTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * '日本語'を'日本語'と返すか
+     * 正常系 '日本語'を'日本語'と返すか
      *
      * @covers Lib\Legacy\JsonEncode::prettyPrint()
-     * @test testPrettyPrint()
+     * @test testPrettyPrintNormal()
      */
-    public function testPrettyPrint()
+    public function testPrettyPrintNormal()
     {
         $json = '{"a":"日本語"}';
         $res = JsonEncode::prettyPrint($json);
@@ -49,12 +49,12 @@ class JsonEncodeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * '日本語'を'日本語'と返すか
+     * 正常系 '日本語'を'日本語'と返すか
      *
      * @covers Lib\Legacy\JsonEncode::jsonXencode()
-     * @test testjsonXencode()
+     * @test testjsonXencodeNormal()
      */
-    public function testJsonXencode()
+    public function testJsonXencodeNormal()
     {
         $data = array('a' => '日本語');
         $res = JsonEncode::jsonXencode($data);
@@ -62,12 +62,12 @@ class JsonEncodeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * '\u8a9e'を'語'で返すか
+     * 正常系 '\u8a9e'を'語'で返すか
      *
      * @covers Lib\Legacy\JsonEncode::unicodeEncode()
-     * @test testUnicodeEncode()
+     * @test testUnicodeEncodeNormal()
      */
-    public function testUnicodeEncode()
+    public function testUnicodeEncodeNormal()
     {
         $str = '\u8a9e';
         $res = JsonEncode::unicodeEncode($str);
