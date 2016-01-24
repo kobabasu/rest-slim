@@ -14,11 +14,7 @@ namespace Lib\Sample;
  */
 class ServiceTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * テスト用オブジェクト
-     *
-     * @var Service
-     */
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**

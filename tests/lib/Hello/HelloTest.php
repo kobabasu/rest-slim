@@ -14,9 +14,7 @@ namespace Lib\Hello;
  */
 class HelloTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var Object object
-     */
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**

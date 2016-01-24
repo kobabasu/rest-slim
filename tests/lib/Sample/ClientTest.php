@@ -14,11 +14,7 @@ namespace Lib\Sample;
  */
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * テスト用オブジェクト
-     *
-     * @var Client
-     */
+    /** @var Object $object 対象クラス */
     protected $object;
 
     /**
