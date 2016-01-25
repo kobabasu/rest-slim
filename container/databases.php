@@ -20,21 +20,30 @@ $c['db.pdo'] = function ($c) {
         $c['config']['debug_mode']
     );
 
+    $pdo->setDebug($c['config.debug_mode']);
     return $pdo->getConnection();
 };
 
 $c['db.get'] = function ($c) {
-    return new Get($c['db.pdo']);
+    $obj = new Get($c['db.pdo']);
+    $obj->setDebug($c['config.debug_mode']);
+    return $obj;
 };
 
 $c['db.post'] = function ($c) {
-    return new Post($c['db.pdo']);
+    $obj = new Post($c['db.pdo']);
+    $obj->setDebug($c['config.debug_mode']);
+    return $obj;
 };
 
 $c['db.put'] = function ($c) {
-    return new Put($c['db.pdo']);
+    $obj = new Put($c['db.pdo']);
+    $obj->setDebug($c['config.debug_mode']);
+    return $obj;
 };
 
 $c['db.delete'] = function ($c) {
-    return new Delete($c['db.pdo']);
+    $obj = new Delete($c['db.pdo']);
+    $obj->setDebug($c['config.debug_mode']);
+    return $obj;
 };
