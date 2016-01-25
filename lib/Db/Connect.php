@@ -103,6 +103,7 @@ class Connect
                 $this->user,
                 $this->pass,
                 array(
+                    \PDO::ATTR_EMULATE_PREPAPRES => false,
                     \PDO::ATTR_ERRMODE,
                     \PDO::ERRMODE_EXCEPTION
                 )
