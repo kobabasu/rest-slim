@@ -43,6 +43,7 @@ class Connect
      * @param String $user
      * @param String $pass
      * @return void
+     * @codeCoverageIgnore
      */
     public function __construct(
         $host,
