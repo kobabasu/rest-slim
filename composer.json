@@ -4,7 +4,7 @@
   },
 
   "require": {
-    "slim/slim": "2.x",
+    "slim/slim": "3.x",
     "swiftmailer/swiftmailer": "@stable",
     "pimple/pimple": "*",
     "twig/twig": "@stable"
