@@ -16,10 +16,15 @@ $app->group('/users', function () {
         ) {
             $body = array('名前' => $args['name']);
 
+            $db = $this->get('db.get');
+            $sql = 'select * from `users`;';
+
+            $body = $db->execute($sql);
+
             return $response->withJson(
                 $body,
                 200,
-                $this->get('withJsonEncOption')
+                $this->get('settings')['withJsonEnc']
             );
         }
     );
