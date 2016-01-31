@@ -5,7 +5,7 @@ return array(
     'jsonEnc' => $withJsonEncOption,
 
     'settings' => array(
-        'displayErrorDetails' => true,
+        'displayErrorDetails' => DEBUG
     ),
 
     'logger' => array(
