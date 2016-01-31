@@ -18,6 +18,7 @@ use \Lib\SwiftMailer\Mailer;
 
 $container = $app->getContainer();
 
+
 /**
  * monolog
  */
@@ -32,6 +33,7 @@ $container['logger'] = function ($c) {
 
     return $logger;
 };
+
 
 /**
  * Database
@@ -53,6 +55,7 @@ $container['db.pdo'] = function ($c) {
     return $pdo->getConnection();
 };
 
+// GET
 $container['db.get'] = function ($c) {
     $pdo = $c->get('db.pdo');
     $obj = new Get($pdo);
@@ -60,6 +63,34 @@ $container['db.get'] = function ($c) {
 
     return $obj;
 };
+
+// POST
+$container['db.post'] = function ($c) {
+    $pdo = $c->get('db.pdo');
+    $obj = new Post($pdo);
+    $obj->setDebug($c->get('settings')['debug_mode']);
+
+    return $obj;
+};
+
+// PUT
+$container['db.put'] = function ($c) {
+    $pdo = $c->get('db.pdo');
+    $obj = new Post($pdo);
+    $obj->setDebug($c->get('settings')['debug_mode']);
+
+    return $obj;
+};
+
+// DELETE
+$container['db.delete'] = function ($c) {
+    $pdo = $c->get('db.pdo');
+    $obj = new Post($pdo);
+    $obj->setDebug($c->get('settings')['debug_mode']);
+
+    return $obj;
+};
+
 
 /**
  * Swift Mailer
