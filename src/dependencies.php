@@ -76,7 +76,7 @@ $container['db.post'] = function ($c) {
 // PUT
 $container['db.put'] = function ($c) {
     $pdo = $c->get('db.pdo');
-    $obj = new Post($pdo);
+    $obj = new Put($pdo);
     $obj->setDebug($c->get('settings')['debug_mode']);
 
     return $obj;
@@ -85,7 +85,7 @@ $container['db.put'] = function ($c) {
 // DELETE
 $container['db.delete'] = function ($c) {
     $pdo = $c->get('db.pdo');
-    $obj = new Post($pdo);
+    $obj = new Delete($pdo);
     $obj->setDebug($c->get('settings')['debug_mode']);
 
     return $obj;
