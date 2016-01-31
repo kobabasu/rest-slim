@@ -1,19 +1,21 @@
 <?php
-use Lib\Config\DetectEnvironment;
+use \Slim\App;
 
 /**
- * Composer
+ * Slim
  */
-require_once(__DIR__ . '/vendor/autoload.php');
+$settings = require __DIR__ . '/src/settings.php';
+$app = new App($settings);
 
-/**
- * server environment and DEBUG
- */
-$production_server_ips = array(
-    // '10.0.2.15', // local
-    '150.60.6.11'
-);
+require __DIR__ . '/src/dependencies.php';
 
-$env = new DetectEnvironment($production_server_ips);
-require(__DIR__ . '/config/' . $env->getName() . '.php');
-ini_set('display_errors', $env->evalDevelopment());
+require __DIR__ . '/src/middleware.php';
+
+require __DIR__ . '/src/app.php';
+
+$routeFiles = (array) glob('./routes/*.php');
+foreach ($routeFiles as $routeFile) {
+    require $routeFile;
+}
+
+$app->run();
