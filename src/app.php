@@ -1,5 +1,7 @@
 <?php
-// slim-app overwrite
+/**
+ * application headers
+ */
 $app->add(function ($request, $response, $next) {
 
     $newResponse = $response
