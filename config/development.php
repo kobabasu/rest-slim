@@ -2,8 +2,6 @@
 const ENVIRONMENT_MODE = 'development';
 const DEBUG_MODE       = true;
 
-$_ENV['SLIM_MODE']  = ENVIRONMENT_MODE;
-
 const DB_HOST       = '0.0.0.0';
 const DB_NAME       = 'api';
 const DB_USER       = 'api';
