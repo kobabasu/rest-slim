@@ -1,20 +1,24 @@
 <?php
-// DIC configuration
+use Monolog\Logger;
+use Monolog\Processor\UidProcessor;
+use Monolog\Handler\StreamHandler;
+
+/**
+ * DIC configuration
+ */
 
 $container = $app->getContainer();
 
-// monolog
+/**
+ * monolog
+ */
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
-    $logger = new Monolog\Logger($settings['name']);
-    $logger->pushProcessor(
-        new Monolog\Processor\UidProcessor()
-    );
+
+    $logger = new Logger($settings['name']);
+    $logger->pushProcessor(new UidProcessor());
     $logger->pushHandler(
-        new Monolog\Handler\StreamHandler(
-            $settings['path'],
-            Monolog\Logger::DEBUG
-        )
+        new StreamHandler($settings['path'], Logger::DEBUG)
     );
 
     return $logger;
