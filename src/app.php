@@ -1,6 +1,10 @@
 <?php
 /**
- * application headers
+ * customize application
+ */
+
+/**
+ * headers
  */
 $app->add(function ($request, $response, $next) {
 
