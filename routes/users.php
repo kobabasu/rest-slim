@@ -21,7 +21,7 @@ $app->group('/users', function () {
             return $response->withJson(
                 $body,
                 200,
-                $this->get('jsonEnc')
+                $this->get('withJsonEncOption')
             );
         }
     );

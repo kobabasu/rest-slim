@@ -2,7 +2,7 @@
 $withJsonEncOption = (DEBUG) ? JSON_UNESCAPED_UNICODE : 0 ;
 
 return array(
-    'jsonEnc' => $withJsonEncOption,
+    'withJsonEncOption' => $withJsonEncOption,
 
     'settings' => array(
         'displayErrorDetails' => DEBUG
