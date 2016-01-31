@@ -7,7 +7,7 @@ use Lib\Config\DetectEnvironment;
 require_once(__DIR__ . '/vendor/autoload.php');
 
 /**
- * server environment and DEBUG
+ * server environment
  */
 $production_server_ips = array(
     // '10.0.2.15', // local
@@ -16,6 +16,15 @@ $production_server_ips = array(
 
 $env = new DetectEnvironment($production_server_ips);
 require(__DIR__ . '/config/' . $env->getName() . '.php');
-ini_set('display_errors', $env->evalDevelopment());
 
+/**
+ * detect debug mode
+ */
+const DEBUG = DEBUG_DEFAULT;
+// const DEBUG = true;
+ini_set('display_errors', DEBUG);
+
+/**
+ * bootstrap
+ */
 require_once './bootstrap.php';

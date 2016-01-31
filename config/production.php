@@ -1,6 +1,6 @@
 <?php
 const ENVIRONMENT_MODE = 'production';
-const DEBUG_MODE       = false;
+const DEBUG_DEFAULT    = false;
 
 const DB_HOST       = '0.0.0.0';
 const DB_NAME       = 'api';
