@@ -147,7 +147,7 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * debugがtrueであればExceptionを返すか
+     * debugがfalseであればExceptionを返すか
      *
      * @covers Lib\Db\Db::debug()
      * @test testDebugFalse()
