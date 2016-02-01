@@ -38,6 +38,24 @@ class GetTest extends DbTest
     }
 
     /**
+     * 正常系 空のvaluesを挿入したら無視するか
+     *
+     * @covers Lib\Db\Get::execute()
+     * @test testExecuteNormalValues()
+     */
+    public function testExecuteNormalValues()
+    {
+        try {
+            $sql = 'SELECT count(*) as `res` FROM `members`';
+            $sql .= ' WHERE `id` = ?';
+            $res = $this->object->execute($sql, false);
+            $this->assertEquals(0, count($res));
+        } catch (\Exception $e) {
+            $this->assertEquals('fail', $e->getMessage());
+        }
+    }
+
+    /**
      * 異常系エラー 間違ったsql文を挿入するとエラーを返すか
      *
      * @covers Lib\Db\Get::execute()
