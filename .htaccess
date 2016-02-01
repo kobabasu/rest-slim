@@ -1,8 +1,6 @@
 <Limit GET POST PUT DELETE>
   Order deny,allow
-  Allow from All
-  #Deny from all
-  #Allow from localhost
+  Allow from localhost
 </Limit>
 
 <ifModule mod_rewrite.c>
