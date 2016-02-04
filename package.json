@@ -1,7 +1,7 @@
 {
   "name": "REST",
   "version": "0.0.1",
-  "description": "REST minimum app",
+  "description": "RESTful Application with slim3",
   "main": "index.php",
   "repository": {
     "type": "git",
