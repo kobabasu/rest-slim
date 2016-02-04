@@ -1,5 +1,13 @@
 <?php
 /**
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
+ */
+
+namespace Routes;
+
+/**
  * root
  */
 $app->get(
