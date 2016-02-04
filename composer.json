@@ -1,6 +1,12 @@
 {
+  "name": "kobabasu/rest-api",
+  "description": "RESTful Application with slim3",
+
   "autoload": {
-    "psr-4": {"Lib\\": "lib/"}
+    "psr-4": {
+      "Lib\\": ["lib/", "tests/lib/"],
+      "Routes\\": ["routes/", "tests/routes/"]
+    }
   },
 
   "require": {
