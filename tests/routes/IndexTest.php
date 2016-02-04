@@ -34,7 +34,7 @@ class IndexTest extends AppMock
     }
 
     /**
-     * 正常系 Helloと返すか
+     * 正常系 '/'のgetがHelloと返すか
      *
      * @test testIndexzGetNormal()
      */
@@ -50,7 +50,28 @@ class IndexTest extends AppMock
 
         $this->assertEquals(
             'hello',
-            (string)$this->response->getBody()
+            $resOut->getBody()
+        );
+    }
+
+    /**
+     * 正常系 '/'のgetのContent-Typeがtext/htmlか
+     *
+     * @test testIndexzGetContentTypeNormal()
+     */
+    public function testIndexGetContentTypeNormal()
+    {
+        $this->dispatch('/');
+
+        $app = $this->app;
+
+        require 'routes/index.php';
+
+        $resOut = $app($this->request, $this->response);
+
+        $this->assertEquals(
+            'text/html',
+            $resOut->getHeader('Content-Type')[0]
         );
     }
 }
