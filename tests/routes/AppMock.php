@@ -21,7 +21,6 @@ use \Lib\Db\Post;
 use \Lib\Db\Put;
 use \Lib\Db\Delete;
 
-
 /**
  * Slimの拡張
  *
