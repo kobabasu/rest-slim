@@ -15,7 +15,10 @@ namespace Routes;
 class IndexTest extends AppMock
 {
     /** @var Object $object 対象クラス */
-    protected $object;
+    protected $path = '/';
+
+    /** @var Object $object 対象クラス */
+    protected $filename = 'routes/index.php';
 
     /**
      * setUp method
@@ -40,17 +43,13 @@ class IndexTest extends AppMock
      */
     public function testIndexGetNormal()
     {
-        $this->dispatch('/');
-
-        $app = $this->app;
-
-        require 'routes/index.php';
-
-        $resOut = $app($this->request, $this->response);
+        $app = $this->create($this->path);
+        require $this->filename;
+        $resOut = $this->invoke($app);
 
         $this->assertEquals(
             'hello',
-            $resOut->getBody()
+            (string)$resOut->getBody()
         );
     }
 
@@ -61,13 +60,9 @@ class IndexTest extends AppMock
      */
     public function testIndexGetContentTypeNormal()
     {
-        $this->dispatch('/');
-
-        $app = $this->app;
-
-        require 'routes/index.php';
-
-        $resOut = $app($this->request, $this->response);
+        $app = $this->create($this->path);
+        require $this->filename;
+        $resOut = $this->invoke($app);
 
         $this->assertEquals(
             'text/html',

@@ -16,30 +16,118 @@ use \Slim\Http\RequestBody;
 use \Slim\Http\Response;
 use \Slim\Http\Uri;
 
+use \Lib\Db\Get;
+use \Lib\Db\Post;
+use \Lib\Db\Put;
+use \Lib\Db\Delete;
+
+
 /**
  * Slimの拡張
  *
  * @package Routes
  */
-class AppMock extends \PHPUnit_Framework_TestCase
+class AppMock extends \PHPUnit_Extensions_Database_TestCase
 {
+    /** @var Object $pdo PDOオブジェクト */
+    protected $pdo;
 
+    /** @var Object $db getConnectionの返り値  */
+    protected $db;
+
+    /** @var Object $object 対象クラス */
+    protected $object;
+
+    /** @var Object $app Slimアプリケーション */
     protected $app;
-    protected $response;
+
+    /** @var Object $request requestオブジェクト */
     protected $request;
 
+    /** @var Object $response responseオブジェクト */
+    protected $response;
+
     /**
-     * dispatch
+     * getConnection method
      *
-     * @codeCoverageIgnore
+     * @return Object
      */
-    protected function dispatch(
+    public function getConnection()
+    {
+        $dsn  = "mysql:host={$GLOBALS['DB_HOST']};";
+        $dsn .= "dbname={$GLOBALS['DB_NAME']};";
+        $this->pdo = new \PDO(
+            $dsn,
+            $GLOBALS['DB_USER'],
+            $GLOBALS['DB_PASS']
+        );
+
+        return $this->createDefaultDBConnection(
+            $this->pdo,
+            $dsn
+        );
+    }
+
+    /**
+     * getDataSet method
+     *
+     * @return Object
+     */
+    public function getDataSet()
+    {
+        return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
+            dirname(__FILE__) . '/../fixtures/users.yml'
+        );
+    }
+
+    /**
+     * setUp method
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->db = $this->getConnection();
+
+        $this->object = $this->getObject();
+    }
+
+    /**
+     * @ignore
+     */
+    protected function tearDown()
+    {
+    }
+
+    /**
+     * DBUnit拡張でDBのモックを作成
+     *
+     * @return Object
+     */
+    public function getObject()
+    {
+        $mock = $this->getMockForAbstractClass(
+            '\Lib\Db\Db',
+            array($this->pdo)
+        );
+
+        return $mock;
+    }
+
+    /**
+     * Slim悪リケーションのMockを作成
+     *
+     * @param String $path アクセスするURI
+     * @param String $method 使用するhttpメソッド
+     * @return Object
+     */
+    protected function create(
         $path,
-        $method = 'GET',
-        $data = array()
+        $method = 'GET'
     ) {
-        $app = new App();
-        $this->app = $app;
+        $this->app = new App();
 
         $env = Environment::mock([
             'REQUEST_URI' => $path,
@@ -61,11 +149,58 @@ class AppMock extends \PHPUnit_Framework_TestCase
             $body
         );
 
+        $this->setContainer($this->app->getContainer());
+
         $this->response = new Response();
 
-        // $this->assertInstanceOf(
-        //     '\Psr\Http\Message\ResponseInterface',
-        //     $resOut
-        // );
+        return $this->app;
+    }
+
+    /**
+     * Slim appのインスタンスを作成し実行
+     *
+     * @param Object $app Slimのapp
+     * @return void
+     */
+    protected function invoke($app)
+    {
+        return $app($this->request, $this->response);
+    }
+
+    /**
+     * コンテナを追加
+     *
+     * @param Object $container コンテナオブジェクト
+     * @return void
+     */
+    private function setContainer($container)
+    {
+        $container['db.get'] = function ($c) {
+            $obj = new Get($this->pdo);
+            $obj->setDebug(true);
+
+            return $obj;
+        };
+
+        $container['db.post'] = function ($c) {
+            $obj = new Post($this->pdo);
+            $obj->setDebug(true);
+
+            return $obj;
+        };
+
+        $container['db.put'] = function ($c) {
+            $obj = new Put($this->pdo);
+            $obj->setDebug(true);
+
+            return $obj;
+        };
+
+        $container['db.delete'] = function ($c) {
+            $obj = new Delete($this->pdo);
+            $obj->setDebug(true);
+
+            return $obj;
+        };
     }
 }
