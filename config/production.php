@@ -1,8 +1,6 @@
 <?php
 const ENVIRONMENT_MODE = 'production';
-const DEBUG_MODE       = false;
-
-$_ENV['SLIM_MODE']  = ENVIRONMENT_MODE;
+const DEBUG_DEFAULT    = false;
 
 const DB_HOST       = '0.0.0.0';
 const DB_NAME       = 'api';

@@ -1,127 +1,133 @@
 <?php
-namespace Routes;
+/**
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
+ */
 
-$model = 'users';
+namespace Routes;
 
 /**
  * users
  */
-$app->group('/'.$model, function () use ($app, $c) {
+$app->group('/users', function () {
 
     /**
      * GET
      */
-    $app->GET(
-        '/(:id)',
-        function ($id = null) use ($app, $c) {
+    $this->get(
+        '/{name:.*}',
+        function (
+            $request,
+            $response,
+            $args
+        ) {
+            $db = $this->get('db.get');
+            $sql = 'select * from `users`';
 
-            $db = $c['db.get'];
-
-            if ($id) {
-                $sql  = 'SELECT * FROM `users` ';
-                $sql .= 'WHERE `id` = ?;';
-                $res = $db->execute($sql, $id);
+            if ($args['name']) {
+                $sql .= ' WHERE `name` = ?;';
+                $body = $db->execute($sql, $args['name']);
             } else {
-                $sql  = 'SELECT * FROM `users`;';
-                $res  = $db->execute($sql);
+                $body = $db->execute($sql);
             }
 
-            $app->RenderJSON($res);
-            $db->close();
+            return $response->withJson(
+                $body,
+                200,
+                $this->get('settings')['withJsonEnc']
+            );
         }
     );
 
     /**
      * POST
      */
-    $app->POST(
+    $this->post(
         '/',
-        function () use ($app, $c) {
+        function (
+            $request,
+            $response,
+            $args
+        ) {
+            $body = $request->getParsedBody();
 
-            $db = $c['db.post'];
+            $db = $this->get('db.post');
 
-            $data = json_decode(
-                $app->request->getBody(),
-                true
+            $sql  = 'INSERT INTO `users` ';
+
+            $fields = array_keys($body);
+            $values = array_values($body);
+            $holder = array_fill(0, count($values), '?');
+
+            $sql .= '(' . implode(', ', $fields) . ')';
+            $sql .= ' VALUES ';
+            $sql .= '(' . implode(', ', $holder) . ')';
+
+            $db->execute($sql, $values);
+
+            return $response->withJson(
+                $body,
+                200,
+                $this->get('settings')['withJsonEnc']
             );
-            $values = array($data['name'], $data['email']);
-
-            $sql = 'INSERT INTO `users` (
-                `name`, `email`
-            ) VALUES ( ?, ? );';
-
-            $res = $db->execute($sql, $values);
-
-            $mailer = $c['service.mail.mailer'];
-
-            $body = $mailer->setTemplate(
-                'default.twig',
-                array('name' => $data['name'])
-            );
-
-            $mailer->setMessage(
-                'タイトル',
-                array('admin@example.com' => '担当'),
-                $body
-            );
-
-            $mailer->send($data['email']);
-            $c['service.mail.transport']->saveLog();
-
-            $app->RenderJSON($db->getLastInsertId());
-            $db->close();
         }
     );
 
     /**
      * PUT
      */
-    $app->PUT(
-        '/:id',
-        function ($id) use ($app, $c) {
+    $this->put(
+        '/{id:[0-9]+}',
+        function (
+            $request,
+            $response,
+            $args
+        ) {
+            $body = $request->getParsedBody();
 
-            $db = $c['db.put'];
+            $db = $this->get('db.put');
 
-            $data = json_decode(
-                $app->request->getBody(),
-                true
-            );
+            $fields = array_keys($body);
+            $values = array_values($body);
 
-            $fields = null;
-            $values = array();
-            foreach ($data as $key => $val) {
-                $fields .= $key . '=?,';
-                $values[] = $val;
-            }
-
-            $sql  = 'UPDATE `users` SET ';
-            $sql .= substr($fields, 0, -1);
-            $sql .= ' WHERE `id` = ' . $id . ';';
+            $sql = 'UPDATE `users` SET ';
+            $sql .= implode(' = ?, ', $fields) . ' = ?';
+            $sql .= ' WHERE `id` = ' . (int)$args['id'];
 
             $res = $db->execute($sql, $values);
 
-            $app->RenderJSON($res);
-            $db->close();
+            return $response->withJson(
+                $res,
+                200,
+                $this->get('settings')['withJsonEnc']
+            );
         }
     );
 
     /**
      * DELETE
      */
-    $app->DELETE(
-        '/:id',
-        function ($id) use ($app, $c) {
+    $this->delete(
+        '/{id:[0-9]+}',
+        function (
+            $request,
+            $response,
+            $args
+        ) {
+            $db = $this->get('db.delete');
 
-            $db = $c['db.delete'];
-
-            $sql  = 'DELETE FROM `users` ';
-            $sql .= 'WHERE `id` = ' . $id;
+            $sql = 'DELETE FROM `users` ';
+            $sql .= 'WHERE `id` = ' . (int)$args['id'];
 
             $res = $db->execute($sql);
 
-            $app->RenderJSON($res);
-
-            $db->close();
+            return $response->withJson(
+                $res,
+                200,
+                $this->get('settings')['withJsonEnc']
+            );
         }
     );
+
 });

@@ -16,6 +16,7 @@
 
   <files>
     <directory>./lib</directory>
+    <directory>./routes</directory>
     <directory>./tests</directory>
   </files>
 </phpdoc>

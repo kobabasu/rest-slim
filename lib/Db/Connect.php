@@ -43,6 +43,7 @@ class Connect
      * @param String $user
      * @param String $pass
      * @return void
+     * @codeCoverageIgnore
      */
     public function __construct(
         $host,
@@ -102,8 +103,8 @@ class Connect
                 $this->user,
                 $this->pass,
                 array(
-                    \PDO::ATTR_ERRMODE,
-                    \PDO::ERRMODE_EXCEPTION
+                    \PDO::ATTR_EMULATE_PREPARES => false,
+                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
                 )
             );
 

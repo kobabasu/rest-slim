@@ -1,12 +1,27 @@
 <?php
+/**
+ * Web App REST API
+ *
+ * @link https://github.com/kobabasu/rest-php.git
+ */
+
 namespace Routes;
 
 /**
  * root
  */
 $app->get(
-    '/(:id)',
-    function ($id = null) use ($app, $c) {
-        echo 'default id:' . $id;
+    '/',
+    function (
+        $request,
+        $response,
+        $args
+    ) {
+        $response->write('hello');
+
+        return $response->withHeader(
+            'Content-Type',
+            'text/html'
+        );
     }
 );

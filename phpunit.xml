@@ -16,15 +16,17 @@
   <testsuites>
     <testsuite>
       <directory>./tests/lib/</directory>
+      <directory>./tests/routes/</directory>
     </testsuite>
   </testsuites>
 
   <filter>
     <whitelist addUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">./lib</directory>
+      <directory suffix=".php">./routes</directory>
       <exclude>
-        <directory suffix="Interface.php">./lib</directory>
-        <directory suffix="Skelton.php">./lib</directory>
+        <directory suffix="Interface.php">./</directory>
+        <directory suffix="Skelton.php">./</directory>
       </exclude>
     </whitelist>
   </filter>
