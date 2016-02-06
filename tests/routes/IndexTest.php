@@ -15,10 +15,10 @@ namespace Routes;
 class IndexTest extends AppMock
 {
     /** @var String $path URI */
-    protected $path = '/users/';
+    protected $path = '/';
 
     /** @var String $filename 対象ファイル */
-    protected $filename = 'routes/users.php';
+    protected $filename = 'routes/index.php';
 
     /**
      * 正常系 '/'のgetがHelloと返すか
