@@ -40,6 +40,9 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
     /** @var Object $app Slimアプリケーション */
     protected $app;
 
+    /** @var Object $body bodyオブジェクト */
+    protected $body;
+
     /** @var Object $request requestオブジェクト */
     protected $request;
 
@@ -91,6 +94,8 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
         $this->db = $this->getConnection();
 
         $this->object = $this->getObject();
+
+        $this->body = new RequestBody();
     }
 
     /**
@@ -116,7 +121,7 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * Slim悪リケーションのMockを作成
+     * SlimアプリケーションのMockを作成
      *
      * @param String $path アクセスするURI
      * @param String $method 使用するhttpメソッド
@@ -134,10 +139,12 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
         ]);
 
         $uri = Uri::createFromEnvironment($env);
-        $headers = Headers::createFromEnvironment($env);
+        //$headers = Headers::createFromEnvironment($env);
+        $headers = new Headers([
+            'Content-Type' => 'application/json;charset=utf8'
+        ]);
         $cookies = [];
         $serverParams = $env->all();
-        $body = new RequestBody();
 
         $this->request = new Request(
             $method,
@@ -145,7 +152,7 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
             $headers,
             $cookies,
             $serverParams,
-            $body
+            $this->body
         );
 
         $this->setContainer($this->app->getContainer());
@@ -153,6 +160,18 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
         $this->response = new Response();
 
         return $this->app;
+    }
+
+    /**
+     * bodyを設定 POST, PUTなど
+     *
+     * @param String $body // 投げるJSON
+     * @return void
+     */
+    protected function setRequestBody($body)
+    {
+        $this->body->write($body);
+        $this->body->rewind();
     }
 
     /**
