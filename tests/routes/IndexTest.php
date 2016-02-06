@@ -14,27 +14,11 @@ namespace Routes;
  */
 class IndexTest extends AppMock
 {
-    /** @var Object $object 対象クラス */
-    protected $path = '/';
+    /** @var String $path URI */
+    protected $path = '/users/';
 
-    /** @var Object $object 対象クラス */
-    protected $filename = 'routes/index.php';
-
-    /**
-     * setUp method
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-    }
-
-    /**
-     * @ignore
-     */
-    protected function tearDown()
-    {
-    }
+    /** @var String $filename 対象ファイル */
+    protected $filename = 'routes/users.php';
 
     /**
      * 正常系 '/'のgetがHelloと返すか
