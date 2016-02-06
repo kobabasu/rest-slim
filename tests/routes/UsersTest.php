@@ -74,4 +74,70 @@ class UsersTest extends AppMock
             (string)$resOut->getBody()
         );
     }
+
+    /**
+     * 正常系 '/users/'のpostが正しいJSONを返すか
+     *
+     * @test testUsersPostNormal()
+     */
+    public function testUsersPostNormal()
+    {
+
+        $req = array(
+            'name' => 'ichiro',
+            'email' => 'ichiro@example.com'
+        );
+        $this->setRequestBody(json_encode($req));
+
+        $app = $this->create($this->path, 'POST');
+        require $this->filename;
+        $resOut = $this->invoke($app);
+
+        $this->assertEquals(
+            json_encode($req),
+            (string)$resOut->getBody()
+        );
+    }
+
+    /**
+     * 正常系 '/users/'のputが正しいJSONを返すか
+     *
+     * @test testUsersPutNormal()
+     */
+    public function testUsersPutNormal()
+    {
+
+        $req = array(
+            'name' => 'ichiro',
+            'email' => 'ichiro@example.com'
+        );
+        $this->setRequestBody(json_encode($req));
+
+        $app = $this->create($this->path . '1', 'PUT');
+        require $this->filename;
+        $resOut = $this->invoke($app);
+
+        $this->assertEquals(
+            1,
+            (string)$resOut->getBody()
+        );
+    }
+
+    /**
+     * 正常系 '/users/'のdeleteが正しいJSONを返すか
+     *
+     * @test testUsersDeleteNormal()
+     */
+    public function testUsersDeleteNormal()
+    {
+
+        $app = $this->create($this->path . '1', 'DELETE');
+        require $this->filename;
+        $resOut = $this->invoke($app);
+
+        $this->assertEquals(
+            1,
+            (string)$resOut->getBody()
+        );
+    }
 }
