@@ -34,9 +34,6 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
     /** @var Object $db getConnectionの返り値  */
     protected $db;
 
-    /** @var Object $object 対象クラス */
-    protected $object;
-
     /** @var Object $app Slimアプリケーション */
     protected $app;
 
@@ -93,8 +90,6 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
 
         $this->db = $this->getConnection();
 
-        $this->object = $this->getObject();
-
         $this->body = new RequestBody();
     }
 
@@ -103,21 +98,6 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
      */
     protected function tearDown()
     {
-    }
-
-    /**
-     * DBUnit拡張でDBのモックを作成
-     *
-     * @return Object
-     */
-    public function getObject()
-    {
-        $mock = $this->getMockForAbstractClass(
-            '\Lib\Db\Db',
-            array($this->pdo)
-        );
-
-        return $mock;
     }
 
     /**
