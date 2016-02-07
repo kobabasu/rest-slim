@@ -34,9 +34,6 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
     /** @var Object $db getConnectionの返り値  */
     protected $db;
 
-    /** @var Object $app Slimアプリケーション */
-    protected $app;
-
     /** @var Object $body bodyオブジェクト */
     protected $body;
 
@@ -111,7 +108,7 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
         $path,
         $method = 'GET'
     ) {
-        $this->app = new App();
+        $app = new App();
 
         $env = Environment::mock([
             'REQUEST_URI' => $path,
@@ -135,11 +132,11 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
             $this->body
         );
 
-        $this->setContainer($this->app->getContainer());
-
         $this->response = new Response();
 
-        return $this->app;
+        $this->setContainer($app->getContainer());
+
+        return $app;
     }
 
     /**
