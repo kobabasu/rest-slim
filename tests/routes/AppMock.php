@@ -29,10 +29,10 @@ use \Lib\Db\Delete;
 class AppMock extends \PHPUnit_Extensions_Database_TestCase
 {
     /** @var Object $pdo PDOオブジェクト */
-    protected $pdo;
+    protected $pdo = null;
 
     /** @var Object $db getConnectionの返り値  */
-    protected $db;
+    protected $db = null;
 
     /** @var Object $body bodyオブジェクト */
     protected $body;
@@ -52,16 +52,23 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
     {
         $dsn  = "mysql:host={$GLOBALS['DB_HOST']};";
         $dsn .= "dbname={$GLOBALS['DB_NAME']};";
-        $this->pdo = new \PDO(
-            $dsn,
-            $GLOBALS['DB_USER'],
-            $GLOBALS['DB_PASS']
-        );
 
-        return $this->createDefaultDBConnection(
-            $this->pdo,
-            $dsn
-        );
+        if ($this->db == null) {
+            if ($this->pdo == null) {
+                $this->pdo = new \PDO(
+                    $dsn,
+                    $GLOBALS['DB_USER'],
+                    $GLOBALS['DB_PASS']
+                );
+            }
+
+            $this->db = $this->createDefaultDBConnection(
+                $this->pdo,
+                $dsn
+            );
+        }
+
+        return $this->db;
     }
 
     /**
