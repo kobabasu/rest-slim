@@ -66,7 +66,7 @@ class UsersTest extends AppMock
                 'id' => '2',
                 'name' => 'hanako',
                 'email' => 'hanako@example.com'
-            ),
+            )
         );
 
         $this->assertEquals(
@@ -82,7 +82,6 @@ class UsersTest extends AppMock
      */
     public function testUsersPostNormal()
     {
-
         $req = array(
             'name' => 'ichiro',
             'email' => 'ichiro@example.com'
@@ -106,7 +105,6 @@ class UsersTest extends AppMock
      */
     public function testUsersPutNormal()
     {
-
         $req = array(
             'name' => 'ichiro',
             'email' => 'ichiro@example.com'
@@ -130,7 +128,6 @@ class UsersTest extends AppMock
      */
     public function testUsersDeleteNormal()
     {
-
         $app = $this->create($this->path . '1', 'DELETE');
         require $this->filename;
         $resOut = $this->invoke($app);
