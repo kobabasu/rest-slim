@@ -5,6 +5,7 @@ const MODEL = ''
 
 /* index '/' */
 frisby.create(
+    "正常系 '/'でContent-Typeでhtmlを返すか"
   )
   .get(HOST + MODEL)
   .expectStatus(200)

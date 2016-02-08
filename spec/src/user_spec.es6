@@ -3,9 +3,9 @@ import frisby from 'frisby'
 const HOST   = 'http://localhost:8080/api/'
 const MODEL = 'users/'
 
-frisby.create("正常系 '/'で")
 /* GET '/users/' */
 frisby.create(
+    "正常系 '/users/'で正しくJSONを返すか"
   )
   .get(HOST + MODEL)
   .expectStatus(200)
