@@ -1,6 +1,5 @@
 import frisby from 'frisby'
 
-const ID         = 12
 const HOST   = 'http://localhost:8080/api/'
 const MODEL = ''
 
