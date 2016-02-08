@@ -29,16 +29,10 @@ use \Lib\Db\Delete;
 class AppMock extends \PHPUnit_Extensions_Database_TestCase
 {
     /** @var Object $pdo PDOオブジェクト */
-    protected $pdo;
+    protected $pdo = null;
 
     /** @var Object $db getConnectionの返り値  */
-    protected $db;
-
-    /** @var Object $object 対象クラス */
-    protected $object;
-
-    /** @var Object $app Slimアプリケーション */
-    protected $app;
+    protected $db = null;
 
     /** @var Object $body bodyオブジェクト */
     protected $body;
@@ -58,16 +52,23 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
     {
         $dsn  = "mysql:host={$GLOBALS['DB_HOST']};";
         $dsn .= "dbname={$GLOBALS['DB_NAME']};";
-        $this->pdo = new \PDO(
-            $dsn,
-            $GLOBALS['DB_USER'],
-            $GLOBALS['DB_PASS']
-        );
 
-        return $this->createDefaultDBConnection(
-            $this->pdo,
-            $dsn
-        );
+        if ($this->db == null) {
+            if ($this->pdo == null) {
+                $this->pdo = new \PDO(
+                    $dsn,
+                    $GLOBALS['DB_USER'],
+                    $GLOBALS['DB_PASS']
+                );
+            }
+
+            $this->db = $this->createDefaultDBConnection(
+                $this->pdo,
+                $dsn
+            );
+        }
+
+        return $this->db;
     }
 
     /**
@@ -93,8 +94,6 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
 
         $this->db = $this->getConnection();
 
-        $this->object = $this->getObject();
-
         $this->body = new RequestBody();
     }
 
@@ -103,21 +102,6 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
      */
     protected function tearDown()
     {
-    }
-
-    /**
-     * DBUnit拡張でDBのモックを作成
-     *
-     * @return Object
-     */
-    public function getObject()
-    {
-        $mock = $this->getMockForAbstractClass(
-            '\Lib\Db\Db',
-            array($this->pdo)
-        );
-
-        return $mock;
     }
 
     /**
@@ -131,7 +115,7 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
         $path,
         $method = 'GET'
     ) {
-        $this->app = new App();
+        $app = new App();
 
         $env = Environment::mock([
             'REQUEST_URI' => $path,
@@ -155,11 +139,11 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
             $this->body
         );
 
-        $this->setContainer($this->app->getContainer());
-
         $this->response = new Response();
 
-        return $this->app;
+        $this->setContainer($app->getContainer());
+
+        return $app;
     }
 
     /**

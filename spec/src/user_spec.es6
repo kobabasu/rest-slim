@@ -1,13 +1,28 @@
 import frisby from 'frisby'
 
-const HOST       = 'localhost:8080/api/'
-const MODEL      = 'users'
-const ID         = 12
+const HOST   = 'http://localhost:8080/api/'
+const MODEL = 'users/'
 
-
-/* INDEX */
-
-frisby.create('INDEX')
-  .get('http://' + HOST)
+/* GET '/users/' */
+frisby.create(
+    "正常系 '/users/'で正しくJSONを返すか"
+  )
+  .get(HOST + MODEL)
   .expectStatus(200)
+  .expectHeader(
+    'Content-Type',
+    'application/json;charset=utf-8'
+  )
+  .expectJSON([
+    {
+      id: '1',
+      name: 'taro',
+      email: 'taro@example.com'
+    },
+    {
+      id: '2',
+      name: String,
+      email: String
+    }
+  ])
   .toss();

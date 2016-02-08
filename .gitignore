@@ -12,6 +12,7 @@ node_modules
 vendor
 cache
 logs
+reports
 
 js/*
 dist/*
