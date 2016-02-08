@@ -14,9 +14,16 @@ frisby.create(
     'Content-Type',
     'application/json;charset=utf-8'
   )
-  .expectJSON([], {
-    id: 2,
-    name: 'hanako',
-    email: 'hanako@example.com'
-  })
+  .expectJSON([
+    {
+      id: '1',
+      name: 'taro',
+      email: 'taro@example.com'
+    },
+    {
+      id: '2',
+      name: String,
+      email: String
+    }
+  ])
   .toss();
