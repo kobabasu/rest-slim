@@ -1,13 +1,13 @@
 import frisby from 'frisby'
 
-const HOST       = 'localhost:8080/api/'
-const MODEL      = '/'
 const ID         = 12
+const HOST   = 'http://localhost:8080/api/'
+const MODEL = ''
 
-/* index */
-
-frisby.create('index')
-  .get('http://' + HOST)
+/* index '/' */
+frisby.create(
+  )
+  .get(HOST + MODEL)
   .expectStatus(200)
   .expectHeader(
     'Content-Type',
