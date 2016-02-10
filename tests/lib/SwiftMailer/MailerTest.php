@@ -25,10 +25,10 @@ class MailerTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $swift = new \Lib\SwiftMailer\Init(
-            '127.0.0.1',
-            '1025',
-            null,
-            null
+            {$GLOBALS['MAIL_HOST']},
+            {$GLOBALS['MAIL_PORT']},
+            {$GLOBALS['MAIL_USER']},
+            {$GLOBALS['MAIL_PASS']}
         );
 
         $this->object = new Mailer($swift);
