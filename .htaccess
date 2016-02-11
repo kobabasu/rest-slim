@@ -1,3 +1,5 @@
+AddHandler x-httpd-php559 .php
+
 <Limit GET POST PUT DELETE>
   Order deny,allow
   Allow from localhost
