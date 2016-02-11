@@ -24,7 +24,7 @@ hub clone kobabasu/rest api
 1. Vagrantfile編集  
    `vim Vagrantfile`
    * `$instance_name_prefix = "任意の名前"`
-   * NFSの設定
+   * NFSの設定 ローカルのディレクトリは'..'で。'../app'だと変更が必要
    * portの設定 80->8080, 443->3443, 3306->3306, 1025->1025, 1080->1080
 1. `vagrant up`
 
