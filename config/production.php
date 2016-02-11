@@ -3,9 +3,9 @@ const ENVIRONMENT_MODE = 'production';
 const DEBUG_DEFAULT    = false;
 
 const DB_HOST       = '0.0.0.0';
-const DB_NAME       = 'api';
-const DB_USER       = 'api';
-const DB_PASS       = 'api012';
+const DB_NAME       = 'aa120v5xup_api';
+const DB_USER       = 'aa120v5xup';
+const DB_PASS       = 'FNBsBSKf';
 const DB_PORT       = '3306';
 const DB_CHARSET    = 'utf8';
 
