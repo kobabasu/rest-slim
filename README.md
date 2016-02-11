@@ -7,6 +7,7 @@ hub clone kobabasu/rest api
 ## git
 1. 必要があればdevelopブランチを使う  
    `git checkout develop`
+1. `git flow init -d`
 
 ## npm
 1. `npm install`
@@ -23,6 +24,7 @@ hub clone kobabasu/rest api
    * `mv config.rb.sample config.rb`
 1. Vagrantfile編集  
    `vim Vagrantfile`
+   * stableを使用
    * `$instance_name_prefix = "任意の名前"`
    * NFSの設定 ローカルのディレクトリは'..'で。'../app'だと変更が必要
    * portの設定 80->8080, 443->3443, 3306->3306, 1025->1025, 1080->1080
@@ -61,22 +63,22 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 1. testdox形式で出力する場合は
    `phpunit --testdox`
 1. http://localhost:8080/api/docs/reports/にアクセス
-1. レポートがすべて100%であればOK
+1. レポートがすべて100%であることを確認
 
 ## mailcatcher
 1. まずphpunitを実行
 1. http://localhsot:1080にアクセス
-1. メールが届いていればOK
-1. Plain Textタブではfrom, toはメールアドレスが表示。
-   To, Subjectは文字化けせず表示。
+1. メールが届いているか確認
+1. Plain Textタブではfrom, toはメールアドレスが表示
+   To, Subjectは文字化けせず表示
 1. Sourceタブでは文字化けが散見していてOK。
-   Content-Typeがtext/plain。charsetがiso-2022-jpでOK
-1. ダウンロードしダブルクリックでメーラが開く。
+   Content-Typeがtext/plain。charsetがiso-2022-jp
+1. ダウンロードしダブルクリックでメーラが開く
 1. 問題なく表示されていればOK
 
 ## phpdoc
 1. `phpdoc`を実行
-1. エラーがでず完了すればOK
+1. エラーがでず完了するか確認
 1. http://localhost:8080/api/docs/api/にアクセス
 1. 問題なく表示されればOK
 
@@ -211,6 +213,6 @@ phpunitのテストコード
 |name            |desc                                        |
 |:---------------|:-------------------------------------------|
 |/fixtures       |フィクスチャ                                |
-|/lib            |libを対象のテストコード                     |
-|/routes         |routesを対象のテストコード                  |
-|/bootstrap.php  |テスト用の起動。phpunit.xmlで利用           |
+|/lib            |libが対象のテストコード                     |
+|/routes         |routesが対象のテストコード                  |
+|/bootstrap.php  |テスト専用。phpunit.xmlで利用               |
