@@ -6,4 +6,4 @@
 # 	name = "Keep ours merge" 
 #   driver = true
 
-.htaccess merge=ours
+#.htaccess merge=ours
