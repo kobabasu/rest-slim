@@ -13,6 +13,8 @@ return array(
         'environment' => ENVIRONMENT_MODE,
         'withJsonEnc' => $withJsonEnc,
 
+        'basic_auth' => BASIC_AUTH,
+
         'db' => array(
             'host' => DB_HOST,
             'name' => DB_NAME,
