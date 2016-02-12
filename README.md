@@ -147,6 +147,7 @@ curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://local
 |index.php       |server environmentの設定                    |
 |note.md         |メモ                                        |
 |package.json    |es6変換,frisbyを読込。scriptsは要確認       |
+|php.ini         |CPIのバージョン指定用php.ini                |
 |phpdoc.xml      |lib,routes,testsに限定。出力先はdocs/api    |
 |phpunit.xml     |lib,routesに限定。テスト用DBの設定含む      |
 
