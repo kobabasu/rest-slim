@@ -7,6 +7,12 @@ hub clone kobabasu/rest api
 ## git
 1. 必要があればdevelopブランチを使う  
    `git checkout develop`
+1. `git flow init -d`
+
+## .htaccess
+1. ローカル環境用の.htaccessを作成
+1. `cp .htaccess.sample .htaccess`
+1. 本番用のコードをコメント
 
 ## npm
 1. `npm install`
@@ -23,8 +29,9 @@ hub clone kobabasu/rest api
    * `mv config.rb.sample config.rb`
 1. Vagrantfile編集  
    `vim Vagrantfile`
+   * stableを使用
    * `$instance_name_prefix = "任意の名前"`
-   * NFSの設定
+   * NFSの設定 ローカルのディレクトリは'..'で。'../app'だと変更が必要
    * portの設定 80->8080, 443->3443, 3306->3306, 1025->1025, 1080->1080
 1. `vagrant up`
 
@@ -53,10 +60,6 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 ```
 mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql/users.create.sql
 ```
-1. レコードをinsert
-```
-curl -i -X POST -H 'Content-Type:application/json;charset=utf-8' -d '{"name":"taro", "email":"taro@example.com"}' http://localhost:8080/api/users/
-```
 1. http://localhost:8080/api/users/で確認
 
 ## phpunit
@@ -65,22 +68,22 @@ curl -i -X POST -H 'Content-Type:application/json;charset=utf-8' -d '{"name":"ta
 1. testdox形式で出力する場合は
    `phpunit --testdox`
 1. http://localhost:8080/api/docs/reports/にアクセス
-1. レポートがすべて100%であればOK
+1. レポートがすべて100%であることを確認
 
 ## mailcatcher
 1. まずphpunitを実行
 1. http://localhsot:1080にアクセス
-1. メールが届いていればOK
-1. Plain Textタブではfrom, toはメールアドレスが表示。
-   To, Subjectは文字化けせず表示。
+1. メールが届いているか確認
+1. Plain Textタブではfrom, toはメールアドレスが表示
+   To, Subjectは文字化けせず表示
 1. Sourceタブでは文字化けが散見していてOK。
-   Content-Typeがtext/plain。charsetがiso-2022-jpでOK
-1. ダウンロードしダブルクリックでメーラが開く。
+   Content-Typeがtext/plain。charsetがiso-2022-jp
+1. ダウンロードしダブルクリックでメーラが開く
 1. 問題なく表示されていればOK
 
 ## phpdoc
 1. `phpdoc`を実行
-1. エラーがでず完了すればOK
+1. エラーがでず完了するか確認
 1. http://localhost:8080/api/docs/api/にアクセス
 1. 問題なく表示されればOK
 
@@ -121,6 +124,7 @@ curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://local
 
 ## setup
 1. 一度composer.jsonのautoloadを確認しておく
+1. production.php.sampleをprodcution.phpにとしてコピー
 1. config内のdevelopment, prodcutionをそれぞれ設定
 1. phpunit.php内を設定
 1. phpunitを実行
@@ -134,7 +138,8 @@ curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://local
 |.babelrc        |es2015のpresetを設定                        |
 |.gitattributes  |marge oursが必要であれば変更                |
 |.gitignore      |cache,logs,reportsを除外                    |
-|.htaccess       |Slimのrewriteとhttp methodをlocalhostに限定 |
+|(.htaccess)     |sampleをコピーして用意                      |
+|.htaccess.sample|CPIのphpバージョン指定設定サンプル含む      |
 |README.md       |このファイル                                |
 |bootstrap.php   |Slimの設定                                  |
 |composer.json   |PSR-4のautoloadの設定があるので注意         |
@@ -142,6 +147,7 @@ curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://local
 |index.php       |server environmentの設定                    |
 |note.md         |メモ                                        |
 |package.json    |es6変換,frisbyを読込。scriptsは要確認       |
+|php.ini         |CPIのバージョン指定用php.ini                |
 |phpdoc.xml      |lib,routes,testsに限定。出力先はdocs/api    |
 |phpunit.xml     |lib,routesに限定。テスト用DBの設定含む      |
 
@@ -163,6 +169,15 @@ curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://local
 |/src            |Slimの汎用コード                            |
 |/tests          |phpunitのテストコード                       |
 |/vendor         |composerディレクトリ                        |
+
+## config
+phpの定数を定義。DB, MAILなど。
+
+|name            |desc                                        |
+|:--------------------|:--------------------------------------|
+|development.php      |開発環境用                             |
+|(production.php)     |sampleをコピーし作成                   |
+|production.php.sample|本番環境用                             |
 
 ## docs
 テストのレポートとphpdoc
@@ -215,6 +230,6 @@ phpunitのテストコード
 |name            |desc                                        |
 |:---------------|:-------------------------------------------|
 |/fixtures       |フィクスチャ                                |
-|/lib            |libを対象のテストコード                     |
-|/routes         |routesを対象のテストコード                  |
-|/bootstrap.php  |テスト用の起動。phpunit.xmlで利用           |
+|/lib            |libが対象のテストコード                     |
+|/routes         |routesが対象のテストコード                  |
+|/bootstrap.php  |テスト専用。phpunit.xmlで利用               |
