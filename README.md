@@ -9,6 +9,11 @@ hub clone kobabasu/rest api
    `git checkout develop`
 1. `git flow init -d`
 
+## .htaccess
+1. ローカル環境用の.htaccessを作成
+1. `cp .htaccess.sample .htaccess`
+1. 本番用のコードをコメント
+
 ## npm
 1. `npm install`
 1. `npm run build`
