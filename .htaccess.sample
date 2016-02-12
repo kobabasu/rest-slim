@@ -1,5 +1,8 @@
-#AddHandler x-httpd-php559 .php
-#suPHP_ConfigPath /usr/home/aa120v5xup/html/api/
+#
+# specific version for CPI
+#
+# AddHandler x-httpd-php559 .php
+# suPHP_ConfigPath /usr/home/aa120v5xup/html/api/
 
 #
 # BASIC Auth
@@ -10,11 +13,18 @@ AuthName "enter your ID and password"
 # AuthUserfile /home/aa120v5xup/html/api/.htpasswd
 AuthUserfile /var/www/html/api/.htpasswd
 Require valid-user
+
+#
+# HTTP Method
+#
 <Limit GET POST PUT DELETE>
   Order deny,allow
   Allow from localhost
 </Limit>
 
+#
+# setting for Slim
+#
 <ifModule mod_rewrite.c>
   RewriteEngine On
   # RewriteBase /
