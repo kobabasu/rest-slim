@@ -22,4 +22,6 @@ docs/*
 spec/js/*
 spec/dist/*
 
+config/production.php
+
 !.gitkeep
