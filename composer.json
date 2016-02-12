@@ -11,6 +11,7 @@
 
   "require": {
     "slim/slim": "3.x",
+    "tuupola/slim-basic-auth": "2.x",
     "swiftmailer/swiftmailer": "@stable",
     "twig/twig": "@stable",
     "monolog/monolog": "*"
