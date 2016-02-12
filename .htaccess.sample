@@ -1,6 +1,15 @@
 #AddHandler x-httpd-php559 .php
 #suPHP_ConfigPath /usr/home/aa120v5xup/html/api/
 
+#
+# BASIC Auth
+#
+AuthType Basic
+AuthName "enter your ID and password"
+# BAISC Auth for CPI
+# AuthUserfile /home/aa120v5xup/html/api/.htpasswd
+AuthUserfile /var/www/html/api/.htpasswd
+Require valid-user
 <Limit GET POST PUT DELETE>
   Order deny,allow
   Allow from localhost
