@@ -9,6 +9,11 @@ hub clone kobabasu/rest api
    `git checkout develop`
 1. `git flow init -d`
 
+## .htaccess
+1. ローカル環境用の.htaccessを作成
+1. `cp .htaccess.sample .htaccess`
+1. 本番用のコードをコメント
+
 ## npm
 1. `npm install`
 1. `npm run build`
@@ -119,6 +124,7 @@ curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://local
 
 ## setup
 1. 一度composer.jsonのautoloadを確認しておく
+1. production.php.sampleをprodcution.phpにとしてコピー
 1. config内のdevelopment, prodcutionをそれぞれ設定
 1. phpunit.php内を設定
 1. phpunitを実行
@@ -132,7 +138,8 @@ curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://local
 |.babelrc        |es2015のpresetを設定                        |
 |.gitattributes  |marge oursが必要であれば変更                |
 |.gitignore      |cache,logs,reportsを除外                    |
-|.htaccess       |Slimのrewriteとhttp methodをlocalhostに限定 |
+|(.htaccess)     |sampleをコピーして用意                      |
+|.htaccess.sample|CPIのphpバージョン指定設定サンプル含む      |
 |README.md       |このファイル                                |
 |bootstrap.php   |Slimの設定                                  |
 |composer.json   |PSR-4のautoloadの設定があるので注意         |
@@ -161,6 +168,15 @@ curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://local
 |/src            |Slimの汎用コード                            |
 |/tests          |phpunitのテストコード                       |
 |/vendor         |composerディレクトリ                        |
+
+## config
+phpの定数を定義。DB, MAILなど。
+
+|name            |desc                                        |
+|:--------------------|:--------------------------------------|
+|development.php      |開発環境用                             |
+|(production.php)     |sampleをコピーし作成                   |
+|production.php.sample|本番環境用                             |
 
 ## docs
 テストのレポートとphpdoc

@@ -22,4 +22,7 @@ docs/*
 spec/js/*
 spec/dist/*
 
+/.htaccess
+config/production.php
+
 !.gitkeep

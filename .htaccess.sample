@@ -1,3 +1,6 @@
+#AddHandler x-httpd-php559 .php
+#suPHP_ConfigPath /usr/home/aa120v5xup/html/api/
+
 <Limit GET POST PUT DELETE>
   Order deny,allow
   Allow from localhost
