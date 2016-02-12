@@ -14,6 +14,10 @@ hub clone kobabasu/rest api
 1. `cp .htaccess.sample .htaccess`
 1. 本番用のコードをコメント
 
+## .htpasswd
+1. `htpassewd -m .htpasswd api
+1. パスワードを二回入力
+
 ## npm
 1. `npm install`
 1. `npm run build`
@@ -103,29 +107,31 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 ## cURL sample
 1. INDEXを表示
 ```
-curl -i -X GET -H 'Content-Type:application/json;charset=utf-8' http://localhost:8080/api/users/
+curl -i -X GET --user api:api012 -H 'Content-Type:application/json;charset=utf-8' http://localhost:8080/api/users/
 ```
 1. レコードを表示
 ```
-curl -i -X GET -H 'Content-Type:application/json;charset=utf-8' http://localhost:8080/api/users/{存在するid}
+curl -i -X GET --user api:api012 -H 'Content-Type:application/json;charset=utf-8' http://localhost:8080/api/users/{存在するid}
 ```
 1. レコードをinsert
 ```
-curl -i -X POST -H 'Content-Type:application/json;charset=utf-8' -d '{"name":"taro", "email":"taro@example.com"}' http://localhost:8080/api/users/
+curl -i -X POST --user api:api012 -H 'Content-Type:application/json;charset=utf-8' -d '{"name":"taro", "email":"taro@example.com"}' http://localhost:8080/api/users/
 ```
 1. レコードを変更
 ```
-curl -i -X PUT -H 'Content-Type:application/json;charset=utf-8' -d '{name":"curl", "email":"curl@example.com"}' http://localhost:8080/api/user/{存在するid}
+curl -i -X PUT --user api:api012 -H 'Content-Type:application/json;charset=utf-8' -d '{name":"curl", "email":"curl@example.com"}' http://localhost:8080/api/user/{存在するid}
 ```
 1. レコードを削除
 ```
-curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://localhost:8080/api/users/{存在するid}
+curl -i -X DELETE --user api:api012 -H 'Content-Type:application/json;charset=utf-8' http://localhost:8080/api/users/{存在するid}
 ```
 
 ## setup
 1. 一度composer.jsonのautoloadを確認しておく
 1. production.php.sampleをprodcution.phpにとしてコピー
 1. config内のdevelopment, prodcutionをそれぞれ設定
+1. config内,phpunit.xmlのid,pwを設定 
+1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
 1. phpunit.php内を設定
 1. phpunitを実行
 1. phpdocを実行
@@ -140,6 +146,7 @@ curl -i -X DELETE  -H 'Content-Type:application/json;charset=utf-8' http://local
 |.gitignore      |cache,logs,reportsを除外                    |
 |(.htaccess)     |sampleをコピーして用意                      |
 |.htaccess.sample|CPIのphpバージョン指定設定サンプル含む      |
+|.htpasswd       |.htaccessにより設定するため、sampleではない |
 |README.md       |このファイル                                |
 |bootstrap.php   |Slimの設定                                  |
 |composer.json   |PSR-4のautoloadの設定があるので注意         |
@@ -221,7 +228,7 @@ Slim3の各種設定
 |:---------------|:-------------------------------------------|
 |app.php         |アプリケーション全体の設定。Content-Typeなど|
 |dependencies.php|コンテナ関連                                |
-|middleware.php  |middleware                                  |
+|middleware.php  |slim-basic-authなど                         |
 |settings.php    |定数やloggerの設定など                      |
 
 ## tests
