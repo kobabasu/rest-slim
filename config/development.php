@@ -2,6 +2,10 @@
 const ENVIRONMENT_MODE = 'development';
 const DEBUG_DEFAULT    = true;
 
+const BASIC_AUTH    = array(
+    'api' => 'api012'
+);
+
 const DB_HOST       = '0.0.0.0';
 const DB_NAME       = 'api';
 const DB_USER       = 'api';
