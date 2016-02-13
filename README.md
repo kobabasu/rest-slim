@@ -126,10 +126,16 @@ originと整合性が取れない場合があったため、
 1. `chmod -R 604 .htpasswd`
 1. `chmod -R 604 phpunit.xml`
 
-### setup
+### 確認
+1. http://localhost:8080/api/でBASIC認証が求められなくhelloと表示されるか確認
+1. http://localhost:8080/api/users/taroでBASIC認証を入力し表示されるか確認
+
+以下は設定箇所を忘れそうなので確認する
+
 1. 一度composer.jsonのautoloadを確認しておく
 1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
 1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
+
 
 ## cURL sample
 1. INDEXを表示
