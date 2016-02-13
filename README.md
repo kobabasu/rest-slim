@@ -1,10 +1,7 @@
 # REST
 
-```
-git clone git@github.com-{user}:kobabasu/rest-slim.git api
-```
-
 ## 開発環境を準備
+apiディレクトリにcoreosディレクトリは含めない
 
 ### vagrant
 1. `hub clone cores/cores-vagrant coreos`
@@ -48,6 +45,11 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql ../api/
 ```
 
 ## ローカルレポジトリの作成
+以下を実行後apiへ移動
+
+```
+git clone git@github.com-{user}:kobabasu/rest-slim.git api
+```
 
 ### git
 originと整合性が取れない場合があったため、
