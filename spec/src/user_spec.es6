@@ -8,6 +8,7 @@ frisby.create(
     "正常系 '/users/'で正しくJSONを返すか"
   )
   .get(HOST + MODEL)
+  .auth('api', 'api012')
   .expectStatus(200)
   .expectHeader(
     'Content-Type',
