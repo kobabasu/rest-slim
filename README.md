@@ -126,11 +126,11 @@ originと整合性が取れない場合があったため、
 1. sqlを実行し結果が表示されればOK
 
 ### permissions
-1. `chmod -R 604 config/\*`
-1. `chmod -R 604 sql/\*`
-1. `chmod -R 604 .htaccess`
-1. `chmod -R 604 .htpasswd`
-1. `chmod -R 604 phpunit.xml`
+1. `chmod 604 config/\*`
+1. `chmod 604 sql/\*`
+1. `chmod 604 .htaccess`
+1. `chmod 604 .htpasswd`
+1. `chmod 604 phpunit.xml`
 
 ### 確認
 1. http://localhost:8080/api/でBASIC認証が求められなくhelloと表示されるか確認
@@ -194,16 +194,15 @@ CPIでの例
 1. パスワードを二回入力
 
 ### config
-1. production.php.sampleをprodcution.phpにとしてコピー
 1. config/production.phpのBASIC認証の設定を変更
 1. config内のdevelopment, prodcutionをそれぞれ設定
 
 ### permissions
-1. `chmod -R 604 config/\*`
-1. `chmod -R 604 sql/\*`
-1. `chmod -R 604 .htaccess`
-1. `chmod -R 604 .htpasswd`
-1. `chmod -R 604 phpunit.xml`
+1. `chmod 604 config/\*`
+1. `chmod 604 sql/\*`
+1. `chmod 604 .htaccess`
+1. `chmod 604 .htpasswd`
+1. `chmod 604 phpunit.xml`
 
 ### hooks
 1. cd repo/api/hooksに移動
