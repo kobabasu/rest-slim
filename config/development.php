@@ -2,9 +2,10 @@
 const ENVIRONMENT_MODE = 'development';
 const DEBUG_DEFAULT    = true;
 
-const BASIC_AUTH    = array(
-    'api' => 'api012'
-);
+// can use array as const in php5.6 or upper
+const BASIC_AUTH_USER  = 'api';
+const BASIC_AUTH_PASS  = 'api012';
+
 
 const DB_HOST       = '0.0.0.0';
 const DB_NAME       = 'api';
