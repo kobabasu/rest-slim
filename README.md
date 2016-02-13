@@ -138,6 +138,80 @@ originと整合性が取れない場合があったため、
 1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
 1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
 
+## リモートリポジトリの作成
+CPIでの例
+
+### bare
+1. `ssh example.com`
+1. `mkdir -p repo/api; cd $_`
+1. `git init --bare --share=true`
+1. exit (一度リモートを出る)
+
+### push
+ローカルで作業
+1. `cd api`
+1. `git remote add production ssh://example.com/usr/home/aa999v5xxx/repo/api`
+1. 余計な後処理が面倒なためmaster, developのみでcommit済みであるか確認
+1. `git push production --all`
+
+### リモートリポジトリ作成 
+再びサーバへ
+1. `ssh example.com`
+1. `cd html/`
+1. `git clone /usr/home/aa999x5xxx/repo/api api`
+1. viがなぜか調子が悪いためvimに変更 `git config core.editor vim`
+1. `exit`
+
+### lftp
+.gitignoreで除外されているファイルをアップする。
+再度ローカルへ
+1. `lftp example.com`
+1. `cd html/api`
+1. `mkdir vendor node_modules`
+1. put production.php
+1. `cd vendor; lcd vendor`
+1. `mirror -R`
+1. `cd node_modules; lcd node_modules`
+1. `mirror -R`
+
+### .htaccess
+1. ローカル環境用の.htaccessを作成
+1. `cp .htaccess.sample .htaccess`
+1. `cp .logs/htaccess.sample logs/.htaccess`
+1. `cp .reports/htaccess.sample reports/.htaccess`
+1. 本番用のコードにする
+
+### .htpasswd
+1. `htpassewd -m .htpasswd api`
+1. パスワードを二回入力
+
+### config
+1. production.php.sampleをprodcution.phpにとしてコピー
+1. config/production.phpのBASIC認証の設定を変更
+1. config内のdevelopment, prodcutionをそれぞれ設定
+
+### permissions
+1. `chmod -R 604 config/\*`
+1. `chmod -R 604 sql/\*`
+1. `chmod -R 604 .htaccess`
+1. `chmod -R 604 .htpasswd`
+1. `chmod -R 604 phpunit.xml`
+
+### hooks
+1. cd repo/api/hooksに移動
+2. touch post-receive
+3. 以下を記述
+```
+  cd /usr/home/aa120v5xup/html/api
+  git --git-dir=.git pull
+```
+4. 元に戻りchmod +x post-receiveする
+
+### 確認
+httpsでないとエラーがでる
+1. https://example.com/api/でBASIC認証が求められなくhelloと表示されるか確認
+1. https://example.com/api/users/taroでBASIC認証を入力し表示されるか確認
+
 
 ## cURL sample
 1. INDEXを表示
