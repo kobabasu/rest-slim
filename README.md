@@ -114,7 +114,7 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 1. 一度composer.jsonのautoloadを確認しておく
 1. production.php.sampleをprodcution.phpにとしてコピー
 1. config内のdevelopment, prodcutionをそれぞれ設定
-1. config内,phpunit.xmlのid,pwを設定 
+1. config内,phpunit.xmlのid,pwを設定
 1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
 1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
 1. phpunit.php内を設定
