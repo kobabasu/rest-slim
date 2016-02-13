@@ -12,6 +12,8 @@ hub clone kobabasu/rest api
 ## .htaccess
 1. ローカル環境用の.htaccessを作成
 1. `cp .htaccess.sample .htaccess`
+1. `cp .logs/htaccess.sample logs/.htaccess`
+1. `cp .reports/htaccess.sample reports/.htaccess`
 1. 本番用のコードをコメント
 
 ## .htpasswd
