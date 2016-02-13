@@ -157,7 +157,6 @@ CPIでの例
 
 ### push
 ローカルで作業
-1. `cd api`
 1. `git remote add production ssh://example.com/usr/home/aa999v5xxx/repo/api`
 1. 余計な後処理が面倒なためmaster, developのみでcommit済みであるか確認
 1. `git push production --all`
@@ -176,14 +175,17 @@ CPIでの例
 1. `lftp example.com`
 1. `cd html/api`
 1. `mkdir vendor node_modules`
+1. `cd config; lcd config`
 1. put production.php
 1. `cd vendor; lcd vendor`
 1. `mirror -R`
 1. `cd node_modules; lcd node_modules`
 1. `mirror -R`
+1. exit
 
 ### .htaccess
-1. ローカル環境用の.htaccessを作成
+再びサーバへ
+1. 本番環境用の.htaccessを作成
 1. `cp .htaccess.sample .htaccess`
 1. `cp .logs/htaccess.sample logs/.htaccess`
 1. `cp .reports/htaccess.sample reports/.htaccess`
