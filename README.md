@@ -68,6 +68,25 @@ originと整合性が取れない場合があったため、
 ### composer
 1. `composer install --no-dev`
 
+### .htaccess
+1. ローカル環境用の.htaccessを作成
+1. `cp .htaccess.sample .htaccess`
+1. `cp .logs/htaccess.sample logs/.htaccess`
+1. `cp .reports/htaccess.sample reports/.htaccess`
+1. 本番用のコードをコメント
+
+### .htpasswd
+変更する場合のみ以下を実行
+もし、stageに追加された場合は`git checkout .htpasswd`で
+元に戻す
+1. `htpassewd -m .htpasswd api`
+1. パスワードを二回入力
+
+### config
+1. production.php.sampleをprodcution.phpにとしてコピー
+1. config内のdevelopment, prodcutionをそれぞれ設定
+1. config内,phpunit.xmlのid,pwを設定
+
 ### phpunit
 1. `phpunit`
 1. すべてテストをパスすればOK
@@ -97,20 +116,6 @@ originと整合性が取れない場合があったため、
 1. `npm run test`
 1. すべてテストをパスすればOK
 
-### .htaccess
-1. ローカル環境用の.htaccessを作成
-1. `cp .htaccess.sample .htaccess`
-1. `cp .logs/htaccess.sample logs/.htaccess`
-1. `cp .reports/htaccess.sample reports/.htaccess`
-1. 本番用のコードをコメント
-
-### .htpasswd
-変更する場合のみ以下を実行
-もし、stageに追加された場合は`git checkout .htpasswd`で
-元に戻す
-1. `htpassewd -m .htpasswd api`
-1. パスワードを二回入力
-
 ### dbext
 1. vagrantでmysqlコンテナを起動
 1. `vim sql/db.api.sql`
@@ -119,11 +124,6 @@ originと整合性が取れない場合があったため、
 1. DBSetOptionをヤンク
 1. :<C-r>0
 1. sqlを実行し結果が表示されればOK
-
-### config
-1. production.php.sampleをprodcution.phpにとしてコピー
-1. config内のdevelopment, prodcutionをそれぞれ設定
-1. config内,phpunit.xmlのid,pwを設定
 
 ### permissions
 1. `chmod -R 604 config/\*`
