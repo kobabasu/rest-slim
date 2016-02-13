@@ -4,7 +4,9 @@
 git clone git@github.com-{user}:kobabasu/rest-slim.git api
 ```
 
-## vagrant
+## 開発環境を準備
+
+### vagrant
 1. `hub clone cores/cores-vagrant coreos`
 1. `cd coreos`
 1. 必要なファイルをリネーム  
@@ -18,7 +20,7 @@ git clone git@github.com-{user}:kobabasu/rest-slim.git api
    * portの設定 80->8080, 443->3443, 3306->3306, 1025->1025, 1080->1080
 1. `vagrant up`
 
-## docker
+### docker
 1. `vagnrat ssh`
 2. mysqlコンテナ起動
 ```
@@ -35,7 +37,7 @@ docker run --net=host --name smtp -p 1025:1025 -p 1080:1080 -d kobabasu/smtp:0.1
 5. `docker ps -a`で起動しているか確認
 6. `exit`
 
-## mysql
+### mysql
 1. DB作成
 ```
 mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql/users.create.sql
@@ -45,31 +47,32 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql/users.create.sql
 ```
 
+## ローカルレポジトリの作成
 
-## git
+### git
 1. 必要があればdevelopブランチを使う  
    `git checkout develop`
 1. `git flow init -d`
 
-## .htaccess
+### .htaccess
 1. ローカル環境用の.htaccessを作成
 1. `cp .htaccess.sample .htaccess`
 1. `cp .logs/htaccess.sample logs/.htaccess`
 1. `cp .reports/htaccess.sample reports/.htaccess`
 1. 本番用のコードをコメント
 
-## .htpasswd
+### .htpasswd
 1. `htpassewd -m .htpasswd api
 1. パスワードを二回入力
 
-## npm
+### npm
 1. `npm install`
 1. `npm run build`
 
-## composer
+### composer
 1. `composer install --no-dev`
 
-## phpunit
+### phpunit
 1. `phpunit`
 1. すべてテストをパスすればOK
 1. testdox形式で出力する場合は
@@ -77,7 +80,7 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 1. http://localhost:8080/api/docs/reports/にアクセス
 1. レポートがすべて100%であることを確認
 
-## mailcatcher
+### mailcatcher
 1. まずphpunitを実行
 1. http://localhsot:1080にアクセス
 1. メールが届いているか確認
@@ -88,17 +91,17 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 1. ダウンロードしダブルクリックでメーラが開く
 1. 問題なく表示されていればOK
 
-## phpdoc
+### phpdoc
 1. `phpdoc`を実行
 1. エラーがでず完了するか確認
 1. http://localhost:8080/api/docs/api/にアクセス
 1. 問題なく表示されればOK
 
-## frisby
+### frisby
 1. `npm run test`
 1. すべてテストをパスすればOK
 
-## dbext
+### dbext
 1. vagrantでmysqlコンテナを起動
 1. `vim sql/db.api.sql`
 1. let g:dbext...をヤンク
