@@ -136,6 +136,7 @@ curl -i -X DELETE --user api:api012 -H 'Content-Type:application/json;charset=ut
 1. phpunitを実行
 1. phpdocを実行
 1. npm run testを実行
+1. 本番環境ではhttpsでアクセスする
 
 
 ## files
@@ -240,3 +241,8 @@ phpunitのテストコード
 |/lib            |libが対象のテストコード                     |
 |/routes         |routesが対象のテストコード                  |
 |/bootstrap.php  |テスト専用。phpunit.xmlで利用               |
+
+## trouble shootings
+### 本番環境のみ'Slim Application Error'
+basic authのmiddlewareの関係でhttp接続では
+Slim Application Errorが発生。https接続する。
