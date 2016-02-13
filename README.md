@@ -224,7 +224,9 @@ httpsでないとエラーがでる
 ---
 
 
-## cURL sample
+## その他
+
+### cURL sample
 1. INDEXを表示
 ```
 curl -i -X GET --user api:api012 -H 'Content-Type:application/json;charset=utf-8' http://localhost:8080/api/users/
@@ -246,7 +248,7 @@ curl -i -X PUT --user api:api012 -H 'Content-Type:application/json;charset=utf-8
 curl -i -X DELETE --user api:api012 -H 'Content-Type:application/json;charset=utf-8' http://localhost:8080/api/users/{存在するid}
 ```
 
-## files
+### files
 |name            |desc                                        |
 |:---------------|:-------------------------------------------|
 |.babelrc        |es2015のpresetを設定                        |
@@ -266,7 +268,7 @@ curl -i -X DELETE --user api:api012 -H 'Content-Type:application/json;charset=ut
 |phpdoc.xml      |lib,routes,testsに限定。出力先はdocs/api    |
 |phpunit.xml     |lib,routesに限定。テスト用DBの設定含む      |
 
-## directories
+### directories
 |name            |desc                                        |
 |:---------------|:-------------------------------------------|
 |/.git           |gitディレクトリ                             |
@@ -285,7 +287,7 @@ curl -i -X DELETE --user api:api012 -H 'Content-Type:application/json;charset=ut
 |/tests          |phpunitのテストコード                       |
 |/vendor         |composerディレクトリ                        |
 
-## config
+### config
 phpの定数を定義。DB, MAILなど。
 
 |name            |desc                                        |
@@ -294,7 +296,7 @@ phpの定数を定義。DB, MAILなど。
 |(production.php)     |sampleをコピーし作成                   |
 |production.php.sample|本番環境用                             |
 
-## docs
+### docs
 テストのレポートとphpdoc
 
 |name            |desc                                        |
@@ -302,7 +304,7 @@ phpの定数を定義。DB, MAILなど。
 |api             |phpdocによる出力                            |
 |reports         |phpunitによるcoverage reporter              |
 
-## mail
+### mail
 twigによるmailテンプレート
 
 |name            |desc                                        |
@@ -310,7 +312,7 @@ twigによるmailテンプレート
 |default.twig    |twigによるmailテンプレートsample。未使用    |
 |defaultTest.twig|tests/lib/SwiftMailer/MailerTest.phpで使用  |
 
-## spec
+### spec
 frisbyのテストコード
 
 |name            |desc                                        |
@@ -319,7 +321,7 @@ frisbyのテストコード
 |js              |frisbyはこの中のファイルをすべて読み込む    |
 |src             |この中のファイルを編集しbabelで変換         |
 
-## sql
+### sql
 sqlに関するディレクトリ
 パーミッションでアクセス制限をかける
 
@@ -349,16 +351,16 @@ phpunitのテストコード
 |/routes         |routesが対象のテストコード                  |
 |/bootstrap.php  |テスト専用。phpunit.xmlで利用               |
 
-## trouble shootings
-### 本番環境のみ'Slim Application Error'
+### trouble shootings
+#### 本番環境のみ'Slim Application Error'
 basic authのmiddlewareの関係でhttp接続では
 Slim Application Errorが発生。https接続する。
 
-### ローカル環境でBASIC認証後'Internal Server Error'
+#### ローカル環境でBASIC認証後'Internal Server Error'
 dockerを使用している場合、
 .htaccessのパスは/usr/homeではなく/var/www/htmlとなるため注意
 
-### ローカル環境のログ確認方法
+#### ローカル環境のログ確認方法
 1. `docker inspect --format {{.State.Pid}} apache
 1. `sudo nsenter --target=上記で出てきたid --mount --uts --ipc --net --pid`
 1. 上記でコンテナにログインできるので/var/logなどに移動して確認
