@@ -155,7 +155,7 @@ CPIでの例
 1. `ssh example.com`
 1. `mkdir -p repo/api; cd $_`
 1. `git init --bare --share=true`
-1. exit (一度リモートを出る)
+1. `exit` (一度リモートを出る)
 
 ### push
 ローカルで作業
@@ -186,7 +186,7 @@ CPIでの例
 1. `mirror -R`
 1. `cd node_modules; lcd node_modules`
 1. `mirror -R`
-1. exit
+1. `exit`
 
 ### .htaccess
 再びサーバへ
@@ -213,14 +213,14 @@ CPIでの例
 1. `chmod 604 phpunit.xml`
 
 ### hooks
-1. cd repo/api/hooksに移動
-2. touch post-receive
+1. `cd repo/api/hooks`
+2. `touch post-receive`
 3. 以下を記述
 ```
   cd /usr/home/aa120v5xup/html/api
   git --git-dir=.git pull
 ```
-4. 元に戻りchmod +x post-receiveする
+4. `chmod +x post-receive`
 
 ### 確認
 httpsでないとエラーがでる
