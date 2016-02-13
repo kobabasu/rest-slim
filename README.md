@@ -50,9 +50,10 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 ## ローカルレポジトリの作成
 
 ### git
-1. 必要があればdevelopブランチを使う  
-   `git checkout develop`
-1. `git flow init -d`
+originと整合性が取れない場合があったため、
+先にdevelopに切替。initには-dオプションを付けない
+1. `git checkout develop`
+1. `git flow init`
 
 ### npm
 1. `npm install`
@@ -113,18 +114,15 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 1. :<C-r>0
 1. sqlを実行し結果が表示されればOK
 
-### setup
-1. 一度composer.jsonのautoloadを確認しておく
+### config
 1. production.php.sampleをprodcution.phpにとしてコピー
 1. config内のdevelopment, prodcutionをそれぞれ設定
 1. config内,phpunit.xmlのid,pwを設定
+
+### setup
+1. 一度composer.jsonのautoloadを確認しておく
 1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
 1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
-1. phpunit.php内を設定
-1. phpunitを実行
-1. phpdocを実行
-1. npm run testを実行
-1. 本番環境ではhttpsでアクセスする
 
 ### permissions
 1. `chmod -R 604 config/\*`
