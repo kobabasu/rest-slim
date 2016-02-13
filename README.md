@@ -1,7 +1,7 @@
 # REST
 
 ```
-hub clone kobabasu/rest api
+git clone git@github.com-{user}:kobabasu/rest-slim.git api
 ```
 
 ## vagrant
