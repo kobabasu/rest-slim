@@ -126,11 +126,11 @@ originと整合性が取れない場合があったため、
 1. sqlを実行し結果が表示されればOK
 
 ### permissions
-1. `chmod -R 604 config/\*`
-1. `chmod -R 604 sql/\*`
-1. `chmod -R 604 .htaccess`
-1. `chmod -R 604 .htpasswd`
-1. `chmod -R 604 phpunit.xml`
+1. `chmod 604 config/\*`
+1. `chmod 604 sql/\*`
+1. `chmod 604 .htaccess`
+1. `chmod 604 .htpasswd`
+1. `chmod 604 phpunit.xml`
 
 ### 確認
 1. http://localhost:8080/api/でBASIC認証が求められなくhelloと表示されるか確認
@@ -157,7 +157,6 @@ CPIでの例
 
 ### push
 ローカルで作業
-1. `cd api`
 1. `git remote add production ssh://example.com/usr/home/aa999v5xxx/repo/api`
 1. 余計な後処理が面倒なためmaster, developのみでcommit済みであるか確認
 1. `git push production --all`
@@ -176,14 +175,17 @@ CPIでの例
 1. `lftp example.com`
 1. `cd html/api`
 1. `mkdir vendor node_modules`
+1. `cd config; lcd config`
 1. put production.php
 1. `cd vendor; lcd vendor`
 1. `mirror -R`
 1. `cd node_modules; lcd node_modules`
 1. `mirror -R`
+1. exit
 
 ### .htaccess
-1. ローカル環境用の.htaccessを作成
+再びサーバへ
+1. 本番環境用の.htaccessを作成
 1. `cp .htaccess.sample .htaccess`
 1. `cp .logs/htaccess.sample logs/.htaccess`
 1. `cp .reports/htaccess.sample reports/.htaccess`
@@ -194,16 +196,15 @@ CPIでの例
 1. パスワードを二回入力
 
 ### config
-1. production.php.sampleをprodcution.phpにとしてコピー
 1. config/production.phpのBASIC認証の設定を変更
 1. config内のdevelopment, prodcutionをそれぞれ設定
 
 ### permissions
-1. `chmod -R 604 config/\*`
-1. `chmod -R 604 sql/\*`
-1. `chmod -R 604 .htaccess`
-1. `chmod -R 604 .htpasswd`
-1. `chmod -R 604 phpunit.xml`
+1. `chmod 604 config/\*`
+1. `chmod 604 sql/\*`
+1. `chmod 604 .htaccess`
+1. `chmod 604 .htpasswd`
+1. `chmod 604 phpunit.xml`
 
 ### hooks
 1. cd repo/api/hooksに移動
