@@ -257,6 +257,6 @@ phpunitのテストコード
 basic authのmiddlewareの関係でhttp接続では
 Slim Application Errorが発生。https接続する。
 
-### ローカル環境でBASIC認証後Internal Server Error
+### ローカル環境でBASIC認証後'Internal Server Error'
 dockerを使用している場合、
 .htaccessのパスは/usr/homeではなく/var/www/htmlとなるため注意
