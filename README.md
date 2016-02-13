@@ -54,20 +54,6 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
    `git checkout develop`
 1. `git flow init -d`
 
-### .htaccess
-1. ローカル環境用の.htaccessを作成
-1. `cp .htaccess.sample .htaccess`
-1. `cp .logs/htaccess.sample logs/.htaccess`
-1. `cp .reports/htaccess.sample reports/.htaccess`
-1. 本番用のコードをコメント
-
-### .htpasswd
-変更する場合のみ以下を実行
-もし、stageに追加された場合は`git checkout .htpasswd`で
-元に戻す
-1. `htpassewd -m .htpasswd api`
-1. パスワードを二回入力
-
 ### npm
 1. `npm install`
 1. `npm run build`
@@ -103,6 +89,20 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 ### frisby
 1. `npm run test`
 1. すべてテストをパスすればOK
+
+### .htaccess
+1. ローカル環境用の.htaccessを作成
+1. `cp .htaccess.sample .htaccess`
+1. `cp .logs/htaccess.sample logs/.htaccess`
+1. `cp .reports/htaccess.sample reports/.htaccess`
+1. 本番用のコードをコメント
+
+### .htpasswd
+変更する場合のみ以下を実行
+もし、stageに追加された場合は`git checkout .htpasswd`で
+元に戻す
+1. `htpassewd -m .htpasswd api`
+1. パスワードを二回入力
 
 ### dbext
 1. vagrantでmysqlコンテナを起動
