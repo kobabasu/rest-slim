@@ -44,7 +44,6 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 ```
 mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql/users.create.sql
 ```
-1. http://localhost:8080/api/users/で確認
 
 
 ## git
