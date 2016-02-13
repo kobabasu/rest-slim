@@ -20,26 +20,27 @@ git clone git@github.com-{user}:kobabasu/rest-slim.git api
 
 ## docker
 1. `vagnrat ssh`
-1. mysqlコンテナ起動
+2. mysqlコンテナ起動
 ```
 docker run --net=host --name mysql -p 3306:3306 -e "ROOT_PW=..." -e "DB_NAME=..." -e "DB_USER=..." -e "DB_PASS=..." -d kobabasu/mysql:0.75
 ```
-1. apacheコンテナ起動
+3. apacheコンテナ起動
 ```
 docker run --net=host --name apache -p 80:80 -p 443:443 -v /home/core/share:/var/www/html -d kobabasu/apache:0.24
 ```
-1. smtpコンテナ起動
+4. smtpコンテナ起動
 ```
 docker run --net=host --name smtp -p 1025:1025 -p 1080:1080 -d kobabasu/smtp:0.11
 ```
-1. `exit`
+5. `docker ps -a`で起動しているか確認
+6. `exit`
 
 ## mysql
 1. DB作成
 ```
 mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql/users.create.sql
 ```
-1. table作成
+2. table作成
 ```
 mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql/users.create.sql
 ```
