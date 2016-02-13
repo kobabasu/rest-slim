@@ -58,6 +58,7 @@ git clone git@github.com-{user}:kobabasu/rest-slim.git api
 ### git
 originと整合性が取れない場合があったため、
 先にdevelopに切替。initには-dオプションを付けない
+
 1. `git checkout develop`
 1. `git flow init`
 
@@ -79,6 +80,7 @@ originと整合性が取れない場合があったため、
 変更する場合のみ以下を実行
 もし、stageに追加された場合は`git checkout .htpasswd`で
 元に戻す
+
 1. `htpassewd -m .htpasswd api`
 1. パスワードを二回入力
 
@@ -157,12 +159,14 @@ CPIでの例
 
 ### push
 ローカルで作業
+
 1. `git remote add production ssh://example.com/usr/home/aa999v5xxx/repo/api`
 1. 余計な後処理が面倒なためmaster, developのみでcommit済みであるか確認
 1. `git push production --all`
 
 ### リモートリポジトリ作成 
 再びサーバへ
+
 1. `ssh example.com`
 1. `cd html/`
 1. `git clone /usr/home/aa999x5xxx/repo/api api`
@@ -172,6 +176,7 @@ CPIでの例
 ### lftp
 .gitignoreで除外されているファイルをアップする。
 再度ローカルへ
+
 1. `lftp example.com`
 1. `cd html/api`
 1. `mkdir vendor node_modules`
@@ -185,6 +190,7 @@ CPIでの例
 
 ### .htaccess
 再びサーバへ
+
 1. 本番環境用の.htaccessを作成
 1. `cp .htaccess.sample .htaccess`
 1. `cp .logs/htaccess.sample logs/.htaccess`
@@ -218,6 +224,7 @@ CPIでの例
 
 ### 確認
 httpsでないとエラーがでる
+
 1. https://example.com/api/でBASIC認証が求められなくhelloと表示されるか確認
 1. https://example.com/api/users/taroでBASIC認証を入力し表示されるか確認
 
