@@ -44,6 +44,10 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql ../api/
 mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql ../api/sql/users.create.sql
 ```
 
+
+---
+
+
 ## ローカルレポジトリの作成
 以下を実行後apiへ移動
 
@@ -138,6 +142,10 @@ originと整合性が取れない場合があったため、
 1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
 1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
 
+
+---
+
+
 ## リモートリポジトリの作成
 CPIでの例
 
@@ -211,6 +219,9 @@ CPIでの例
 httpsでないとエラーがでる
 1. https://example.com/api/でBASIC認証が求められなくhelloと表示されるか確認
 1. https://example.com/api/users/taroでBASIC認証を入力し表示されるか確認
+
+
+---
 
 
 ## cURL sample
