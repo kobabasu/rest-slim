@@ -40,11 +40,11 @@ docker run --net=host --name smtp -p 1025:1025 -p 1080:1080 -d kobabasu/smtp:0.1
 ### mysql
 1. DB作成
 ```
-mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql/users.create.sql
+mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql ../api/sql/install.sql
 ```
 2. table作成
 ```
-mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql/users.create.sql
+mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql ../api/sql/users.create.sql
 ```
 
 ## ローカルレポジトリの作成
