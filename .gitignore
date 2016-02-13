@@ -26,3 +26,4 @@ spec/dist/*
 config/production.php
 
 !.gitkeep
+!.htaccess.sample
