@@ -119,17 +119,17 @@ originと整合性が取れない場合があったため、
 1. config内のdevelopment, prodcutionをそれぞれ設定
 1. config内,phpunit.xmlのid,pwを設定
 
-### setup
-1. 一度composer.jsonのautoloadを確認しておく
-1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
-1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
-
 ### permissions
 1. `chmod -R 604 config/\*`
 1. `chmod -R 604 sql/\*`
 1. `chmod -R 604 .htaccess`
 1. `chmod -R 604 .htpasswd`
 1. `chmod -R 604 phpunit.xml`
+
+### setup
+1. 一度composer.jsonのautoloadを確認しておく
+1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
+1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
 
 ## cURL sample
 1. INDEXを表示
