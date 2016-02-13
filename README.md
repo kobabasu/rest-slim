@@ -4,7 +4,7 @@
 apiディレクトリにcoreosディレクトリは含めない
 
 ### vagrant
-1. `hub clone cores/cores-vagrant coreos`
+1. `hub clone coreos/coreos-vagrant coreos`
 1. `cd coreos`
 1. 必要なファイルをリネーム  
    * `mv user-data.sample user-data`
@@ -18,7 +18,7 @@ apiディレクトリにcoreosディレクトリは含めない
 1. `vagrant up`
 
 ### docker
-1. `vagnrat ssh`
+1. `vagrant ssh`
 2. mysqlコンテナ起動
 ```
 docker run --net=host --name mysql -p 3306:3306 -e "ROOT_PW=..." -e "DB_NAME=..." -e "DB_USER=..." -e "DB_PASS=..." -d kobabasu/mysql:0.75
@@ -37,11 +37,11 @@ docker run --net=host --name smtp -p 1025:1025 -p 1080:1080 -d kobabasu/smtp:0.1
 ### mysql
 1. DB作成
 ```
-mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql ../api/sql/install.sql
+mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < ../api/sql/install.sql
 ```
 2. table作成
 ```
-mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql ../api/sql/users.create.sql
+mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < ../api/sql/users.create.sql
 ```
 
 
@@ -81,12 +81,12 @@ originと整合性が取れない場合があったため、
 もし、stageに追加された場合は`git checkout .htpasswd`で
 元に戻す
 
-1. `htpassewd -m .htpasswd api`
+1. `htpasswd -m .htpasswd api`
 1. パスワードを二回入力
 
 ### config
-1. production.php.sampleをprodcution.phpにとしてコピー
-1. config内のdevelopment, prodcutionをそれぞれ設定
+1. production.php.sampleをproduction.phpにとしてコピー
+1. config内のdevelopment, productionをそれぞれ設定
 1. config内,phpunit.xmlのid,pwを設定
 
 ### phpunit
@@ -99,7 +99,7 @@ originと整合性が取れない場合があったため、
 
 ### mailcatcher
 1. まずphpunitを実行
-1. http://localhsot:1080にアクセス
+1. http://localhsot:1080/にアクセス
 1. メールが届いているか確認
 1. Plain Textタブではfrom, toはメールアドレスが表示
    To, Subjectは文字化けせず表示
@@ -198,12 +198,12 @@ CPIでの例
 1. 本番用のコードにする
 
 ### .htpasswd
-1. `htpassewd -m .htpasswd api`
+1. `htpasswd -m .htpasswd api`
 1. パスワードを二回入力
 
 ### config
 1. config/production.phpのBASIC認証の設定を変更
-1. config内のdevelopment, prodcutionをそれぞれ設定
+1. config内のdevelopment, productionをそれぞれ設定
 
 ### permissions
 1. `chmod 604 config/\*`
