@@ -6,18 +6,24 @@ if (DEBUG) {
 }
 
 return array(
+    'auth' => array(
+        // can use arrays as const in php5.6 or upper
+        // e.g. 'basic_auth' => BASIC_AUTH,
+        'basic_auth' => array(
+            BASIC_AUTH_USER => BASIC_AUTH_PASS
+        ),
+
+        'basic_auth_path' => array(
+            '/users'
+        )
+    ),
+
     'settings' => array(
         'displayErrorDetails' => DEBUG,
 
         'debug_mode'  => DEBUG,
         'environment' => ENVIRONMENT_MODE,
         'withJsonEnc' => $withJsonEnc,
-
-        // can use arrays as const in php5.6 or upper
-        // e.g. 'basic_auth' => BASIC_AUTH,
-        'basic_auth' => array(
-            BASIC_AUTH_USER => BASIC_AUTH_PASS
-        ),
 
         'db' => array(
             'host' => DB_HOST,

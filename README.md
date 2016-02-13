@@ -132,6 +132,7 @@ curl -i -X DELETE --user api:api012 -H 'Content-Type:application/json;charset=ut
 1. config内のdevelopment, prodcutionをそれぞれ設定
 1. config内,phpunit.xmlのid,pwを設定 
 1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
+1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
 1. phpunit.php内を設定
 1. phpunitを実行
 1. phpdocを実行
@@ -246,3 +247,7 @@ phpunitのテストコード
 ### 本番環境のみ'Slim Application Error'
 basic authのmiddlewareの関係でhttp接続では
 Slim Application Errorが発生。https接続する。
+
+### ローカル環境でBASIC認証後Internal Server Error
+dockerを使用している場合、
+.htaccessのパスは/usr/homeではなく/var/www/htmlとなるため注意
