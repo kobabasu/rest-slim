@@ -4,29 +4,6 @@
 hub clone kobabasu/rest api
 ```
 
-## git
-1. 必要があればdevelopブランチを使う  
-   `git checkout develop`
-1. `git flow init -d`
-
-## .htaccess
-1. ローカル環境用の.htaccessを作成
-1. `cp .htaccess.sample .htaccess`
-1. `cp .logs/htaccess.sample logs/.htaccess`
-1. `cp .reports/htaccess.sample reports/.htaccess`
-1. 本番用のコードをコメント
-
-## .htpasswd
-1. `htpassewd -m .htpasswd api
-1. パスワードを二回入力
-
-## npm
-1. `npm install`
-1. `npm run build`
-
-## composer
-1. `composer install --no-dev`
-
 ## vagrant
 1. `hub clone cores/cores-vagrant coreos`
 1. `cd coreos`
@@ -67,6 +44,30 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql/users.create.sql
 ```
 1. http://localhost:8080/api/users/で確認
+
+
+## git
+1. 必要があればdevelopブランチを使う  
+   `git checkout develop`
+1. `git flow init -d`
+
+## .htaccess
+1. ローカル環境用の.htaccessを作成
+1. `cp .htaccess.sample .htaccess`
+1. `cp .logs/htaccess.sample logs/.htaccess`
+1. `cp .reports/htaccess.sample reports/.htaccess`
+1. 本番用のコードをコメント
+
+## .htpasswd
+1. `htpassewd -m .htpasswd api
+1. パスワードを二回入力
+
+## npm
+1. `npm install`
+1. `npm run build`
+
+## composer
+1. `composer install --no-dev`
 
 ## phpunit
 1. `phpunit`
