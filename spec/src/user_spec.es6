@@ -8,6 +8,7 @@ frisby.create(
     "正常系 '/users/'で正しくJSONを返すか"
   )
   .get(HOST + MODEL)
+  .auth('api', 'api012')
   .expectStatus(200)
   .expectHeader(
     'Content-Type',
@@ -25,4 +26,17 @@ frisby.create(
       email: String
     }
   ])
+  .toss();
+
+/* GET '/users/' */
+frisby.create(
+    "異常系 '/users/'でBASIC認証なしで401を返すか"
+  )
+  .get(HOST + MODEL)
+  .auth('api', 'api0123')
+  .expectStatus(401)
+  .expectHeader(
+    'Content-Type',
+    'application/json;charset=utf-8'
+  )
   .toss();
