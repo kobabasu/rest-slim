@@ -13,7 +13,11 @@ return array(
         'environment' => ENVIRONMENT_MODE,
         'withJsonEnc' => $withJsonEnc,
 
-        'basic_auth' => BASIC_AUTH,
+        // can use arrays as const in php5.6 or upper
+        // e.g. 'basic_auth' => BASIC_AUTH,
+        'basic_auth' => array(
+            BASIC_AUTH_USER => BASIC_AUTH_PASS
+        ),
 
         'db' => array(
             'host' => DB_HOST,
