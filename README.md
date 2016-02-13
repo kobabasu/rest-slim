@@ -139,6 +139,12 @@ curl -i -X DELETE --user api:api012 -H 'Content-Type:application/json;charset=ut
 1. npm run testを実行
 1. 本番環境ではhttpsでアクセスする
 
+## permissions
+1. `chmod -R 604 config/\*`
+1. `chmod -R 604 sql/\*`
+1. `chmod -R 604 .htaccess`
+1. `chmod -R 604 .htpasswd`
+1. `chmod -R 604 phpunit.xml`
 
 ## files
 |name            |desc                                        |
