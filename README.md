@@ -107,6 +107,26 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 1. :<C-r>0
 1. sqlを実行し結果が表示されればOK
 
+### setup
+1. 一度composer.jsonのautoloadを確認しておく
+1. production.php.sampleをprodcution.phpにとしてコピー
+1. config内のdevelopment, prodcutionをそれぞれ設定
+1. config内,phpunit.xmlのid,pwを設定 
+1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
+1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
+1. phpunit.php内を設定
+1. phpunitを実行
+1. phpdocを実行
+1. npm run testを実行
+1. 本番環境ではhttpsでアクセスする
+
+### permissions
+1. `chmod -R 604 config/\*`
+1. `chmod -R 604 sql/\*`
+1. `chmod -R 604 .htaccess`
+1. `chmod -R 604 .htpasswd`
+1. `chmod -R 604 phpunit.xml`
+
 ## cURL sample
 1. INDEXを表示
 ```
@@ -128,26 +148,6 @@ curl -i -X PUT --user api:api012 -H 'Content-Type:application/json;charset=utf-8
 ```
 curl -i -X DELETE --user api:api012 -H 'Content-Type:application/json;charset=utf-8' http://localhost:8080/api/users/{存在するid}
 ```
-
-## setup
-1. 一度composer.jsonのautoloadを確認しておく
-1. production.php.sampleをprodcution.phpにとしてコピー
-1. config内のdevelopment, prodcutionをそれぞれ設定
-1. config内,phpunit.xmlのid,pwを設定 
-1. .htpasswdとconfig内のBASIC_AUTHが一致しているか確認
-1. 一度src/settings.phpのauthのpathでどこに認証がかかってるか確認
-1. phpunit.php内を設定
-1. phpunitを実行
-1. phpdocを実行
-1. npm run testを実行
-1. 本番環境ではhttpsでアクセスする
-
-## permissions
-1. `chmod -R 604 config/\*`
-1. `chmod -R 604 sql/\*`
-1. `chmod -R 604 .htaccess`
-1. `chmod -R 604 .htpasswd`
-1. `chmod -R 604 phpunit.xml`
 
 ## files
 |name            |desc                                        |
