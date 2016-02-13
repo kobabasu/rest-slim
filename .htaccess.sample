@@ -7,12 +7,12 @@
 #
 # BASIC Auth
 #
-AuthType Basic
-AuthName "enter your ID and password"
+# AuthType Basic
+# AuthName "enter your ID and password"
 # BAISC Auth for CPI
 # AuthUserfile /home/aa120v5xup/html/api/.htpasswd
-AuthUserfile /var/www/html/api/.htpasswd
-Require valid-user
+# AuthUserfile /var/www/html/api/.htpasswd
+# Require valid-user
 
 #
 # HTTP Method

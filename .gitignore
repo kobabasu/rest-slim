@@ -2,7 +2,7 @@
 bower.json.tmp
 bower.json-e
 package.json-e
-npm-debug-log
+npm-debug.log
 .sass-cache
 composer.phar
 composer.lock
@@ -26,3 +26,4 @@ spec/dist/*
 config/production.php
 
 !.gitkeep
+!.htaccess.sample
