@@ -62,7 +62,10 @@ mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < sql api/sql
 1. 本番用のコードをコメント
 
 ### .htpasswd
-1. `htpassewd -m .htpasswd api
+変更する場合のみ以下を実行
+もし、stageに追加された場合は`git checkout .htpasswd`で
+元に戻す
+1. `htpassewd -m .htpasswd api`
 1. パスワードを二回入力
 
 ### npm
