@@ -351,16 +351,20 @@ phpunitのテストコード
 |/routes         |routesが対象のテストコード                  |
 |/bootstrap.php  |テスト専用。phpunit.xmlで利用               |
 
-### trouble shootings
-#### 本番環境のみ'Slim Application Error'
+
+---
+
+
+## trouble shootings
+### 本番環境のみ'Slim Application Error'
 basic authのmiddlewareの関係でhttp接続では
 Slim Application Errorが発生。https接続する。
 
-#### ローカル環境でBASIC認証後'Internal Server Error'
+### ローカル環境でBASIC認証後'Internal Server Error'
 dockerを使用している場合、
 .htaccessのパスは/usr/homeではなく/var/www/htmlとなるため注意
 
-#### ローカル環境のログ確認方法
+### ローカル環境のログ確認方法
 1. `docker inspect --format {{.State.Pid}} apache
 1. `sudo nsenter --target=上記で出てきたid --mount --uts --ipc --net --pid`
 1. 上記でコンテナにログインできるので/var/logなどに移動して確認
