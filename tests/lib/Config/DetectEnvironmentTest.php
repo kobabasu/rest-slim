@@ -57,7 +57,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * SERVER_ADDRと与えられたIPが一致すればtrueを返すか
+     * 正常系 SERVER_ADDRと与えられたIPが一致すればtrueを返すか
      *
      * @covers Lib\Config\DetectEnvironment::__construct()
      * @test testConstruct()
@@ -68,7 +68,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * SERVER_ADDRと与えられたIPが一致すればtrueを返すか
+     * 正常系 SERVER_ADDRと与えられたIPが一致すればtrueを返すか
      *
      * @covers Lib\Config\DetectEnvironment::checkIps()
      * @test testCheckIps()
@@ -83,7 +83,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * SERVER_ADDRが取得出来なかった場合nullを返すか
+     * 異常系例外 SERVER_ADDRが取得出来なかった場合nullを返すか
      *
      * @covers Lib\Config\DetectEnvironment::getServerAddr()
      * @test testGetServerAddr()
@@ -101,7 +101,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * host名がlocalhostの場合nullを返すか
+     * 異常系エラー host名がlocalhostの場合nullを返すか
      *
      * @covers Lib\Config\DetectEnvironment::checkIp()
      * @test testCheckIp() Host
@@ -115,7 +115,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * 正しいIP以外はnullであるか
+     * 異常系エラー 正しいIP以外はnullであるか
      *
      * @covers Lib\Config\DetectEnvironment::checkIp()
      * @test testCheckIp() Ip
@@ -153,7 +153,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * getNameはproductionを返す
+     * 正常系 getNameはproductionを返す
      *
      * @covers Lib\Config\DetectEnvironment::getName()
      * @test testGetName()
