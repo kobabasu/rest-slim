@@ -101,7 +101,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * host名がlocalhost以外はnullであるか
+     * host名がlocalhostの場合nullを返すか
      *
      * @covers Lib\Config\DetectEnvironment::checkIp()
      * @test testCheckIp() Host
@@ -111,7 +111,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
         $addr = 'localhost';
         $res = $this->object->checkIp($addr);
 
-        $this->assertEquals('localhost', $res);
+        $this->assertNull($res);
     }
 
     /**
@@ -129,7 +129,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * productionはtrueか
+     * 正常系 productionはtrueか
      *
      * @covers Lib\Config\DetectEnvironment::evalProduction()
      * @test testEvalProduction()
@@ -141,7 +141,7 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * developmentはfalseか
+     * 正常系 developmentはfalseか
      *
      * @covers Lib\Config\DetectEnvironment::evalDevelopment()
      * @test testEvalDevelopment()
