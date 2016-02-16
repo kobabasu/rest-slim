@@ -68,7 +68,7 @@ class DetectEnvironment
             $res = $this->checkIp($_SERVER['SERVER_ADDR']);
         }
 
-        return $res;
+        return $this->convertIp($res);
     }
 
     /**
@@ -82,7 +82,7 @@ class DetectEnvironment
         $res = null;
 
         if (filter_var($addr, FILTER_VALIDATE_IP)) {
-            $res = $addr;
+            $res = $this->convertIp($addr);
         }
 
         if ($addr == 'localhost') {
