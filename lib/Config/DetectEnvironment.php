@@ -22,6 +22,8 @@ class DetectEnvironment
      */
     public $flag = false;
 
+    private $mode = 'proxie';
+
     /**
      * 与えられた引数をcheckIps()にかけ結果を返す
      *
@@ -128,6 +130,17 @@ class DetectEnvironment
     }
 
     /**
+     * $modeをset
+     *
+     * @param String $mode
+     * @return void
+     */
+    public function setMode($mode)
+    {
+        $this->mode = $mode;
+    }
+
+    /**
      * IPのネットワークIDのみ返す
      *
      * @param String $ip // IPアドレス
@@ -135,9 +148,12 @@ class DetectEnvironment
      */
     private function convertIp($ip)
     {
-        $pattern = '/^([0-9]+\.[0-9]+\.[0-9]+)/';
-        preg_match($pattern, $ip, $match);
+        if ($this->mode == 'proxies') {
+            $pattern = '/^([0-9]+\.[0-9]+\.[0-9]+)/';
+            preg_match($pattern, $ip, $match);
+            $ip = array_shift($match);
+        }
 
-        return $match;
+        return $ip;
     }
 }
