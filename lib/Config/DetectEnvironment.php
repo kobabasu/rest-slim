@@ -133,6 +133,7 @@ class DetectEnvironment
      *
      * @param String $mode
      * @return void
+     * @codeCoverageIgnore
      */
     public function setMode($mode)
     {
@@ -142,7 +143,7 @@ class DetectEnvironment
     /**
      * IPのネットワークIDのみ返す
      *
-     * @param String $ip // IPアドレス
+     * @param String $ip
      * @return String
      */
     private function convertIp($ip)
