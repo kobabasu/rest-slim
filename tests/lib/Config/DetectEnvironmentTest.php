@@ -199,4 +199,24 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('192.168.0.1', $res);
     }
+
+    /**
+     * 正常系 convertIpが正しくIPを返すか
+     *
+     * @covers Lib\Config\DetectEnvironment::convertIp()
+     * @test testNormalConvertIpProxies()
+     */
+    public function testNormalConvertIpProxies()
+    {
+        $ref = new \ReflectionClass($this->object);
+        $method = $ref->getMethod('convertIp');
+        $method->setAccessible(true);
+        $this->object->setMode('proxies');
+        $res = $method->invokeArgs(
+            $this->object,
+            array('192.168.0.1')
+        );
+
+        $this->assertEquals('192.168.0', $res);
+    }
 }
