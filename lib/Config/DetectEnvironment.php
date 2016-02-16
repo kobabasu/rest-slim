@@ -126,4 +126,18 @@ class DetectEnvironment
 
         return $res;
     }
+
+    /**
+     * IPのネットワークIDのみ返す
+     *
+     * @param String $ip // IPアドレス
+     * @return String
+     */
+    private function convertIp($ip)
+    {
+        $pattern = '/^([0-9]+\.[0-9]+\.[0-9]+)/';
+        preg_match($pattern, $ip, $match);
+
+        return $match;
+    }
 }
