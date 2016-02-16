@@ -163,4 +163,21 @@ class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
         $res = $this->object->getName();
         $this->assertEquals($res, 'production');
     }
+
+    /**
+     * 正常系 setModeが正しく$this->modeにセットされるか
+     *
+     * @covers Lib\Config\DetectEnvironment::setMode()
+     * @test testNormalSetMode()
+     */
+    public function testNormalSetMode()
+    {
+        $class = new \ReflectionClass($this->object);
+        $ref = $class->getProperty('mode');
+        $ref->setAccessible(true);
+        $this->object->setMode('anonymous');
+        $res = $ref->getValue($this->object);
+
+        $this->assertEquals('anonymous', $res);
+    }
 }
