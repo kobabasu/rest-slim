@@ -87,14 +87,10 @@ class DetectEnvironment
         $res = null;
 
         if (filter_var($addr, FILTER_VALIDATE_IP)) {
-            $res = $this->convertIp($addr);
-        }
-
-        if ($addr == 'localhost') {
             $res = $addr;
         }
 
-        return $res;
+        return $this->convertIp($res);
     }
 
     /**
