@@ -37,7 +37,7 @@ class DetectEnvironment
      */
     public function __construct($ips)
     {
-        $this->flag = $this->checkIps((Array)$ips);
+        $this->flag = $this->checkIps((array)$ips);
     }
 
     /**
@@ -46,7 +46,7 @@ class DetectEnvironment
      * @param Array $ips
      * @return Boolean
      */
-    public function checkIps(Array $ips)
+    public function checkIps(array $ips)
     {
         $flag = false;
         $serverAddr = $this->getServerAddr();
