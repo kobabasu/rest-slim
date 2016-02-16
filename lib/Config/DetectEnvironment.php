@@ -14,15 +14,18 @@ namespace Lib\Config;
  */
 class DetectEnvironment
 {
+    /** 開発環境の名前 */
     const DEVELOPMENT = 'development';
+
+    /** 本番環境の名前 */
     const PRODUCTION  = 'production';
 
-    /**
-     * productionであればtrue
-     */
+    /** @var Boolean $flag productionであればtrue */
     public $flag = false;
 
+    /** @var String $mode proxiesはIPの3つまでで判断 */
     private $mode = 'proxie';
+
 
     /**
      * 与えられた引数をcheckIps()にかけ結果を返す
