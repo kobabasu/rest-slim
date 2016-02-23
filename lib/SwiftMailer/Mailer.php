@@ -24,7 +24,7 @@ class Mailer
     /** @var String $form 送り主のアドレス */
     private $from;
 
-    /** @var String #name 送り主の名前 */
+    /** @var String $name 送り主の名前 */
     private $name;
 
     /**
