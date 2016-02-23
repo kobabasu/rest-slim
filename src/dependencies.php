@@ -121,21 +121,20 @@ $container['mailer'] = function ($c) {
  */
 $container['image.original'] = function ($c) {
     $original = new Original();
-    $original->setDestination = './';
-    $original->setCompress = 0;
-    $original->setImageType = 'png';
+    $original->setDestination('./');
+    $original->setCompress(100);
+    $original->setImageType('png');
 
     return $original;
 };
 
 $container['image.thumbnail'] = function ($c) {
     $thumbnail = new Thumbnail();
-    $thumbnail->setDestination = './';
-    $thumbnail->setPostfix = '_s';
-    $thumbnail->setCompress = 70;
-    $thumbnail->setWidth = '224';
-    $thumbnail->setHeight = '126';
-    $thumbnail->setImageType = 'jpg';
+    $thumbnail->setDestination('./');
+    $thumbnail->setPostfix('_s');
+    $thumbnail->setCompress(70);
+    $thumbnail->setWidth(200);
+    $thumbnail->setHeight(200);
+    $thumbnail->setImageType('jpg');
 
     return $thumbnail;
-};
