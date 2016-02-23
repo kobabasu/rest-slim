@@ -106,6 +106,8 @@ class Mailer
      * 添付ファイルを設定
      *
      * @param String $path
+     * @param String $contentType
+     * @param String $filename
      * @return void
      */
     public function setAttachment(
