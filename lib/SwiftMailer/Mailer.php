@@ -21,6 +21,15 @@ class Mailer
     /** @var Object #message メッセージオブジェクト */
     private $message;
 
+    /** @var String $form 送り主のアドレス */
+    private $from;
+
+    /** @var String $name 送り主の名前 */
+    private $name;
+
+    /** @var Object $attach 添付画像 */
+    private $attach = null;
+
     /**
      * Swiftオブジェクトを代入
      *
@@ -55,22 +64,68 @@ class Mailer
      * メッセージを返す
      *
      * @param String $subject
-     * @param Array $from
      * @param String $body
      * @return Object
      */
     public function setMessage(
         $subject,
-        $from,
         $body
     ) {
         $this->message = $this->swift->setMessage(
             $subject,
-            $from,
+            array($this->from => $this->name),
             $body
         );
 
         return $this->message;
+    }
+
+    /**
+     * 送り主のアドレスを設定
+     *
+     * @param String $from
+     * @return void
+     */
+    public function setFrom($from)
+    {
+        $this->from = $from;
+    }
+
+    /**
+     * 送り主の名前を設定
+     *
+     * @param String $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * 添付ファイルを設定
+     *
+     * @param String $path
+     * @param String $contentType
+     * @param String $filename
+     * @return void
+     */
+    public function setAttachment(
+        $path,
+        $contentType = 'image/jpeg',
+        $filename = null
+    ) {
+        $attach = \Swift_Attachment::fromPath($path);
+
+        if ($contentType) {
+            $attach->setContentType($contentType);
+        }
+
+        if ($filename) {
+            $attach->setFilename($filename);
+        }
+
+        $this->attach = $attach;
     }
 
     /**
@@ -83,6 +138,11 @@ class Mailer
     {
         $mailer = $this->swift->getMailer();
         $this->message->setTo((Array)$to);
+
+        if ($this->attach) {
+            $this->message->attach($this->attach);
+        }
+
         $res = $mailer->send($this->message);
 
         return $res;

@@ -70,11 +70,67 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             array('name' => '太郎')
         );
 
+        $this->object->setFrom($GLOBALS['MAIL_FROM']);
+        $this->object->setName($GLOBALS['MAIL_NAME']);
         $res = $this->object->setMessage(
             'test subject',
-            array('test@example.com' => 'テスト担当'),
             $body
         );
+
+        $this->assertInternalType('object', $res);
+    }
+
+    /**
+     * 正常系 $formが正しく設定されるか
+     *
+     * @covers Lib\SwiftMailer\Mailer::setFrom()
+     * @test testSetFromNormal()
+     */
+    public function testSetFromNormal()
+    {
+        $class = new \ReflectionClass($this->object);
+        $ref = $class->getProperty('from');
+        $ref->setAccessible(true);
+        $this->object->setFrom('test@example.com');
+        $res = $ref->getValue($this->object);
+
+        $this->assertEquals('test@example.com', $res);
+    }
+
+    /**
+     * 正常系 $nameが正しく設定されるか
+     *
+     * @covers Lib\SwiftMailer\Mailer::setName()
+     * @test testSetNameNormal()
+     */
+    public function testSetNameNormal()
+    {
+        $class = new \ReflectionClass($this->object);
+        $ref = $class->getProperty('name');
+        $ref->setAccessible(true);
+        $this->object->setName('システム自動通知');
+        $res = $ref->getValue($this->object);
+
+        $this->assertEquals('システム自動通知', $res);
+    }
+
+    /**
+     * 正常系 添付ファイルを添付してもメッセージも返すか
+     *
+     * @covers Lib\SwiftMailer\Mailer::setAttachment()
+     * @test testSetAttachmentNormal()
+     */
+    public function testSetAttachmentNormal()
+    {
+        $class = new \ReflectionClass($this->object);
+        $ref = $class->getProperty('attach');
+        $ref->setAccessible(true);
+        $this->object->setAttachment(
+            'tests/imgs/test.jpg',
+            'image/jpeg'
+        );
+        $res = $ref->getValue($this->object);
+
 
         $this->assertInternalType('object', $res);
     }
@@ -92,9 +148,43 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             array('name' => '太郎')
         );
 
+        $this->object->setFrom($GLOBALS['MAIL_FROM']);
+        $this->object->setName($GLOBALS['MAIL_NAME']);
         $this->object->setMessage(
             'タイトル',
-            array('admin@example.com' => 'テスト担当'),
+            $body
+        );
+
+        $res = $this->object->send(
+            'test@example.com'
+        );
+
+        $this->assertEquals(1, $res);
+    }
+
+    /**
+     * 正常系 添付画像を含むメッセージを返すか
+     *
+     * @covers Lib\SwiftMailer\Mailer::send()
+     * @test testSetSendAttachmentNormal()
+     */
+    public function testSendAttachmentNormal()
+    {
+        $body = $this->object->setTemplate(
+            'defaultTest.twig',
+            array('name' => '太郎')
+        );
+
+        $this->object->setAttachment(
+            'tests/imgs/test.jpg',
+            'image/jpeg',
+            'test'
+        );
+
+        $this->object->setFrom($GLOBALS['MAIL_FROM']);
+        $this->object->setName($GLOBALS['MAIL_NAME']);
+        $this->object->setMessage(
+            '添付画像テスト',
             $body
         );
 
