@@ -136,6 +136,11 @@ class Mailer
     {
         $mailer = $this->swift->getMailer();
         $this->message->setTo((Array)$to);
+
+        if ($this->attach) {
+            $this->message->attach($this->attach);
+        }
+
         $res = $mailer->send($this->message);
 
         return $res;
