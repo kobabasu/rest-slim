@@ -61,18 +61,16 @@ class Mailer
      * メッセージを返す
      *
      * @param String $subject
-     * @param Array $from
      * @param String $body
      * @return Object
      */
     public function setMessage(
         $subject,
-        $from,
         $body
     ) {
         $this->message = $this->swift->setMessage(
             $subject,
-            $from,
+            array($this->from => $this->name),
             $body
         );
 
