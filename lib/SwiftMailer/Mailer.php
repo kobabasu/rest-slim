@@ -21,6 +21,12 @@ class Mailer
     /** @var Object #message メッセージオブジェクト */
     private $message;
 
+    /** @var String $form 送り主のアドレス */
+    private $from;
+
+    /** @var String #name 送り主の名前 */
+    private $name;
+
     /**
      * Swiftオブジェクトを代入
      *
@@ -71,6 +77,28 @@ class Mailer
         );
 
         return $this->message;
+    }
+
+    /**
+     * 送り主のアドレスを設定
+     *
+     * @param String $from
+     * @return void
+     */
+    public function setFrom($from)
+    {
+        $this->from = $from;
+    }
+
+    /**
+     * 送り主の名前を設定
+     *
+     * @param String $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**
