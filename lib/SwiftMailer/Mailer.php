@@ -147,4 +147,24 @@ class Mailer
 
         return $res;
     }
+
+    /**
+     * ログを保存する
+     *
+     * @return void
+     */
+    public function saveLog()
+    {
+        $this->swift->saveLog();
+    }
+
+    /**
+     * ログの保存先を返す
+     *
+     * @return String
+     */
+    public function getPath()
+    {
+        return $this->swift->getPath();
+    }
 }

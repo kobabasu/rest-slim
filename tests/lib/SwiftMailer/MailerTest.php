@@ -194,4 +194,63 @@ class MailerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, $res);
     }
+
+    /**
+     * 正常系 ログファイルが生成されるか
+     *
+     * @covers Lib\SwiftMailer\Mailer::saveLog()
+     * @test testSetSaveLog()
+     */
+    public function testSetSaveLog()
+    {
+        $body = $this->object->setTemplate(
+            'defaultTest.twig',
+            array('name' => '太郎')
+        );
+
+        $this->object->setFrom($GLOBALS['MAIL_FROM']);
+        $this->object->setName($GLOBALS['MAIL_NAME']);
+        $this->object->setMessage(
+            'タイトル',
+            $body
+        );
+
+        $this->object->send(
+            'test@example.com'
+        );
+
+        $this->object->saveLog();
+
+        $file = $this->object->getPath();
+        $this->assertFileExists($file);
+    }
+
+    /**
+     * 正常系 ログファイルのパスが取得できるか
+     *
+     * @covers Lib\SwiftMailer\Mailer::getPath()
+     * @test testSetGetPath()
+     */
+    public function testSetGetPath()
+    {
+        $body = $this->object->setTemplate(
+            'defaultTest.twig',
+            array('name' => '太郎')
+        );
+
+        $this->object->setFrom($GLOBALS['MAIL_FROM']);
+        $this->object->setName($GLOBALS['MAIL_NAME']);
+        $this->object->setMessage(
+            'タイトル',
+            $body
+        );
+
+        $this->object->send(
+            'test@example.com'
+        );
+
+        $res = $this->object->getPath();
+
+        $this->assertInternalType('string', $res);
+    }
 }
