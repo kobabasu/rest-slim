@@ -163,6 +163,33 @@ class MailerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * 異常系例外 間違ったメールアドレスでもメッセージを返すか
+     *
+     * @covers Lib\SwiftMailer\Mailer::send()
+     * @test testSetSendExceptionRfc()
+     */
+    public function testSetSendExceptionRfc()
+    {
+        $body = $this->object->setTemplate(
+            'defaultTest.twig',
+            array('name' => '太郎')
+        );
+
+        $this->object->setFrom($GLOBALS['MAIL_FROM']);
+        $this->object->setName($GLOBALS['MAIL_NAME']);
+        $this->object->setMessage(
+            'タイトル',
+            $body
+        );
+
+        $res = $this->object->send(
+            'failure'
+        );
+
+        $this->assertEquals('RFC Compliance Error', $res['1']);
+    }
+
+    /**
      * 正常系 添付画像を含むメッセージを返すか
      *
      * @covers Lib\SwiftMailer\Mailer::send()
