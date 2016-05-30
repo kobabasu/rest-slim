@@ -35,9 +35,9 @@ docker run --net=host --name smtp -p 1025:1025 -p 1080:1080 -d kobabasu/smtp:0.1
 6. `exit`
 
 ### mysql
-1. DB作成
+1. DB, ユーザ作成 rootユーザで行う
 ```
-mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < ../api/sql/install.sql
+mysql -h 0.0.0.0 --port 3306 -uroot -p[password] -D [dbname] < ../api/sql/install.sql
 ```
 2. table作成
 ```

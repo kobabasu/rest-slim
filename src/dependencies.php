@@ -15,6 +15,8 @@ use \Lib\SwiftMailer\Mailer;
 use \Lib\Image\Original;
 use \Lib\Image\Thumbnail;
 
+use \Lib\Common\Validate;
+
 /**
  * DIC configuration
  */
@@ -169,4 +171,16 @@ $container['image.thumbnail'] = function ($c) {
     $thumbnail->setImageType('jpg');
 
     return $thumbnail;
+};
+
+/**
+ * Common
+ *
+ * [ e.g. ]
+ * $addr = 'failure@dj.pdx.ne.jp';
+ * $validate = $this->get('common.validate');
+ * $res = $validate->isKetai($addr); // true
+ */
+$container['common.validate'] = function ($c) {
+    return new Validate();
 };
