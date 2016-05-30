@@ -137,14 +137,47 @@ class Mailer
     public function send($to)
     {
         $mailer = $this->swift->getMailer();
-        $this->message->setTo((Array)$to);
 
         if ($this->attach) {
             $this->message->attach($this->attach);
         }
 
-        $res = $mailer->send($this->message);
+        $i = 1;
+        foreach ((Array)$to as $addr) {
+            try {
+                $this->message->setTo((Array)$addr);
+
+                $res[$i] = $mailer->send(
+                    $this->message,
+                    $failures
+                );
+            } catch (\Swift_RfcComplianceException $e) {
+                $res[$i] = 'RFC Compliance Error';
+            }
+
+            $i++;
+        }
 
         return $res;
+    }
+
+    /**
+     * ログを保存する
+     *
+     * @return void
+     */
+    public function saveLog()
+    {
+        $this->swift->saveLog();
+    }
+
+    /**
+     * ログの保存先を返す
+     *
+     * @return String
+     */
+    public function getPath()
+    {
+        return $this->swift->getPath();
     }
 }

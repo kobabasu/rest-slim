@@ -24,6 +24,8 @@ spec/dist/*
 
 /.htaccess
 config/production.php
+config/environment.php
+config/localhost.php
 
 !.gitkeep
 !.htaccess.sample

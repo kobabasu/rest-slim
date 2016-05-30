@@ -1,3 +1,4 @@
+-- サーバ名を環境にあわせ変更すること
 USE `api`;
 
 DROP TABLE IF EXISTS `users`;
@@ -18,6 +19,7 @@ INSERT INTO `users` (
 (2, 'hanako', 'hanako@example.com');
 
 
+-- サーバ名を環境にあわせ変更すること
 USE `api_test`;
 
 DROP TABLE IF EXISTS `users`;
