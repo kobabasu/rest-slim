@@ -143,6 +143,9 @@ $container['mailer.text'] = function ($c) {
 
 /**
  * Swift Mailer Util/Twig
+ * // cacheを利用する場合には
+ * // lib/SwiftMailer/Util/Twig.phpの
+ * // debugをfalseにする
  *
  * [ e.g. ]
  * $twig = $this->get('mailer.twig');
