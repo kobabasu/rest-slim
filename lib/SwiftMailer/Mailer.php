@@ -103,6 +103,18 @@ class Mailer
     }
 
     /**
+     * htmlメールとして設定
+     * messageオブジェクトにaddPartする
+     *
+     * @param String $body
+     * @return void
+     */
+    public function addPart($body)
+    {
+        $this->message->addPart($body, 'text/html');
+    }
+
+    /**
      * 添付ファイルを設定
      *
      * @param String $path
