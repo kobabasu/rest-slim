@@ -49,4 +49,19 @@ class TwigTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('Hello twig' . PHP_EOL, $res);
     }
+
+    /**
+     * 正常系 第二引数が空でも成立するか
+     *
+     * @covers Lib\SwiftMailer\Util\Twig::render()
+     * @test testRenderEmptyNormal()
+     */
+    public function testRenderEmptyNormal()
+    {
+        $res = $this->object->render(
+            'defaultTest.twig'
+        );
+
+        $this->assertEquals('Hello ' . PHP_EOL, $res);
+    }
 }
