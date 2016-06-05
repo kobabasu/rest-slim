@@ -148,7 +148,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->object->setDestination('../coreos');
         $res = $ref->getValue($this->object);
 
-        $this->assertEquals('../coreos', $res);
+        $this->assertEquals('./', $res);
     }
 
     /**

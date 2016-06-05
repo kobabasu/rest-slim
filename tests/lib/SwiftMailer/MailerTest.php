@@ -49,10 +49,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetMessageNormal()
     {
-        $body = $this->object->setTemplate(
-            'defaultTest.twig',
-            array('name' => '太郎')
-        );
+        $body = 'hello twig';
 
         $this->object->setFrom($GLOBALS['MAIL_FROM']);
         $this->object->setName($GLOBALS['MAIL_NAME']);
@@ -127,10 +124,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSendNormal()
     {
-        $body = $this->object->setTemplate(
-            'defaultTest.twig',
-            array('name' => '太郎')
-        );
+        $body = 'hello twig';
 
         $this->object->setFrom($GLOBALS['MAIL_FROM']);
         $this->object->setName($GLOBALS['MAIL_NAME']);
@@ -154,10 +148,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetSendExceptionRfc()
     {
-        $body = $this->object->setTemplate(
-            'defaultTest.twig',
-            array('name' => '太郎')
-        );
+        $body = 'hello twig';
 
         $this->object->setFrom($GLOBALS['MAIL_FROM']);
         $this->object->setName($GLOBALS['MAIL_NAME']);
@@ -181,10 +172,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSendAttachmentNormal()
     {
-        $body = $this->object->setTemplate(
-            'defaultTest.twig',
-            array('name' => '太郎')
-        );
+        $body = 'hello twig';
 
         $this->object->setAttachment(
             'tests/imgs/test.jpg',
@@ -214,10 +202,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetSaveLog()
     {
-        $body = $this->object->setTemplate(
-            'defaultTest.twig',
-            array('name' => '太郎')
-        );
+        $body = 'hello twig';
 
         $this->object->setFrom($GLOBALS['MAIL_FROM']);
         $this->object->setName($GLOBALS['MAIL_NAME']);
@@ -244,10 +229,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetPath()
     {
-        $body = $this->object->setTemplate(
-            'defaultTest.twig',
-            array('name' => '太郎')
-        );
+        $body = 'hello twig';
 
         $this->object->setFrom($GLOBALS['MAIL_FROM']);
         $this->object->setName($GLOBALS['MAIL_NAME']);
