@@ -42,22 +42,6 @@ class MailerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * 正常系 テンプレートを返すか
-     *
-     * @covers Lib\SwiftMailer\Mailer::setTemplate()
-     * @test testSetTemplateNormal()
-     */
-    public function testSetTemplateNormal()
-    {
-        $res = $this->object->setTemplate(
-            'defaultTest.twig',
-            array('name' => 'twig')
-        );
-
-        $this->assertEquals('Hello twig' . PHP_EOL, $res);
-    }
-
-    /**
      * 正常系 メッセージを返すか
      *
      * @covers Lib\SwiftMailer\Mailer::setMessage()
