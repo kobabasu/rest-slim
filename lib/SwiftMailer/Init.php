@@ -206,17 +206,11 @@ class Init
      */
     public function saveLog()
     {
-        $current = '';
-        if (file_exists($this->path)) {
-            $current .= file_get_contents($this->path);
-        }
-
         $log = $this->logger->dump();
-        $current .= $log;
 
         file_put_contents(
             $this->path,
-            $current,
+            $log,
             FILE_APPEND
         );
     }
