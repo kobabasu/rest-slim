@@ -9,6 +9,9 @@ namespace Lib\SwiftMailer\Util;
 
 class Twig
 {
+    /** @var Object #twig twigオブジェクト */
+    private $twig;
+
     /** Twigのテンプレートディレクトリseparatorはいらない */
     const TEMPLATE_DIR = 'mail';
 
