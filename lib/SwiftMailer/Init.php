@@ -104,6 +104,33 @@ class Init
     }
 
     /**
+     * Swiftのメッセージオブジェクトを返す
+     *
+     * @param String $subject
+     * @param Array $from
+     * @param String $body
+     * @return Object
+     * @codeCoverageIgnore
+     */
+    public function setMessage(
+        $subject,
+        $from,
+        $body
+    ) {
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($from)
+            ->setBody($body);
+
+        $message->setCharset($this->charset);
+        $message->setEncoder(
+            \Swift_Encoding::get7BitEncoding()
+        );
+        
+        return $message;
+    }
+
+    /**
      * Mailerに分割送信機能を追加
      *
      * @param Object $mailer
@@ -192,32 +219,5 @@ class Init
             $current,
             FILE_APPEND
         );
-    }
-
-    /**
-     * Swiftのメッセージオブジェクトを返す
-     *
-     * @param String $subject
-     * @param Array $from
-     * @param String $body
-     * @return Object
-     * @codeCoverageIgnore
-     */
-    public function setMessage(
-        $subject,
-        $from,
-        $body
-    ) {
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subject)
-            ->setFrom($from)
-            ->setBody($body);
-
-        $message->setCharset($this->charset);
-        $message->setEncoder(
-            \Swift_Encoding::get7BitEncoding()
-        );
-        
-        return $message;
     }
 }
