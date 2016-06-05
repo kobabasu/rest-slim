@@ -14,12 +14,6 @@ namespace Lib\SwiftMailer;
  */
 class Init
 {
-    /** Twigのテンプレートディレクトリseparatorはいらない */
-    const TEMPLATE_DIR = 'mail';
-
-    /** Twigのキャッシュディレクトリseparatorはいらない */
-    const CACHE_DIR = 'cache';
-
     /** クラスの保存先 最後にseparatorはいらない */
     const LOG_DIR = 'logs/mail';
 
@@ -110,6 +104,33 @@ class Init
     }
 
     /**
+     * Swiftのメッセージオブジェクトを返す
+     *
+     * @param String $subject
+     * @param Array $from
+     * @param String $body
+     * @return Object
+     * @codeCoverageIgnore
+     */
+    public function setMessage(
+        $subject,
+        $from,
+        $body
+    ) {
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($from)
+            ->setBody($body);
+
+        $message->setCharset($this->charset);
+        $message->setEncoder(
+            \Swift_Encoding::get7BitEncoding()
+        );
+        
+        return $message;
+    }
+
+    /**
      * Mailerに分割送信機能を追加
      *
      * @param Object $mailer
@@ -185,67 +206,12 @@ class Init
      */
     public function saveLog()
     {
-        $current = '';
-        if (file_exists($this->path)) {
-            $current .= file_get_contents($this->path);
-        }
-
         $log = $this->logger->dump();
-        $current .= $log;
 
         file_put_contents(
             $this->path,
-            $current,
+            $log,
             FILE_APPEND
         );
-    }
-
-    /**
-     * Twigのテンプレートを反映して返す
-     *
-     * @param String $template // テンプレートファイル名
-     * @param Array $data // テンプレート内ファイルの変数
-     * @return void
-     * @codeCoverageIgnore
-     */
-    public function setTemplate($template, $data)
-    {
-        $dir = self::TEMPLATE_DIR;
-        $loader = new \Twig_Loader_Filesystem($dir);
-        $this->twig = new \Twig_Environment($loader, array(
-            'cache' => self::CACHE_DIR
-        ));
-
-        return $this->twig->render(
-            $template,
-            $data
-        );
-    }
-
-    /**
-     * Swiftのメッセージオブジェクトを返す
-     *
-     * @param String $subject
-     * @param Array $from
-     * @param String $body
-     * @return Object
-     * @codeCoverageIgnore
-     */
-    public function setMessage(
-        $subject,
-        $from,
-        $body
-    ) {
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subject)
-            ->setFrom($from)
-            ->setBody($body);
-
-        $message->setCharset($this->charset);
-        $message->setEncoder(
-            \Swift_Encoding::get7BitEncoding()
-        );
-        
-        return $message;
     }
 }
