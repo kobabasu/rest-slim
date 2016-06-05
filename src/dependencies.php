@@ -156,7 +156,7 @@ $container['mailer.text'] = function ($c) {
  */
 $container['mailer.twig'] = function ($c) {
     return new Twig();
-}
+};
 
 
 /**
