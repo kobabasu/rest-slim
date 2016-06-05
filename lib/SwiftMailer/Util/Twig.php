@@ -32,7 +32,7 @@ class Twig
         $dir = self::TEMPLATE_DIR;
         $loader = new \Twig_Loader_Filesystem($dir);
         $this->twig = new \Twig_Environment($loader, array(
-            'debug' => DEBUG,
+            'debug' => self::DEBUG,
             'cache' => self::CACHE_DIR
         ));
 
