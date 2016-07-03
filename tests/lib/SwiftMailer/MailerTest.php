@@ -136,7 +136,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             'test@example.com'
         );
 
-        $this->assertEquals(1, $res['1']['result']);
+        $this->assertEquals(1, $res);
     }
 
     /**
@@ -162,7 +162,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             'RFC Compliance Error',
-            $res['1']['result']
+            $res
         );
     }
 
@@ -193,7 +193,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             'test@example.com'
         );
 
-        $this->assertEquals(1, $res['1']['result']);
+        $this->assertEquals(1, $res);
     }
 
     /**
