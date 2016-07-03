@@ -23,6 +23,9 @@ class Init
     /** メール分割送信の間隔 */
     const INTERVAL_TIME = 30;
 
+    /** リターンメール内で宛先元をヘッダに含める */
+    const X_ORIGINAL_TO = true;
+
     /** @var String $host ホスト名 */
     private $host;
 
@@ -35,6 +38,9 @@ class Init
     /** @var String $pass パスワード */
     private $pass;
 
+    /** @var String $pass リターンメール用アドレス */
+    private $fail;
+
     /** @var String $charset 文字コード */
     private $charset;
 
@@ -43,6 +49,9 @@ class Init
 
     /** @var Object $logger ログ機能のオブジェクト */
     private $logger;
+
+    /** @var Object $message Swift Message Object */
+    private $message;
 
     /**
      * Swift初期化
