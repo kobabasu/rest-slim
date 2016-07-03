@@ -69,12 +69,14 @@ class Init
         $port,
         $user,
         $pass,
+        $fail = null,
         $charset = 'iso-2022-jp'
     ) {
         $this->host = $host;
         $this->port = $port;
         $this->user = $user;
         $this->pass = $pass;
+        $this->fail = $fail;
         $this->charset = $charset;
         $this->setPath();
 
@@ -135,6 +137,11 @@ class Init
         $message->setEncoder(
             \Swift_Encoding::get7BitEncoding()
         );
+
+        $this->message = $message;
+
+        $this->setReturnPath();
+        $this->addTextHeader('X-Original-To');
         
         return $message;
     }
@@ -222,5 +229,37 @@ class Init
             $log,
             FILE_APPEND
         );
+    }
+
+    /**
+     * リターンメール用のアドレスを設定
+     * もし、configで空であればなにもしない
+     *
+     * @return void
+     */
+    private function setReturnPath()
+    {
+        if (!empty($this->fail)) {
+            $this->message->setReturnPath(
+                $this->fail
+            );
+        }
+    }
+
+    /**
+     * テキストのカスタムヘッダを追加
+     * (テキストタイプのヘッダのみ)
+     * mailbox, date, key-valueタイプはマニュアル参照
+     * もし、X_ORIGINAL_TOがfalseであればなにもしない
+     *
+     * @param String $field
+     * @return void
+     */
+    private function addTextHeader($field)
+    {
+        if (self::X_ORIGINAL_TO) {
+            $header = $this->message->getHeaders();
+            $header->addTextHeader($field, '');
+        }
     }
 }
