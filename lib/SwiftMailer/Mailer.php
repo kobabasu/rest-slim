@@ -124,6 +124,22 @@ class Mailer
     }
 
     /**
+     * X-Original-Toを設定
+     * (リターンメールでオリジナルの宛先特定用)
+     *
+     * @param String $to
+     * @return void
+     */
+    public function setXOriginalTo($to)
+    {
+        $headers = $this->message->getHeaders();
+        if ($headers->has('X-Original-To')) {
+            $field = $headers->get('X-Original-To');
+            $field->setValue($to);
+        }
+    }
+
+    /**
      * 実際に送る
      *
      * @param Array $to
@@ -140,6 +156,7 @@ class Mailer
         foreach ((Array)$to as $addr) {
             try {
                 $this->message->setTo((Array)$addr);
+                $this->setXOriginalTo($addr);
 
                 $res[$i] = $mailer->send(
                     $this->message,

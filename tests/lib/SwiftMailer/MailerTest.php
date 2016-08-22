@@ -112,7 +112,6 @@ class MailerTest extends \PHPUnit_Framework_TestCase
         );
         $res = $ref->getValue($this->object);
 
-
         $this->assertInternalType('object', $res);
     }
 
@@ -137,7 +136,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             'test@example.com'
         );
 
-        $this->assertEquals(1, $res['1']);
+        $this->assertEquals(1, $res);
     }
 
     /**
@@ -161,7 +160,10 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             'failure'
         );
 
-        $this->assertEquals('RFC Compliance Error', $res['1']);
+        $this->assertEquals(
+            'RFC Compliance Error',
+            $res
+        );
     }
 
     /**
@@ -191,7 +193,31 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             'test@example.com'
         );
 
-        $this->assertEquals(1, $res['1']);
+        $this->assertEquals(1, $res);
+    }
+
+    /**
+     * 正常系 X-Original-Toが設定されるか
+     *
+     * @covers Lib\SwiftMailer\Mailer::setXOriginalTo()
+     * @test testSetXOriginalTo()
+     */
+    public function testSetXOriginalTo()
+    {
+        $body = 'hello test';
+
+        $this->object->setFrom($GLOBALS['MAIL_FROM']);
+        $this->object->setName($GLOBALS['MAIL_NAME']);
+        $this->object->setMessage(
+            'X-Original-Toテスト',
+            $body
+        );
+
+        $to = array(1 => 'test@example.com');
+        $this->object->setXOriginalTo($to[1]);
+        $res = $this->object->send($to);
+
+        $this->assertEquals(1, $res['1']['result']);
     }
 
     /**

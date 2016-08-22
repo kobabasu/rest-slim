@@ -131,7 +131,8 @@ $container['mailer.text'] = function ($c) {
         $settings['host'],
         $settings['port'],
         $settings['user'],
-        $settings['pass']
+        $settings['pass'],
+        $settings['fail']
     );
 
     $mailer = new Mailer($transport);
@@ -156,7 +157,7 @@ $container['mailer.text'] = function ($c) {
  */
 $container['mailer.twig'] = function ($c) {
     return new Twig();
-}
+};
 
 
 /**
