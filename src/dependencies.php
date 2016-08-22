@@ -131,7 +131,8 @@ $container['mailer.text'] = function ($c) {
         $settings['host'],
         $settings['port'],
         $settings['user'],
-        $settings['pass']
+        $settings['pass'],
+        $settings['fail']
     );
 
     $mailer = new Mailer($transport);

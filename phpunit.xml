@@ -20,6 +20,8 @@
     <var name="MAIL_FROM" value="info@example.com" />
     <var name="MAIL_NAME" value="System Notification" />
     <var name="MAIL_ADDR" value="admin@example.com" />
+
+    <var name="MAIL_FAIL" value="info@example.com" />
   </php>
 
   <testsuites>
