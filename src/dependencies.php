@@ -17,6 +17,7 @@ use \Lib\Image\Original;
 use \Lib\Image\Thumbnail;
 
 use \Lib\Common\Validate;
+use \Lib\Common\Csv;
 
 /**
  * DIC configuration
@@ -202,4 +203,26 @@ $container['image.thumbnail'] = function ($c) {
  */
 $container['common.validate'] = function ($c) {
     return new Validate();
+};
+
+/**
+ * Common.Csv
+ *
+ * [ e.g. ]
+ * $csv = $this->get('common.csv');
+ * $rows = array(array('body1', 'body2'));
+ * $csv->body($rows);
+ * $csv->save('filename');
+ */
+$container['common.csv'] = function ($c) {
+    $headers = array(
+        '個人ID',
+        'メールアドレス',
+        '名前(姓)',
+        '名前(名)',
+    );
+
+    $csv = new Csv($headers);
+    $csv->setPath('logs/mail/');
+    return $csv;
 };
