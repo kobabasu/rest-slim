@@ -36,6 +36,15 @@
 # Require valid-user
 
 #
+# NO CACHE
+#
+# <Files ~ "\.(html|php|css|js|jpe?g|gif|png)$">
+#   Header set Pragma no-cache
+#   Header set Cache-Control "no-cache, no-store, must-revalidate"
+#   Header set Expires 0
+# </Files>
+
+#
 # setting for Slim
 #
 <ifModule mod_rewrite.c>
