@@ -22,7 +22,10 @@ docs/*
 spec/js/*
 spec/dist/*
 
-/.htaccess
+.htaccess
+.htpasswd
+.htdigest
+
 config/production.php
 config/development.php
 config/localhost.php

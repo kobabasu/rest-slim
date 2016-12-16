@@ -14,7 +14,7 @@ $c = $app->getContainer();
  */
 $app->add(new HttpBasicAuthentication([
     'path' => $c->get('auth')['basic_auth_path'],
-    'secure' => true,
+    'secure' => false,
     'relaxed' => array('localhost', '127.0.0,1'),
     'users' => $c->get('auth')['basic_auth']
 ]));
