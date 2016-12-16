@@ -5,22 +5,42 @@
 # suPHP_ConfigPath /usr/home/aa120v5xup/html/api/
 
 #
+# deny all except localhost
+#
+# Satisfy Any
+# Order allow,deny
+# Allow from 127.0.0.1
+
+#
 # BASIC Auth
 #
 # AuthType Basic
-# AuthName "enter your ID and password"
-# BAISC Auth for CPI
+# AuthName "API"
+# # BASIC Auth for CPI
 # AuthUserfile /home/aa120v5xup/html/api/.htpasswd
+# # BASIC Auth for localhost
 # AuthUserfile /var/www/html/api/.htpasswd
 # Require valid-user
 
 #
+# DIGEST Auth
+#
+# AuthType Digest
+# AuthName "realm_cal"
+# # DIGEST Auth for CPI
+# AuthUserfile /home/aa120v5xup/html/api/.htdigest
+# # DIGEST Auth for localhost
+# AuthUserfile /var/www/html/api/.htdigest
+# Require valid-user
+
+
+#
 # HTTP Method
 #
-<Limit GET POST PUT DELETE>
-  Order deny,allow
-  Allow from localhost
-</Limit>
+# <Limit GET POST PUT DELETE>
+#   Order deny,allow
+#   Allow from localhost
+# </Limit>
 
 #
 # setting for Slim
