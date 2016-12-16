@@ -17,7 +17,7 @@
 # BASIC Auth
 #
 # AuthType Basic
-# AuthName "cal"
+# AuthName "API"
 # BAISC Auth for CPI
 # AuthUserfile /home/aa120v5xup/html/api/.htpasswd
 # BAISC Auth for localhost

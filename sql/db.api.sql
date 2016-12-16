@@ -17,6 +17,11 @@ DBSetOption profile=api_test
 SHOW databases;
 SHOW tables;
 
+-- foreignkeyでエラーが起こる場合は
+-- rootでログインしなおし、'SHOW ENGINE INNODB STATUS\G'で確認
+-- 'pager less'でlessを使いながら確認
+-- sarverでforeignkeyまわりでsqlが止まる場合は、dumpしてからインポート
+
 -- users テーブル確認 /*{{{*/
 SELECT * FROM `users`;
 /*}}}*/

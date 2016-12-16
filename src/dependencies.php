@@ -17,6 +17,10 @@ use \Lib\Image\Original;
 use \Lib\Image\Thumbnail;
 
 use \Lib\Common\Validate;
+use \Lib\Common\Csv;
+
+use \Lib\Pop3\Inbox;
+use \Lib\Pop3\Mail;
 
 /**
  * DIC configuration
@@ -161,6 +165,47 @@ $container['mailer.twig'] = function ($c) {
 
 
 /**
+ * POP3
+ * // クラスではなくimap_open関数でPOP3を覗く
+ * // mailboxに入っているメールアドレスはすべて
+ * // returned mail扱い
+ * // swift mailerでreturn-pathを指定すること
+ *
+ * [ e.g. ]
+ * $returns = $this->get('pop3.returns');
+ */
+$container['pop3.returns'] = function ($c) {
+    $settings = $c->get('settings')['pop3'];
+
+    $inbox = new Inbox(
+        $settings['host'],
+        $settings['user'],
+        $settings['pass']
+    );
+
+    $ids = $inbox->getIds();
+    $mail = new Mail($inbox->get());
+    $returns = array();
+    $i = 0;
+
+    if (!empty($ids)) {
+        foreach ($ids as $id) {
+            $returns[] = $mail->getCustomHeader(
+                $id,
+                'X-Original-To'
+            );
+            // $mail->del($id);
+            $i++;
+        }
+    }
+
+    // $inbox->expunge();
+    $inbox->close();
+    return $returns;
+};
+
+
+/**
  * Image
  *
  * [ e.g. ]
@@ -202,4 +247,26 @@ $container['image.thumbnail'] = function ($c) {
  */
 $container['common.validate'] = function ($c) {
     return new Validate();
+};
+
+/**
+ * Common.Csv
+ *
+ * [ e.g. ]
+ * $csv = $this->get('common.csv');
+ * $rows = array(array('body1', 'body2'));
+ * $csv->body($rows);
+ * $csv->save('filename');
+ */
+$container['common.csv'] = function ($c) {
+    $headers = array(
+        '個人ID',
+        'メールアドレス',
+        '名前(姓)',
+        '名前(名)',
+    );
+
+    $csv = new Csv($headers);
+    $csv->setPath('logs/mail/');
+    return $csv;
 };
