@@ -1,13 +1,22 @@
 #
 # specific version for CPI
 #
-# for ACE01 2011
-# AddHandler x-httpd-php559 .php
-# suPHP_ConfigPath /usr/home/aa120v5xup/html/api/
-#
 # for ACE01 2015
 # Options +SymLinksIfOwnerMatch
 # RewriteEngine on
+# if you need php.ini...
+# AddHandler x-httpd-php559 .php
+# suPHP_ConfigPath /usr/home/aa120v5xup/html/api/
+#
+# for ACE01 2011
+# AddHandler x-httpd-php559 .php
+# suPHP_ConfigPath /usr/home/aa120v5xup/html/api/
+
+#
+# for WAF (Site Guard Lite)
+# <IfModule siteguard_module>
+# SiteGuard_User_ExcludeSig signature1,signature2 
+# </IfModule>
 
 #
 # access control with HTTP Method
