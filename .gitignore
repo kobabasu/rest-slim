@@ -25,6 +25,7 @@ spec/dist/*
 .htaccess
 .htpasswd
 .htdigest
+php.ini
 
 config/production.php
 config/development.php
