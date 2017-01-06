@@ -3,8 +3,9 @@ const ENVIRONMENT_MODE = 'production';
 const DEBUG_DEFAULT    = false;
 
 // can use array as const in php5.6 or upper
-const BASIC_AUTH_USER  = 'api';
-const BASIC_AUTH_PASS  = 'api012';
+const ENABLE_BASIC_AUTH  = false;
+const BASIC_AUTH_USER    = 'api';
+const BASIC_AUTH_PASS    = 'api012';
 
 /*
  * Database
