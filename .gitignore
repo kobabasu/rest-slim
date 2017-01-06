@@ -27,6 +27,7 @@ spec/dist/*
 .htdigest
 php.ini
 
+config/ips.php
 config/production.php
 config/development.php
 config/localhost.php

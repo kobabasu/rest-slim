@@ -9,10 +9,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 /**
  * server environment
  */
-$production_server_ips = array(
-    //'10.0.2.15', // local
-    '150.60.6.11'
-);
+$file = __DIR__ . '/config/ips';
+$ext = (is_file($file . '.php')) ? '.php' : '.php.sample';
+require($file . $ext);
+$production_server_ips = $ips;
 
 $env = new DetectEnvironment($production_server_ips);
 // $env->setMode('proxies');
