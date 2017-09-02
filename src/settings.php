@@ -7,6 +7,8 @@ if (DEBUG) {
 
 return array(
     'auth' => array(
+        'enable_basic_auth' => ENABLE_BASIC_AUTH,
+
         // can use arrays as const in php5.6 or upper
         // e.g. 'basic_auth' => BASIC_AUTH,
         'basic_auth' => array(
