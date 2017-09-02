@@ -50,6 +50,13 @@
 # Require valid-user
 
 #
+# CACHE
+#
+# <Files ~ ".(gif|jpe?g|png|ico|js|css|eot|ttf|woff|svg)$"> 
+# Header set Cache-Control "max-age=604800" 
+# </Files> 
+
+#
 # NO CACHE
 #
 # <Files ~ "\.(html|php|css|js|jpe?g|gif|png)$">
