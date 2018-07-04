@@ -5,11 +5,11 @@
 # Options +SymLinksIfOwnerMatch
 # RewriteEngine on
 # if you need php.ini...
-# AddHandler x-httpd-php559 .php
+# AddHandler x-httpd-php71 .php
 # suPHP_ConfigPath /usr/home/aa120v5xup/html/api/php.ini
 #
 # for ACE01 2011
-# AddHandler x-httpd-php559 .php
+# AddHandler x-httpd-php71 .php
 # suPHP_ConfigPath /usr/home/aa120v5xup/html/api/php.ini
 
 #
