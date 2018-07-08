@@ -7,12 +7,14 @@
 
 namespace Lib\Common;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Validateクラス用のテストファイル
  *
  * @package Common
  */
-class CsvTest extends \PHPUnit_Framework_TestCase
+class CsvTest extends TestCase
 {
     /** @var Object $object 対象クラス */
     protected $object;

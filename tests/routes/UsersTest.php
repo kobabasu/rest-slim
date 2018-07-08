@@ -18,7 +18,7 @@ class UsersTest extends AppMock
     protected $path = '/users/';
 
     /** @var String $filename 対象ファイル */
-    protected $filename = 'routes/users.php';
+    protected $filename = 'slimphp/routes/users.php';
 
     /**
      * 正常系 '/users/taro'のgetがIDが1のJSONを返すか

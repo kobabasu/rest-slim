@@ -7,12 +7,14 @@
 
 namespace Lib\Sample;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Lib\Sample\Serviceのテスト
  *
  * @package Sample
  */
-class ServiceTest extends \PHPUnit_Framework_TestCase
+class ServiceTest extends TestCase
 {
     /** @var Object $object 対象クラス */
     protected $object;

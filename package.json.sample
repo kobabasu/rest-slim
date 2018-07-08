@@ -23,9 +23,11 @@
   "dependencies": {
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "babel-preset-es2015": "*",
-    "frisby": "*"
+    "babel-core": "*",
+    "babel-plugin-istanbul": "*",
+    "babel-preset-env": "*",
+    "frisby": "*",
+    "gulp": "gulpjs/gulp#4.0"
   },
 
   "browser": {

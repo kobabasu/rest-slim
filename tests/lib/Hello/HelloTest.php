@@ -7,12 +7,14 @@
 
 namespace Lib\Hello;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Helloクラス用のテストファイル
  *
  * @package Hello
  */
-class HelloTest extends \PHPUnit_Framework_TestCase
+class HelloTest extends TestCase
 {
     /** @var Object $object 対象クラス */
     protected $object;

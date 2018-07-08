@@ -7,12 +7,14 @@
 
 namespace Lib\Config;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Helloクラス用のテストファイル
  *
  * @package Config
  */
-class DetectEnvironmentTest extends \PHPUnit_Framework_TestCase
+class DetectEnvironmentTest extends TestCase
 {
     /** @var Object $object 対象クラス */
     protected $object;

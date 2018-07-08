@@ -5,6 +5,13 @@ if (DEBUG) {
     $withJsonEnc = 0;
 }
 
+$dir = dirname(__DIR__);
+if (file_exists(dirname($dir) . '/slimphp')) {
+    define('CONTENT_DIR_PATH', dirname($dir) . '/slimphp');
+} else {
+    define('CONTENT_DIR_PATH', $dir . '/slimphp');
+}
+
 return array(
     'auth' => array(
         'enable_basic_auth' => ENABLE_BASIC_AUTH,
@@ -52,6 +59,10 @@ return array(
         'logger' => array(
             'name' => 'slim-app',
             'path' => __DIR__ . '/../logs/slim/app.log'
+        ),
+
+        'content_dir' => array(
+            'path' => CONTENT_DIR_PATH
         )
     )
 );

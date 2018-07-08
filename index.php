@@ -9,10 +9,9 @@ require_once(__DIR__ . '/vendor/autoload.php');
 /**
  * server environment
  */
-$file = __DIR__ . '/config/ips';
+$file = __DIR__ .'/config/ips';
 $ext = (is_file($file . '.php')) ? '.php' : '.php.sample';
-require($file . $ext);
-$production_server_ips = $ips;
+$production_server_ips = require($file . $ext);
 
 $env = new DetectEnvironment($production_server_ips);
 // $env->setMode('proxies');

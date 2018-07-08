@@ -18,7 +18,7 @@ class IndexTest extends AppMock
     protected $path = '/';
 
     /** @var String $filename 対象ファイル */
-    protected $filename = 'routes/index.php';
+    protected $filename = 'slimphp/routes/index.php';
 
     /**
      * 正常系 '/'のgetがHelloと返すか

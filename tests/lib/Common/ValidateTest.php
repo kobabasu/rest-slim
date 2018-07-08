@@ -7,12 +7,14 @@
 
 namespace Lib\Common;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Validateクラス用のテストファイル
  *
  * @package Common
  */
-class ValidateTest extends \PHPUnit_Framework_TestCase
+class ValidateTest extends TestCase
 {
     /** @var Object $object 対象クラス */
     protected $object;

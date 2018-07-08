@@ -7,12 +7,14 @@
 
 namespace Lib\SwiftMailer\Util;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Initクラス用のテストファイル
  *
  * @package SwiftMailer
  */
-class TwigTest extends \PHPUnit_Framework_TestCase
+class TwigTest extends TestCase
 {
     /** @var Object $object 対象クラス */
     protected $object;
