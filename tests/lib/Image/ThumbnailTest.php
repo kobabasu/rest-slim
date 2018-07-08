@@ -7,12 +7,14 @@
 
 namespace Lib\Image;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Thumbnailクラス用のテストファイル
  *
  * @package Image
  */
-class ThumbnailTest extends \PHPUnit_Framework_TestCase
+class ThumbnailTest extends TestCase
 {
     /**
      * setUp method

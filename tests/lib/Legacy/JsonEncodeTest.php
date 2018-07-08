@@ -7,12 +7,14 @@
 
 namespace Lib\Legacy;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Helloクラス用のテストファイル
  *
  * @package Legacy
  */
-class JsonEncodeTest extends \PHPUnit_Framework_TestCase
+class JsonEncodeTest extends TestCase
 {
     /** @var Object $object 対象クラス */
     protected $object;

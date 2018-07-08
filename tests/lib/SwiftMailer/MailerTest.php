@@ -7,12 +7,14 @@
 
 namespace Lib\SwiftMailer;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Mailerクラス用のテストファイル
  *
  * @package SwiftMailer
  */
-class MailerTest extends \PHPUnit_Framework_TestCase
+class MailerTest extends TestCase
 {
     /** @var Object $object 対象クラス */
     protected $object;

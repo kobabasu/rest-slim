@@ -7,12 +7,14 @@
 
 namespace Lib\Db;
 
+use \PHPUnit\DbUnit\TestCase;
+
 /**
  * Dbクラス用のテストファイル
  *
  * @package Db
  */
-class DbTest extends \PHPUnit_Extensions_Database_TestCase
+class DbTest extends TestCase
 {
     /** @var Object $pdo PDOオブジェクト */
     protected $pdo;
@@ -61,6 +63,7 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
      *
      * @return void
      */
+    /*
     protected function setUp()
     {
         parent::setUp();
@@ -69,13 +72,16 @@ class DbTest extends \PHPUnit_Extensions_Database_TestCase
 
         $this->object = $this->getObject();
     }
+     */
 
     /**
      * @ignore
      */
+    /*
     protected function tearDown()
     {
     }
+     */
 
     /**
      * DBUnit拡張でDBのモックを作成

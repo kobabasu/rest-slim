@@ -7,12 +7,14 @@
 
 namespace Lib\Db;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Connectクラス用のテストファイル
  *
  * @package Db
  */
-class ConnectTest extends \PHPUnit_Framework_TestCase
+class ConnectTest extends TestCase
 {
     /** @var Object $object 対象クラス */
     protected $object;

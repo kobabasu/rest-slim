@@ -7,12 +7,14 @@
 
 namespace Lib\Image;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Originalクラス用のテストファイル
  *
  * @package Image
  */
-class OriginalTest extends \PHPUnit_Framework_TestCase
+class OriginalTest extends TestCase
 {
     /**
      * setUp method

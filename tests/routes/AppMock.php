@@ -27,12 +27,14 @@ use \Lib\SwiftMailer\Mailer;
 use \Lib\Image\Original;
 use \Lib\Image\Thumbnail;
 
+use \PHPUnit\DbUnit\TestCase;
+
 /**
  * Slimの拡張
  *
  * @package Routes
  */
-class AppMock extends \PHPUnit_Extensions_Database_TestCase
+class AppMock extends TestCase
 {
     /** @var Object $pdo PDOオブジェクト */
     protected $pdo = null;
@@ -94,6 +96,7 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
      *
      * @return void
      */
+    /*
     protected function setUp()
     {
         parent::setUp();
@@ -102,13 +105,16 @@ class AppMock extends \PHPUnit_Extensions_Database_TestCase
 
         $this->body = new RequestBody();
     }
+     */
 
     /**
      * @ignore
      */
+    /*
     protected function tearDown()
     {
     }
+     */
 
     /**
      * SlimアプリケーションのMockを作成
