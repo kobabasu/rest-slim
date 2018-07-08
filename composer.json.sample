@@ -19,8 +19,8 @@
   },
 
   "require-dev": {
-    "phpunit/phpunit": "5.x",
-    "phpunit/phpunit-skeleton-generator": "*"
+    "phpunit/phpunit": "*",
+    "phpunit/dbunit": "*"
   },
 
   "scripts": {
