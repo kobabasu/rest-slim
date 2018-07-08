@@ -1,4 +1,20 @@
+# common
 .DS_Store
+node_modules/
+vendor/
+package-lock.json
+
+# config
+.htaccess
+.htpasswd
+.htdigest
+php.ini
+config/ips.php
+config/production.php
+config/development.php
+config/localhost.php
+
+# build files
 bower.json.tmp
 bower.json-e
 package.json-e
@@ -7,30 +23,23 @@ npm-debug.log
 composer.phar
 composer.lock
 memory
-
-node_modules
-vendor
-cache
 logs
 reports
 
+# tests
 js/*
 dist/*
 css/*
 docs/*
-
 spec/js/*
 spec/dist/*
 
-.htaccess
-.htpasswd
-.htdigest
-php.ini
+# for CPI
+cgi-bin/
+sys-common/
 
-config/ips.php
-config/production.php
-config/development.php
-config/localhost.php
-
+# gitkeep
 !.gitkeep
+
+# .htaccess
 !.htaccess.sample
