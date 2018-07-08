@@ -16,7 +16,7 @@
 
   <files>
     <directory>./lib</directory>
-    <directory>./routes</directory>
+    <directory>./slimphp/routes</directory>
     <directory>./tests/lib</directory>
     <directory>./tests/routes</directory>
   </files>

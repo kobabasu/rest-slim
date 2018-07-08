@@ -34,7 +34,7 @@
   <filter>
     <whitelist addUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">./lib</directory>
-      <directory suffix=".php">./routes</directory>
+      <directory suffix=".php">./slimphp/routes</directory>
       <exclude>
         <directory suffix="Interface.php">./</directory>
         <directory suffix="Skelton.php">./</directory>
