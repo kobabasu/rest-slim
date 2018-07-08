@@ -9,14 +9,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 /**
  * server environment
  */
-$file = __DIR__ . '/config/ips';
+$file = CONTENT_DIR_PATH . '/config/ips';
 $ext = (is_file($file . '.php')) ? '.php' : '.php.sample';
 require($file . $ext);
 $production_server_ips = $ips;
 
 $env = new DetectEnvironment($production_server_ips);
 // $env->setMode('proxies');
-$file = __DIR__ . '/config/' . $env->getName();
+$file = CONTENT_DIR_PATH . '/config/' . $env->getName();
 $ext = (is_file($file . '.php')) ? '.php' : '.php.sample';
 require($file . $ext);
 

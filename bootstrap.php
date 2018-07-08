@@ -13,8 +13,8 @@ require __DIR__ . '/src/dependencies.php';
 require __DIR__ . '/src/middleware.php';
 require __DIR__ . '/src/app.php';
 
-// require ./routes
-$routeFiles = (array) glob('./routes/*.php');
+// require ../slimphp/routes
+$routeFiles = (array) glob(CONTENT_DIR_PATH . '/routes/*.php');
 foreach ($routeFiles as $routeFile) {
     require $routeFile;
 }
