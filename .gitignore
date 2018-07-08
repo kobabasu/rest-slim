@@ -5,6 +5,7 @@ vendor/
 package-lock.json
 
 # config
+composer.json
 package.json
 bower.json
 gulp/dir.es6
