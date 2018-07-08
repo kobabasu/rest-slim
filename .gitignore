@@ -5,6 +5,9 @@ vendor/
 package-lock.json
 
 # config
+package.json
+bower.json
+gulp/dir.es6
 .htaccess
 .htpasswd
 .htdigest
@@ -13,6 +16,7 @@ config/ips.php
 config/production.php
 config/development.php
 config/localhost.php
+gulpfile.babel.js
 
 # build files
 bower.json.tmp
