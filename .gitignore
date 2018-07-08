@@ -5,6 +5,7 @@ vendor/
 package-lock.json
 
 # config
+phpunit.xml
 composer.json
 package.json
 bower.json
