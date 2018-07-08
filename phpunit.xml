@@ -6,9 +6,9 @@
   >
   <php>
     <var name="DB_HOST" value="0.0.0.0" />
-    <var name="DB_NAME" value="api_test" />
-    <var name="DB_USER" value="api" />
-    <var name="DB_PASS" value="api012" />
+    <var name="DB_NAME" value="ad111a0v1a_core" />
+    <var name="DB_USER" value="root" />
+    <var name="DB_PASS" value="xLxrCvNW" />
     <var name="DB_PORT" value="3306" />
     <var name="DB_CHARSET" value="utf8" />
 
@@ -17,11 +17,11 @@
     <var name="MAIL_USER" value="null" />
     <var name="MAIL_PASS" value="null" />
 
-    <var name="MAIL_FROM" value="info@example.com" />
+    <var name="MAIL_FROM" value="system@seiwa-chemical.net" />
     <var name="MAIL_NAME" value="System Notification" />
-    <var name="MAIL_ADDR" value="admin@example.com" />
+    <var name="MAIL_ADDR" value="system@seiwa-chemical.net" />
 
-    <var name="MAIL_FAIL" value="info@example.com" />
+    <var name="MAIL_FAIL" value="system@seiwa-chemical.net" />
   </php>
 
   <testsuites>

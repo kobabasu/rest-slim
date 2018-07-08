@@ -12,8 +12,11 @@ class Twig
     /** @var Object #twig twigオブジェクト */
     private $twig;
 
-    /** Twigのテンプレートディレクトリseparatorはいらない */
-    const TEMPLATE_DIR = 'mail';
+    /** Twigのコンテントディレクトリ */
+    const CONTENT_DIR = '../slimphp/mail';
+
+    /** Twigのテンプレートディレクトリ */
+    const TEMPLATE_DIR = 'slimphp/mail';
 
     /** Twigのキャッシュディレクトリseparatorはいらない */
     const CACHE_DIR = 'cache';
@@ -32,7 +35,11 @@ class Twig
         $template,
         $data = array()
     ) {
-        $dir = self::TEMPLATE_DIR;
+        if (file_exists(__DIR__ . '/../../../../slimphp')) {
+            $dir = self::TEMPLATE_DIR;
+        } else {
+            $dir = self::CONTENT_DIR;
+        }
         $loader = new \Twig_Loader_Filesystem($dir);
         $this->twig = new \Twig_Environment($loader, array(
             'debug' => self::DEBUG,

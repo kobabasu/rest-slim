@@ -5,10 +5,11 @@ if (DEBUG) {
     $withJsonEnc = 0;
 }
 
-if (file_exists(__DIR__ . '/../../slimphp')) {
-    const CONTENT_DIR_PATH = __DIR__ . '/../../slimphp';
+$dir = dirname(__DIR__);
+if (file_exists(dirname($dir) . '/slimphp')) {
+    define('CONTENT_DIR_PATH', dirname($dir) . '/slimphp');
 } else {
-    const CONTENT_DIR_PATH = __DIR__ . '/../slimphp';
+    define('CONTENT_DIR_PATH', $dir . '/slimphp');
 }
 
 return array(
