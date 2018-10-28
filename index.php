@@ -9,13 +9,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 /**
  * server environment
  */
-$file = __DIR__ .'/config/ips';
+$file = __DIR__  .'/../slimphp/config/ips';
 $ext = (is_file($file . '.php')) ? '.php' : '.php.sample';
 $production_server_ips = require($file . $ext);
 
 $env = new DetectEnvironment($production_server_ips);
 // $env->setMode('proxies');
-$file = __DIR__ . '/config/' . $env->getName();
+$file = __DIR__ . '/../slimphp/config/' . $env->getName();
 $ext = (is_file($file . '.php')) ? '.php' : '.php.sample';
 require($file . $ext);
 
