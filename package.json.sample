@@ -24,10 +24,10 @@
   },
   "devDependencies": {
     "babel-core": "*",
-    "babel-plugin-istanbul": "*",
     "babel-preset-env": "*",
-    "frisby": "*",
-    "gulp": "gulpjs/gulp#4.0"
+    "babel-plugin-istanbul": "*",
+    "gulp": "*",
+    "frisby": "*"
   },
 
   "browser": {
