@@ -6,10 +6,13 @@ apiディレクトリにcoreosディレクトリは含めない
 ### vagrant
 1. `hub clone coreos/coreos-vagrant coreos`
 1. `cd coreos`
-1. 必要なファイルをリネーム  
-   * `mv user-data.sample user-data`
+1. config.rb.sampleをリネーム  
    * `mv config.rb.sample config.rb`
-1. Vagrantfile編集  
+1. config.rbを編集
+   $update_channel='stable'
+   $instance_name_prefix="xxxxxx"
+   $shared_folders = {'../html/' => '/home/core/share'}
+   $forwarded_ports = {80 => 8080, 3306 => 3306, 3307 => 3307, 443 => 3443, 1025 => 1025, 1080 => 1080}
    `vim Vagrantfile`
    * stableを使用
    * `$instance_name_prefix = "任意の名前"`
