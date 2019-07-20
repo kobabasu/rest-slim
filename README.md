@@ -73,11 +73,13 @@ originと整合性が取れない場合があったため、
 
 ### composer
 1. `composer install --no-dev`
+(必ずapi/以下にインストールする)
 
 ### .htaccess
 再びサーバへ
 
 1. `cp .htaccess.sample .htaccess`
+(api/以下にもインストール必要。親階層に同じものがあってもよい)
 1. `cp .logs/htaccess.sample logs/.htaccess`
 1. `cp .reports/htaccess.sample reports/.htaccess`
 1. HTTPSが使える場合はHTTPS正規化の設定を有効に
