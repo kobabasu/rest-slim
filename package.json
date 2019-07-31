@@ -36,7 +36,7 @@
     "babel": "babel ./spec/src --out-dir ./spec/js" ,
     "jasmine": "jasmine-node spec/js",
 
-    "test": "npm run babel; npm run jasmine",
+    "test": "phpunit",
     "build": "npm run babel"
   },
 
