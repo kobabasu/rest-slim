@@ -19,6 +19,7 @@ config/localhost.php
 gulpfile.babel.js
 
 # build files
+yarn-error.log
 bower.json.tmp
 bower.json-e
 package.json-e
