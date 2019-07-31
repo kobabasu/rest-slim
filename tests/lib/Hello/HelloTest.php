@@ -24,7 +24,7 @@ class HelloTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new Hello;
     }
@@ -32,7 +32,7 @@ class HelloTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 

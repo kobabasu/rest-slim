@@ -24,7 +24,7 @@ class MailerTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $swift = new \Lib\SwiftMailer\Init(
             $GLOBALS['MAIL_HOST'],
@@ -39,7 +39,7 @@ class MailerTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 

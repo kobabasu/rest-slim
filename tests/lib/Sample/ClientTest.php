@@ -24,7 +24,7 @@ class ClientTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $service = $this->createMock(
             'Lib\Sample\ServiceInterface',
@@ -41,7 +41,7 @@ class ClientTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
