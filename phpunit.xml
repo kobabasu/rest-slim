@@ -29,7 +29,6 @@
       <directory>./tests/lib/</directory>
       <directory>./tests/routes/</directory>
       <exclude>./tests/lib/Db/</exclude>
-      <exclude>./tests/lib/SwiftMailer/</exclude>
       <exclude>./tests/routes/</exclude>
     </testsuite>
   </testsuites>
