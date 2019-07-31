@@ -32,6 +32,8 @@
   "scripts": {
     "global": "npm install -g babel babel-eslint jasmine-node;",
     "start": "NODE_ENV=development",
+    "copy": "rsync -ru ./slimphp ..",
+    "postinstall": "yarn run copy",
 
     "babel": "babel ./spec/src --out-dir ./spec/js" ,
     "jasmine": "jasmine-node spec/js",
