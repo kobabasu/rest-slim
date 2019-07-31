@@ -5,9 +5,8 @@
   "main": "index.php",
   "repository": {
     "type": "git",
-    "url": "//github.com/kobabasu/rest.git"
+    "url": "//github.com/kobabasu/rest-slim.git"
   },
-
   "keywords": [
     "slim",
     "mailcatcher",
