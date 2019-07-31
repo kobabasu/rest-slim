@@ -28,6 +28,9 @@
     <testsuite>
       <directory>./tests/lib/</directory>
       <directory>./tests/routes/</directory>
+      <exclude>./tests/lib/Db/</exclude>
+      <exclude>./tests/lib/SwiftMailer/</exclude>
+      <exclude>./tests/routes/</exclude>
     </testsuite>
   </testsuites>
 
@@ -36,6 +39,7 @@
       <directory suffix=".php">./lib</directory>
       <directory suffix=".php">./slimphp/routes</directory>
       <exclude>
+        <directory suffix="Interface.php">./</directory>
         <directory suffix="Interface.php">./</directory>
         <directory suffix="Skelton.php">./</directory>
       </exclude>
