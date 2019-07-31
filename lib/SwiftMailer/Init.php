@@ -98,7 +98,7 @@ class Init
      */
     public function getMailer()
     {
-        $transport = \Swift_SmtpTransport::newInstance(
+        $transport = new \Swift_SmtpTransport(
             $this->host,
             $this->port
         );
@@ -106,7 +106,7 @@ class Init
         $transport->setUsername($this->user);
         $transport->setPassword($this->pass);
 
-        $mailer = \Swift_Mailer::newInstance($transport);
+        $mailer = new \Swift_Mailer($transport);
 
         $mailer = $this->setAntiFlood($mailer);
         $mailer = $this->setLog($mailer);
@@ -128,15 +128,16 @@ class Init
         $from,
         $body
     ) {
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subject)
+        $message = (new \Swift_Message($subject))
             ->setFrom($from)
             ->setBody($body);
 
         $message->setCharset($this->charset);
+        /*
         $message->setEncoder(
             \Swift_Encoding::get7BitEncoding()
         );
+         */
 
         $this->message = $message;
 
