@@ -60,7 +60,7 @@ class MailerTest extends TestCase
             $body
         );
 
-        $this->assertInternalType('object', $res);
+        $this->assertIsObject($res);
     }
 
     /**
@@ -114,7 +114,7 @@ class MailerTest extends TestCase
         );
         $res = $ref->getValue($this->object);
 
-        $this->assertInternalType('object', $res);
+        $this->assertIsObject($res);
     }
 
     /**
@@ -272,6 +272,6 @@ class MailerTest extends TestCase
 
         $res = $this->object->getPath();
 
-        $this->assertInternalType('string', $res);
+        $this->assertIsString($res);
     }
 }
