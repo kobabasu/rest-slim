@@ -138,7 +138,7 @@ class MailerTest extends TestCase
             'test@example.com'
         );
 
-        $this->assertEquals(1, $res);
+        $this->assertEquals(1, $res[0]);
     }
 
     /**
@@ -164,7 +164,7 @@ class MailerTest extends TestCase
 
         $this->assertEquals(
             'RFC Compliance Error',
-            $res
+            $res[0]
         );
     }
 
@@ -195,7 +195,7 @@ class MailerTest extends TestCase
             'test@example.com'
         );
 
-        $this->assertEquals(1, $res);
+        $this->assertEquals(1, $res[0]);
     }
 
     /**
@@ -219,7 +219,7 @@ class MailerTest extends TestCase
         $this->object->setXOriginalTo($to[1]);
         $res = $this->object->send($to);
 
-        $this->assertEquals(1, $res['1']['result']);
+        $this->assertEquals(1, $res[1]);
     }
 
     /**
