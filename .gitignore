@@ -5,8 +5,6 @@ vendor/
 
 # config
 phpunit.xml
-bower.json
-gulp/dir.es6
 .htaccess
 .htpasswd
 .htdigest
@@ -15,15 +13,10 @@ config/ips.php
 config/production.php
 config/development.php
 config/localhost.php
-gulpfile.babel.js
 
 # build files
 yarn-error.log
-bower.json.tmp
-bower.json-e
-package.json-e
 npm-debug.log
-.sass-cache
 composer.phar
 composer.lock
 memory
@@ -33,12 +26,7 @@ cache/*
 .phpunit.result.cache
 
 # tests
-js/*
-dist/*
-css/*
 docs/*
-spec/js/*
-spec/dist/*
 
 # for CPI
 cgi-bin/
@@ -46,6 +34,3 @@ sys-common/
 
 # gitkeep
 !.gitkeep
-
-# .htaccess
-!.htaccess.sample
