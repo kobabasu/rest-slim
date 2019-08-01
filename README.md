@@ -400,7 +400,5 @@ dockerを使用している場合、
 
 ## todo
 - [ ] covegareの出力ができない。xdebug?
-- [ ] package.json内のHttpful, monologの必要性を確認
 - [ ] Dbunit終了によるlib/Db内のテストを再考
-- [ ] phpdocのエラーの解消
 - [ ] circleciの追加
