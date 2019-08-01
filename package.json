@@ -33,7 +33,8 @@
     "start": "NODE_ENV=development",
     "copy": "rsync -ru ./slimphp ..",
     "postinstall": "yarn run copy",
-    "test": "phpunit && yarn run jest"
+    "test": "phpunit && yarn run jest",
+    "doc": "phpdoc"
   },
   "preferGlobal": true,
   "author": "kobabasu",
