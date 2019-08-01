@@ -46,7 +46,7 @@
   </filter>
 
   <logging>
-    <log type="coverage-html" target="./docs/reports" />
+    <log type="coverage-html" target="./reports" />
     <log type="coverage-clover" target="./logs/coverage.xml" />
   </logging>
 </phpunit>
