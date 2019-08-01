@@ -33,14 +33,8 @@
     "start": "NODE_ENV=development",
     "copy": "rsync -ru ./slimphp ..",
     "postinstall": "yarn run copy",
-
-    "babel": "babel ./spec/src --out-dir ./spec/js" ,
-    "jasmine": "jasmine-node spec/js",
-
-    "test": "phpunit",
-    "build": "npm run babel"
+    "test": "phpunit && yarn run jest"
   },
-
   "preferGlobal": true,
   "author": "kobabasu",
   "license": "MIT"
