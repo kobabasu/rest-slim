@@ -24,7 +24,7 @@ class DetectEnvironmentTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $_SERVER['SERVER_ADDR'] = '192.168.0.1';
 
@@ -54,7 +54,7 @@ class DetectEnvironmentTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 

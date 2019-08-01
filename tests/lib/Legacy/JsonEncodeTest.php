@@ -24,7 +24,7 @@ class JsonEncodeTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new JsonEncode;
     }
@@ -32,7 +32,7 @@ class JsonEncodeTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
     

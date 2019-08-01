@@ -17,17 +17,19 @@
     <var name="MAIL_USER" value="null" />
     <var name="MAIL_PASS" value="null" />
 
-    <var name="MAIL_FROM" value="system@seiwa-chemical.net" />
+    <var name="MAIL_FROM" value="test@example.com" />
     <var name="MAIL_NAME" value="System Notification" />
-    <var name="MAIL_ADDR" value="system@seiwa-chemical.net" />
+    <var name="MAIL_ADDR" value="test@example.com" />
 
-    <var name="MAIL_FAIL" value="system@seiwa-chemical.net" />
+    <var name="MAIL_FAIL" value="test@example.com" />
   </php>
 
   <testsuites>
-    <testsuite>
+    <testsuite name="slimphp">
       <directory>./tests/lib/</directory>
       <directory>./tests/routes/</directory>
+      <exclude>./tests/lib/Db/</exclude>
+      <exclude>./tests/routes/</exclude>
     </testsuite>
   </testsuites>
 
@@ -37,13 +39,14 @@
       <directory suffix=".php">./slimphp/routes</directory>
       <exclude>
         <directory suffix="Interface.php">./</directory>
+        <directory suffix="Interface.php">./</directory>
         <directory suffix="Skelton.php">./</directory>
       </exclude>
     </whitelist>
   </filter>
 
   <logging>
-    <log type="coverage-html" target="./docs/reports" />
+    <log type="coverage-html" target="./reports" />
     <log type="coverage-clover" target="./logs/coverage.xml" />
   </logging>
 </phpunit>

@@ -21,7 +21,7 @@ class ImageTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -31,14 +31,14 @@ class ImageTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
     /**
      * @ignore
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         // for testSaveNormal
         

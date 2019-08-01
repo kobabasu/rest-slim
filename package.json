@@ -1,13 +1,12 @@
 {
   "name": "REST",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "RESTful Application with slim3",
   "main": "index.php",
   "repository": {
     "type": "git",
-    "url": "//github.com/kobabasu/rest.git"
+    "url": "//github.com/kobabasu/rest-slim.git"
   },
-
   "keywords": [
     "slim",
     "mailcatcher",
@@ -19,35 +18,24 @@
     "linux",
     "!win32"
   ],
-
   "dependencies": {
   },
   "devDependencies": {
-    "babel-core": "*",
-    "babel-preset-env": "*",
-    "babel-plugin-istanbul": "*",
-    "gulp": "*",
-    "frisby": "*"
+    "@babel/core": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-plugin-istanbul": "^5.2.0",
+    "frisby": "^2.1.2",
+    "jest": "^24.8.0"
   },
-
-  "browser": {
-  },
-  "browserify": [ "js" ],
-  "eslintConfig": {
-    "parser": "babel-eslint"
-  },
-
   "scripts": {
     "global": "npm install -g babel babel-eslint jasmine-node;",
     "start": "NODE_ENV=development",
-
-    "babel": "babel ./spec/src --out-dir ./spec/js" ,
-    "jasmine": "jasmine-node spec/js",
-
-    "test": "npm run babel; npm run jasmine",
-    "build": "npm run babel"
+    "copy": "rsync -ru ./slimphp ..",
+    "postinstall": "yarn run copy",
+    "test": "phpunit && yarn run jest",
+    "doc": "phpdoc"
   },
-
   "preferGlobal": true,
   "author": "kobabasu",
   "license": "MIT"

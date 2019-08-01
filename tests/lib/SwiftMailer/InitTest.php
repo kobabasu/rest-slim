@@ -24,7 +24,7 @@ class InitTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new \Lib\SwiftMailer\Init(
             '127.0.0.1',
@@ -37,7 +37,7 @@ class InitTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
