@@ -1,8 +1,5 @@
 # REST
 
-## 開発環境を準備
-apiディレクトリにcoreosディレクトリは含めない
-
 ### vagrant
 1. `hub clone coreos/coreos-vagrant coreos`
 1. `cd coreos`
@@ -67,17 +64,15 @@ originと整合性が取れない場合があったため、
 1. `git checkout develop`
 1. `git flow init`
 
-### npm
-1. `npm install`
-1. `npm run build`
+### yarn 
+1. `yarn install`
+(必ずapi/以下にインストールする)
 
 ### composer
 1. `composer install --no-dev`
 (必ずapi/以下にインストールする)
 
 ### .htaccess
-再びサーバへ
-
 1. `cp .htaccess.sample .htaccess`
 (api/以下にもインストール必要。親階層に同じものがあってもよい)
 1. `cp .logs/htaccess.sample logs/.htaccess`
@@ -100,7 +95,7 @@ originと整合性が取れない場合があったため、
 1. config内,phpunit.xmlのid,pwを設定
 
 ### phpunit
-1. `phpunit`
+1. `yarn run test` (phpunitのみはphpunit)
 1. すべてテストをパスすればOK
 1. testdox形式で出力する場合は
    `phpunit --testdox`
@@ -118,14 +113,8 @@ originと整合性が取れない場合があったため、
 1. ダウンロードしダブルクリックでメーラが開く
 1. 問題なく表示されていればOK
 
-### phpdoc
-1. `phpdoc`を実行
-1. エラーがでず完了するか確認
-1. http://localhost:8080/api/docs/api/にアクセス
-1. 問題なく表示されればOK
-
 ### frisby
-1. `npm run test`
+1. `yarn run test` (frisbyのみはyarn run jest)
 1. すべてテストをパスすればOK
 
 ### dbext
@@ -283,26 +272,23 @@ curl -i -X DELETE --user api:api012 -H 'Content-Type:application/json;charset=ut
 |composer.json   |PSR-4のautoloadの設定があるので注意         |
 |composer.lock   |composerのlockファイル                      |
 |index.php       |server environmentの設定                    |
-|note.md         |メモ                                        |
 |package.json    |es6変換,frisbyを読込。scriptsは要確認       |
 |php.ini         |CPIのバージョン指定用php.ini                |
-|phpdoc.xml      |lib,routes,testsに限定。出力先はdocs/api    |
 |phpunit.xml     |lib,routesに限定。テスト用DBの設定含む      |
 
 ### directories
 |name            |desc                                        |
 |:---------------|:-------------------------------------------|
+|/__test__       |frisbyのテストコード                        |
 |/.git           |gitディレクトリ                             |
 |/cache          |twig専用cache                               |
 |/config         |設定はここにまとめる。要パーミッション      |
-|/docs           |テストのレポートとphpdoc                    |
 |/lib            |汎用コード                                  |
 |/logs           |Slim,mailのログとcoverage                   |
 |/mail           |twigによるmailテンプレート                  |
 |/node_modules   |npmディレクトリ                             |
 |/reports        |frisbyのjunitreport                         |
 |/routes         |Slimのroutesをまとめる                      |
-|/spec           |frisbyのテストコード                        |
 |/sql            |本番DB,テストDBの作成。usersテーブルの作成  |
 |/src            |Slimの汎用コード                            |
 |/tests          |phpunitのテストコード                       |
@@ -317,13 +303,6 @@ phpの定数を定義。DB, MAILなど。
 |(production.php)     |sampleをコピーし作成                   |
 |production.php.sample|本番環境用                             |
 
-### docs
-テストのレポートとphpdoc
-
-|name            |desc                                        |
-|:---------------|:-------------------------------------------|
-|api             |phpdocによる出力                            |
-|reports         |phpunitによるcoverage reporter              |
 
 ### mail
 twigによるmailテンプレート
@@ -333,14 +312,6 @@ twigによるmailテンプレート
 |default.twig    |twigによるmailテンプレートsample。未使用    |
 |defaultTest.twig|tests/lib/SwiftMailer/MailerTest.phpで使用  |
 
-### spec
-frisbyのテストコード
-
-|name            |desc                                        |
-|:---------------|:-------------------------------------------|
-|dist            |未使用                                      |
-|js              |frisbyはこの中のファイルをすべて読み込む    |
-|src             |この中のファイルを編集しbabelで変換         |
 
 ### sql
 sqlに関するディレクトリ
