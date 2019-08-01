@@ -24,7 +24,7 @@ class MailerTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $swift = new \Lib\SwiftMailer\Init(
             $GLOBALS['MAIL_HOST'],
@@ -39,7 +39,7 @@ class MailerTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -60,7 +60,7 @@ class MailerTest extends TestCase
             $body
         );
 
-        $this->assertInternalType('object', $res);
+        $this->assertIsObject($res);
     }
 
     /**
@@ -114,7 +114,7 @@ class MailerTest extends TestCase
         );
         $res = $ref->getValue($this->object);
 
-        $this->assertInternalType('object', $res);
+        $this->assertIsObject($res);
     }
 
     /**
@@ -138,7 +138,7 @@ class MailerTest extends TestCase
             'test@example.com'
         );
 
-        $this->assertEquals(1, $res);
+        $this->assertEquals(1, $res[0]);
     }
 
     /**
@@ -164,7 +164,7 @@ class MailerTest extends TestCase
 
         $this->assertEquals(
             'RFC Compliance Error',
-            $res
+            $res[0]
         );
     }
 
@@ -195,7 +195,7 @@ class MailerTest extends TestCase
             'test@example.com'
         );
 
-        $this->assertEquals(1, $res);
+        $this->assertEquals(1, $res[0]);
     }
 
     /**
@@ -219,7 +219,7 @@ class MailerTest extends TestCase
         $this->object->setXOriginalTo($to[1]);
         $res = $this->object->send($to);
 
-        $this->assertEquals(1, $res['1']['result']);
+        $this->assertEquals(1, $res[1]);
     }
 
     /**
@@ -272,6 +272,6 @@ class MailerTest extends TestCase
 
         $res = $this->object->getPath();
 
-        $this->assertInternalType('string', $res);
+        $this->assertIsString($res);
     }
 }

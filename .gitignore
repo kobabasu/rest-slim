@@ -2,14 +2,9 @@
 .DS_Store
 node_modules/
 vendor/
-package-lock.json
 
 # config
 phpunit.xml
-composer.json
-package.json
-bower.json
-gulp/dir.es6
 .htaccess
 .htpasswd
 .htdigest
@@ -18,28 +13,20 @@ config/ips.php
 config/production.php
 config/development.php
 config/localhost.php
-gulpfile.babel.js
 
 # build files
-bower.json.tmp
-bower.json-e
-package.json-e
+yarn-error.log
 npm-debug.log
-.sass-cache
 composer.phar
 composer.lock
 memory
 logs
 reports
 cache/*
+.phpunit.result.cache
 
 # tests
-js/*
-dist/*
-css/*
 docs/*
-spec/js/*
-spec/dist/*
 
 # for CPI
 cgi-bin/
@@ -47,6 +34,3 @@ sys-common/
 
 # gitkeep
 !.gitkeep
-
-# .htaccess
-!.htaccess.sample

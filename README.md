@@ -6,10 +6,13 @@ apiディレクトリにcoreosディレクトリは含めない
 ### vagrant
 1. `hub clone coreos/coreos-vagrant coreos`
 1. `cd coreos`
-1. 必要なファイルをリネーム  
-   * `mv user-data.sample user-data`
+1. config.rb.sampleをリネーム  
    * `mv config.rb.sample config.rb`
-1. Vagrantfile編集  
+1. config.rbを編集
+   $update_channel='stable'
+   $instance_name_prefix="xxxxxx"
+   $shared_folders = {'../html/' => '/home/core/share'}
+   $forwarded_ports = {80 => 8080, 3306 => 3306, 3307 => 3307, 443 => 3443, 1025 => 1025, 1080 => 1080}
    `vim Vagrantfile`
    * stableを使用
    * `$instance_name_prefix = "任意の名前"`
@@ -21,11 +24,11 @@ apiディレクトリにcoreosディレクトリは含めない
 1. `vagrant ssh`
 2. mysqlコンテナ起動
 ```
-docker run --net=host --name mysql -p 3306:3306 -e "ROOT_PW=..." -e "DB_NAME=..." -e "DB_USER=..." -e "DB_PASS=..." -d kobabasu/mysql:0.75
+docker run --name mysql -p 3307:3306 -e MYSQL_DATABASE=... -e MYSQL_USER=... -e MYSQL_PASSWORD=... -e MYSQL_ROOT_PASSWORD=... -d kobabasu/alpine-mysql:0.08
 ```
 3. apacheコンテナ起動
 ```
-docker run --net=host --name apache -p 80:80 -p 443:443 -v /home/core/share:/var/www/html -d kobabasu/apache:0.24
+docker run --net=host --name apache -p 80:80 -p 443:443 -v /home/core/share:/var/www/html -d kobabasu/apache:0.31
 ```
 4. smtpコンテナ起動
 ```
@@ -37,13 +40,15 @@ docker run --net=host --name smtp -p 1025:1025 -p 1080:1080 -d kobabasu/smtp:0.1
 ### mysql
 1. DB, ユーザ作成 rootユーザで行う
 ```
-mysql -h 0.0.0.0 --port 3306 -uroot -p[password] -D [dbname] < ../api/sql/install.sql
+mysql -h 0.0.0.0 --port 3307 -uroot -p[password] -D [dbname] < ../api/sql/install.sql
 ```
 2. table作成
 ```
-mysql -h 0.0.0.0 --port 3306 -u[username] -p[password] -D [dbname] < ../api/sql/users.create.sql
+mysql -h 0.0.0.0 --port 3307 -u[username] -p[password] -D [dbname] < ../api/sql/projects.create.sql
 ```
-
+```
+mysql -h 0.0.0.0 --port 3307 -u[username] -p[password] -D [dbname] < ../api/sql/users.create.sql
+```
 
 ---
 
@@ -68,11 +73,13 @@ originと整合性が取れない場合があったため、
 
 ### composer
 1. `composer install --no-dev`
+(必ずapi/以下にインストールする)
 
 ### .htaccess
 再びサーバへ
 
 1. `cp .htaccess.sample .htaccess`
+(api/以下にもインストール必要。親階層に同じものがあってもよい)
 1. `cp .logs/htaccess.sample logs/.htaccess`
 1. `cp .reports/htaccess.sample reports/.htaccess`
 1. HTTPSが使える場合はHTTPS正規化の設定を有効に
@@ -379,6 +386,21 @@ dockerを使用している場合、
 .htaccessのパスは/usr/homeではなく/var/www/htmlとなるため注意
 
 ### ローカル環境のログ確認方法
-1. `docker inspect --format {{.State.Pid}} apache
-1. `sudo nsenter --target=上記で出てきたid --mount --uts --ipc --net --pid`
-1. 上記でコンテナにログインできるので/var/logなどに移動して確認
+1. `docker exec -it apache sh`
+1. 上記でコンテナにログインできるので/var/log/apache2などに移動して確認
+### ページが表示できない (not Found)
+1. .htaccessは必ずapi以下にも必要。
+   内容は変更する必要がないはず。
+   一つ上の階層にも同じものがあってよい
+### ページが表示できない (このページは動作していません)
+1. error.logを覗いて、file not foundやクラスのFatal Errorも同様
+1. composerのインストールは必ずapi以下で行う
+   一つ上の階層にインストールするとエラーとなる
+
+
+## todo
+- [ ] covegareの出力ができない。xdebug?
+- [ ] package.json内のHttpful, monologの必要性を確認
+- [ ] Dbunit終了によるlib/Db内のテストを再考
+- [ ] phpdocのエラーの解消
+- [ ] circleciの追加

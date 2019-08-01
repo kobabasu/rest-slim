@@ -1,31 +1,24 @@
 {
   "name": "kobabasu/rest-api",
   "description": "RESTful Application with slim3",
-
   "autoload": {
     "psr-4": {
       "Lib\\": ["lib/", "tests/lib/"],
       "Routes\\": ["slimphp/routes/", "tests/routes/"]
     }
   },
-
   "require": {
     "slim/slim": "3.x",
-    "tuupola/slim-basic-auth": "2.x",
+    "tuupola/slim-basic-auth": "3.x",
     "swiftmailer/swiftmailer": "@stable",
     "twig/twig": "@stable",
     "monolog/monolog": "*",
     "nategood/httpful": "*"
   },
-
   "require-dev": {
-    "phpunit/phpunit": "*",
-    "phpunit/dbunit": "*"
+    "phpunit/phpunit": "*"
   },
-
   "scripts": {
-    "test": "phpunit",
-    "skel": "phpunit-skelgen",
-    "doc": "phpdoc"
+    "test": "phpunit"
   }
 }

@@ -24,7 +24,7 @@ class TwigTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new \Lib\SwiftMailer\Util\Twig();
     }
@@ -32,7 +32,7 @@ class TwigTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 

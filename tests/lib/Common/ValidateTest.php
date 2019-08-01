@@ -24,7 +24,7 @@ class ValidateTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -34,7 +34,7 @@ class ValidateTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 

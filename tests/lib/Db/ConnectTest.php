@@ -24,7 +24,7 @@ class ConnectTest extends TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new \Lib\Db\Connect(
             $GLOBALS['DB_HOST'],
@@ -37,7 +37,7 @@ class ConnectTest extends TestCase
     /**
      * @ignore
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
