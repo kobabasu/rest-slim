@@ -25,7 +25,7 @@
   </php>
 
   <testsuites>
-    <testsuite>
+    <testsuite name="slimphp">
       <directory>./tests/lib/</directory>
       <directory>./tests/routes/</directory>
       <exclude>./tests/lib/Db/</exclude>
