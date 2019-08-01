@@ -21,12 +21,10 @@ composer.phar
 composer.lock
 memory
 logs
-reports
-cache/*
+results
+coverage
+cache
 .phpunit.result.cache
-
-# tests
-docs/*
 
 # for CPI
 cgi-bin/
