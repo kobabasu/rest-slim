@@ -347,6 +347,16 @@ phpunitのテストコード
 ---
 
 
+## npm packages
+- @babel/core - mochaがes6を使っているのでbabelが必要 circleci用にglobalにも必要
+- @babel/preset-env - .babelrcでrequireしてる circleci用にglobalにも必要
+- frisby - APIのテスト用
+- jest - frisbyが使う
+
+
+---
+
+
 ## trouble shootings
 ### 本番環境のみ'Slim Application Error'
 basic authのmiddlewareの関係でhttp接続では
@@ -359,10 +369,12 @@ dockerを使用している場合、
 ### ローカル環境のログ確認方法
 1. `docker exec -it apache sh`
 1. 上記でコンテナにログインできるので/var/log/apache2などに移動して確認
+
 ### ページが表示できない (not Found)
 1. .htaccessは必ずapi以下にも必要。
    内容は変更する必要がないはず。
    一つ上の階層にも同じものがあってよい
+
 ### ページが表示できない (このページは動作していません)
 1. error.logを覗いて、file not foundやクラスのFatal Errorも同様
 1. composerのインストールは必ずapi以下で行う
