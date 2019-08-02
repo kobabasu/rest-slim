@@ -349,10 +349,12 @@ phpunitのテストコード
 
 
 ## npm packages
-- @babel/core - mochaがes6を使っているのでbabelが必要 circleci用にglobalにも必要
-- @babel/preset-env - .babelrcでrequireしてる circleci用にglobalにも必要
-- frisby - APIのテスト用
-- jest - frisbyが使う
+|name              |desc                                              |
+|:-----------------|:-------------------------------------------------|
+|@babel/core       |mochaのes6用 circleci用にglobalにも必要           |
+|@babel/preset-env |.babelrcでrequireしてる circleci用にglobalにも必要|
+|frisby            |APIのテスト用                                     |
+|jest              |frisbyが使う                                      |
 
 
 ---
