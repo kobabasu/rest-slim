@@ -5,7 +5,7 @@
   "main": "index.php",
   "repository": {
     "type": "git",
-    "url": "//github.com/kobabasu/rest-slim.git"
+    "url": "//github.com/kobabasu/rest.git"
   },
   "keywords": [
     "slim",
@@ -23,16 +23,19 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+
     "frisby": "^2.1.2",
     "jest": "^24.8.0"
   },
   "scripts": {
-    "global": "npm install -g babel babel-eslint jasmine-node;",
+    "global": "nm install -g @babel/core @babel/preset-env",
     "start": "NODE_ENV=development",
     "copy": "rsync -ru ./slimphp ..",
     "postinstall": "yarn run copy",
+
     "test": "phpunit && yarn run jest",
-    "doc": "phpdoc"
+    "reporter": "phpunit --log-junit ./results/test-results.xml",
+    "coverage": "phpunit --coverage-html=./coverage"
   },
   "preferGlobal": true,
   "author": "kobabasu",

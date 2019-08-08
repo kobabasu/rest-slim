@@ -1,4 +1,43 @@
+[![CircleCI](https://circleci.com/gh/kobabasu/rest.svg?style=shield&circle-token=84bd0a39ed91df8e512f722cc2b7cf925d646b35)](https://circleci.com/gh/kobabasu/rest)
+
 # REST
+es6を利用するためbabelが必要
+
+```
+git submodule add git@github.com-kobabasu:kobabasu/rest.git api
+git submodule update
+```
+
+## yarn 
+1. 必要があればdevelopブランチを使う  
+   `git checkout develop`
+1. `yarn start`
+1. `yarn install`
+
+## circleci
+1. githubとcircleciとslackを連携させる
+1. .cicrleci/config.ymlをプロジェクトルートにコピー
+1. config.ymlの`working_directory`を編集
+1. プロジェクトのREADME.mdのbadgeを編集
+1. git push してみて成功するか確認
+
+## Dockerfile
+もしcircleciのコンテナになにか追加する必要があれば、
+Dockerfileを編集しbuildしdocker hubにpush
+
+1. `hub clone cores/cores-vagrant coreos`
+1. config.rbをコピー
+1. config.rbを編集
+1. `shared_folder`でレポジトリのルートを共有
+1. `docker build -t kobabasu/alpine-php:0.xx` /home/core/share`
+1. `docker login`
+1. `docker push kobabasu/alpine-php:0.xx`
+1. docker-composeをインストール
+1. `docker-compose up`
+1. `docker-compose start`
+1. `docker exec chrome yarn run test`で確認
+1. 問題なければ`.circleci/config.yml`のimagesのバージョンを変更
+1. git pushで確認
 
 ### vagrant
 1. `hub clone coreos/coreos-vagrant coreos`
@@ -75,8 +114,9 @@ originと整合性が取れない場合があったため、
 ### .htaccess
 1. `cp .htaccess.sample .htaccess`
 (api/以下にもインストール必要。親階層に同じものがあってもよい)
-1. `cp .logs/htaccess.sample logs/.htaccess`
-1. `cp .reports/htaccess.sample reports/.htaccess`
+1. `cp logs/htaccess.sample logs/.htaccess`
+1. `cp reports/htaccess.sample reports/.htaccess`
+1. `cp coverage/htaccess.sample coverage/.htaccess`
 1. HTTPSが使える場合はHTTPS正規化の設定を有効に
 1. BASIC認証をかける場合にはBASIC認証設定を有効にしパスを変更
 1. サーバがPHP-CGI版の場合にはPHP-CGI用のBASIC認証設定を有効に
@@ -348,10 +388,12 @@ phpunitのテストコード
 
 
 ## npm packages
-- @babel/core - mochaがes6を使っているのでbabelが必要 circleci用にglobalにも必要
-- @babel/preset-env - .babelrcでrequireしてる circleci用にglobalにも必要
-- frisby - APIのテスト用
-- jest - frisbyが使う
+|name              |desc                                              |
+|:-----------------|:-------------------------------------------------|
+|@babel/core       |mochaのes6用 circleci用にglobalにも必要           |
+|@babel/preset-env |.babelrcでrequireしてる circleci用にglobalにも必要|
+|frisby            |APIのテスト用                                     |
+|jest              |frisbyが使う                                      |
 
 
 ---
