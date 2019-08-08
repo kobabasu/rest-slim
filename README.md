@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/kobabasu/rest.svg?style=shield&circle-token=84bd0a39ed91df8e512f722cc2b7cf925d646b35)](https://circleci.com/gh/kobabasu/rest)
+
 # REST
 es6を利用するためbabelが必要
 
