@@ -1,4 +1,43 @@
+[![CircleCI](https://circleci.com/gh/kobabasu/rest.svg?style=shield&circle-token=84bd0a39ed91df8e512f722cc2b7cf925d646b35)](https://circleci.com/gh/kobabasu/rest)
+
 # REST
+es6を利用するためbabelが必要
+
+```
+git submodule add git@github.com-kobabasu:kobabasu/rest.git api
+git submodule update
+```
+
+## yarn 
+1. 必要があればdevelopブランチを使う  
+   `git checkout develop`
+1. `yarn start`
+1. `yarn install`
+
+## circleci
+1. githubとcircleciとslackを連携させる
+1. .cicrleci/config.ymlをプロジェクトルートにコピー
+1. config.ymlの`working_directory`を編集
+1. プロジェクトのREADME.mdのbadgeを編集
+1. git push してみて成功するか確認
+
+## Dockerfile
+もしcircleciのコンテナになにか追加する必要があれば、
+Dockerfileを編集しbuildしdocker hubにpush
+
+1. `hub clone cores/cores-vagrant coreos`
+1. config.rbをコピー
+1. config.rbを編集
+1. `shared_folder`でレポジトリのルートを共有
+1. `docker build -t kobabasu/alpine-php:0.xx` /home/core/share`
+1. `docker login`
+1. `docker push kobabasu/alpine-php:0.xx`
+1. docker-composeをインストール
+1. `docker-compose up`
+1. `docker-compose start`
+1. `docker exec chrome yarn run test`で確認
+1. 問題なければ`.circleci/config.yml`のimagesのバージョンを変更
+1. git pushで確認
 
 ### vagrant
 1. `hub clone coreos/coreos-vagrant coreos`

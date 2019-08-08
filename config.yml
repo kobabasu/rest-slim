@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: kobabasu/alpine-chrome:0.46
+      
+    working_directory: ~/app/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: yarn run reporter
+
+      - run: yarn run coverage
+
+      - store_test_results:
+          path: ./results
+
+      - store_artifacts:
+          path: ./results
+
+      - store_artifacts:
+          path: ./coverage
